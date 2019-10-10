@@ -3,15 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@api-platform/admin": "^1.0.0",
+    "@api-platform/admin": "^1.0.1",
+    "@material-ui/core": "^4.5.0",
+    "ra-data-simple-rest": "^2.9.7",
+    "ra-language-french": "^2.9.3",
     "react": "^16.10.1",
+    "react-admin": "^2.9.7",
     "react-dom": "^16.10.1",
-    "react-scripts": "^3.2.0"
+    "react-scripts": "^3.2.0",
+    "ra-language-english": "latest",
+    "react-router-dom": "latest",
+    "@api-platform/api-doc-parser": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -28,5 +34,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 160
   }
 }
