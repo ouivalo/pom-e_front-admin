@@ -11,7 +11,6 @@
     "react-admin": "^2.9.7",
     "react-dom": "^16.10.1",
     "react-scripts": "^3.2.0",
-    "ra-language-english": "latest",
     "react-router-dom": "latest",
     "@api-platform/api-doc-parser": "latest"
   },

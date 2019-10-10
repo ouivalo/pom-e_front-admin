@@ -1,9 +1,7 @@
 import React from 'react'
-import { HydraAdmin, ResourceGuesser, dataProvider as baseDataProvider, fetchHydra as baseFetchHydra } from '@api-platform/admin'
-import { resolveBrowserLocale } from 'react-admin'
+import { HydraAdmin, dataProvider as baseDataProvider, fetchHydra as baseFetchHydra } from '@api-platform/admin'
 import parseHydraDocumentation from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation'
 import frenchMessages from 'ra-language-french'
-import englishMessages from 'ra-language-english'
 import { Redirect } from 'react-router-dom'
 
 import authProvider from './authProvider'
