@@ -1,5 +1,5 @@
 import React from 'react'
-import { HydraAdmin, dataProvider as baseDataProvider, fetchHydra as baseFetchHydra } from '@api-platform/admin'
+import { HydraAdmin, dataProvider as baseDataProvider, fetchHydra as baseFetchHydra, ResourceGuesser } from '@api-platform/admin'
 import parseHydraDocumentation from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation'
 import frenchMessages from 'ra-language-french'
 import { Redirect } from 'react-router-dom'
@@ -7,6 +7,7 @@ import { Redirect } from 'react-router-dom'
 import authProvider from './authProvider'
 import compostriTheme from './theme'
 import Layout from './components/Layout'
+import ReviewsListComposter from './components/ReviewsListComposter'
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
 const fetchHeaders = { Authorization: `Bearer ${window.localStorage.getItem('token')}` }
@@ -48,5 +49,8 @@ export default () => (
     appLayout={Layout}
     theme={compostriTheme}
     i18nProvider={() => frenchMessages}
-  />
+  >
+    <ResourceGuesser name="composters" list={ReviewsListComposter} />
+    <ResourceGuesser name="communes" />
+  </HydraAdmin>
 )
