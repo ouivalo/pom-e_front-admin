@@ -7,7 +7,10 @@ import { Redirect } from 'react-router-dom'
 import authProvider from './authProvider'
 import compostriTheme from './theme'
 import Layout from './components/Layout'
-import ReviewsListComposter from './components/ReviewsListComposter'
+import ReviewsListComposter from './components/ComposterList'
+import ReviewsListSimpleName from './components/SimpleNameList'
+import ComposterEdit from './components/ComposterEdit'
+import PavilionsVolumeList from './components/PavilionsVolumeList'
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
 const fetchHeaders = { Authorization: `Bearer ${window.localStorage.getItem('token')}` }
@@ -22,6 +25,7 @@ const apiDocumentationParser = entrypoint =>
     result => {
       switch (result.status) {
         case 401:
+          window.localStorage.removeItem('token')
           return Promise.resolve({
             api: result.api,
             customRoutes: [
@@ -50,7 +54,11 @@ export default () => (
     theme={compostriTheme}
     i18nProvider={() => frenchMessages}
   >
-    <ResourceGuesser name="composters" list={ReviewsListComposter} />
-    <ResourceGuesser name="communes" />
+    <ResourceGuesser name="composters" list={ReviewsListComposter} label="Composteurs" edit={ComposterEdit} />
+    <ResourceGuesser name="quartiers" list={ReviewsListSimpleName} />
+    <ResourceGuesser name="communes" list={ReviewsListSimpleName} />
+    <ResourceGuesser name="poles" list={ReviewsListSimpleName} />
+    <ResourceGuesser name="pavilions_volumes" list={PavilionsVolumeList} />
+    <ResourceGuesser name="users" list={PavilionsVolumeList} />
   </HydraAdmin>
 )

@@ -29,6 +29,15 @@ const ComposterFilter = props => (
     <ReferenceInput label="Commune" source="commune" reference="communes" alwaysOn>
       <SelectInput optionText="name" optionValue="id" />
     </ReferenceInput>
+    <ReferenceInput label="Quartier" source="quartier" reference="quartiers">
+      <SelectInput optionText="name" optionValue="id" />
+    </ReferenceInput>
+    <ReferenceInput label="Pole" source="pole" reference="poles">
+      <SelectInput optionText="name" optionValue="id" />
+    </ReferenceInput>
+    <ReferenceInput label="Pavilions volume" source="pavilionsVolume" reference="pavilions_volumes">
+      <SelectInput optionText="volume" optionValue="id" />
+    </ReferenceInput>
   </Filter>
 )
 
@@ -37,11 +46,14 @@ const NoteField = props => {
   return <TextField className={[classes[`note${props.record[props.source]}`], classes.note]} {...props} />
 }
 
-const ReviewsList = props => (
+const CompostersList = props => (
   <ListGuesser {...props} filters={<ComposterFilter />} sort={{ field: 'DateMiseEnRoute', order: 'DESC' }}>
     <FieldGuesser source="name" label="Nom" sortable={false} />
     <FieldGuesser source="DateMiseEnRoute" />
     <ReferenceField source="commune" reference="communes" linkType={false} allowEmpty={true} sortable={false}>
+      <TextField source="name" />
+    </ReferenceField>
+    <ReferenceField source="quartier" reference="quartiers" linkType={false} allowEmpty={true} sortable={false}>
       <TextField source="name" />
     </ReferenceField>
     <NoteField source="animation" sortable={false} />
@@ -51,4 +63,4 @@ const ReviewsList = props => (
   </ListGuesser>
 )
 
-export default ReviewsList
+export default CompostersList
