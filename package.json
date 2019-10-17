@@ -2,6 +2,7 @@
   "name": "composteur-backend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://composteur-backend.osc-fr1.scalingo.io",
   "dependencies": {
     "@api-platform/admin": "^1.0.1",
     "@api-platform/api-doc-parser": "^0.8.2",
