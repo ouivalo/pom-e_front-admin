@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardContent, Container, Grid, CardHeader, Button, List, ListItem, ListItemText, Typography } from '@material-ui/core'
+import { Card, CardContent, Grid, CardHeader, Button, List, ListItem, ListItemText, Typography } from '@material-ui/core'
 import { More } from '@material-ui/icons'
 import { Query, Loading, MenuItemLink } from 'react-admin'
 
@@ -10,7 +10,7 @@ const Dashboard = ({ dataProvider }) => {
   }
 
   return (
-    <Container maxWidth="lg">
+    <>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <Query type="GET_LIST" resource="composters" payload={payload}>
@@ -82,7 +82,7 @@ const Dashboard = ({ dataProvider }) => {
           </Query>
         </Grid>
       </Grid>
-    </Container>
+    </>
   )
 }
 
