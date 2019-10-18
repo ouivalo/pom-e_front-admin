@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { MenuItemLink, getResources } from 'react-admin'
 import { Divider } from '@material-ui/core'
@@ -10,16 +10,15 @@ const Menu = ({ resources, onMenuClick }) => (
     <MenuItemLink key="dashboard" to="/" primaryText="Tableau de bord" leftIcon={<Dashboard />} onClick={onMenuClick} />
     {resources.map(resource => {
       return (
-        <>
+        <Fragment key={resource.name}>
           <MenuItemLink
-            key={resource.name}
             to={`/${resource.name}`}
             primaryText={resource.options && (resource.options.label || resource.name)}
             leftIcon={resource.icon}
             onClick={onMenuClick}
           />
           {resource.options && resource.options.nextDivider && <Divider />}
-        </>
+        </Fragment>
       )
     })}
   </div>

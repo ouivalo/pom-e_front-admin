@@ -1,9 +1,24 @@
 import React from 'react'
-import { Card, CardContent, Grid, CardHeader, Button, List, ListItem, ListItemText, Typography } from '@material-ui/core'
+import { Card, CardContent, Grid, CardHeader, Button, List, ListItem, ListItemText, Typography, withStyles } from '@material-ui/core'
 import { More } from '@material-ui/icons'
 import { Query, Loading, MenuItemLink } from 'react-admin'
 
-const Dashboard = ({ dataProvider }) => {
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit
+  },
+  iconSmall: {
+    fontSize: 20
+  }
+})
+
+const Dashboard = ({ classes }) => {
   const payload = {
     pagination: { page: 1, perPage: 10 },
     sort: { field: 'DateMiseEnRoute', order: 'DESC' }
@@ -11,7 +26,7 @@ const Dashboard = ({ dataProvider }) => {
 
   return (
     <>
-      <Grid container spacing={3}>
+      <Grid container spacing={8}>
         <Grid item xs={12} md={6}>
           <Query type="GET_LIST" resource="composters" payload={payload}>
             {({ data, total, loading, error }) => {
@@ -22,14 +37,14 @@ const Dashboard = ({ dataProvider }) => {
                 <Card>
                   <CardHeader
                     action={
-                      <Button variant="outlined" color="primary" endIcon={<More />}>
-                        Voir tous
+                      <Button variant="outlined" color="primary">
+                        Voir tous <More className={[classes.rightIcon, classes.iconSmall]} />
                       </Button>
                     }
                     title={`${total} Composteurs `}
                   />
                   <CardContent>
-                    <Typography variant="h6">Derniers composteurs mis en route</Typography>
+                    <Typography variant="subheading">Derniers composteurs mis en route</Typography>
                     <List>
                       {data.map(composter => (
                         <ListItem
@@ -57,14 +72,14 @@ const Dashboard = ({ dataProvider }) => {
                 <Card>
                   <CardHeader
                     action={
-                      <Button variant="outlined" color="primary" endIcon={<More />}>
-                        Voir tous
+                      <Button variant="outlined" color="primary">
+                        Voir tous <More className={[classes.rightIcon, classes.iconSmall]} />
                       </Button>
                     }
                     title={`${total} Réparations `}
                   />
                   <CardContent>
-                    <Typography variant="h6">Réparations a venir</Typography>
+                    <Typography variant="subheading">Réparations a venir</Typography>
                     <List>
                       {data.map(reparation => (
                         <ListItem
@@ -86,4 +101,4 @@ const Dashboard = ({ dataProvider }) => {
   )
 }
 
-export default Dashboard
+export default withStyles(styles)(Dashboard)
