@@ -13,6 +13,7 @@ import ReviewsListSimpleName from './components/SimpleNameList'
 import ComposterEdit from './components/ComposterEdit'
 import PavilionsVolumeList from './components/PavilionsVolumeList'
 import Dashboard from './components/Dashboard'
+import ComposterShow from './components/ComposterShow'
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
 const fetchHeaders = { Authorization: `Bearer ${window.localStorage.getItem('token')}` }
@@ -57,7 +58,14 @@ export default () => (
     i18nProvider={() => frenchMessages}
     dashboard={Dashboard}
   >
-    <ResourceGuesser name="composters" list={ReviewsListComposter} options={{ label: 'Composteurs' }} edit={ComposterEdit} icon={<Archive />} />
+    <ResourceGuesser
+      name="composters"
+      list={ReviewsListComposter}
+      options={{ label: 'Composteurs' }}
+      edit={ComposterEdit}
+      icon={<Archive />}
+      show={ComposterShow}
+    />
     <ResourceGuesser name="suivis" options={{ label: 'Suivis' }} icon={<Pageview />} />
     <ResourceGuesser name="livraison_broyats" options={{ label: 'Livraisons broyat' }} icon={<LocalShipping />} />
     <ResourceGuesser name="reparations" options={{ label: 'Réparations' }} icon={<Build />} />
