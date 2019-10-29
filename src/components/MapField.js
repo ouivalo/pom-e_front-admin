@@ -1,6 +1,4 @@
 import React from 'react'
-import { FormDataConsumer, REDUX_FORM_NAME } from 'react-admin'
-import { change } from 'redux-form'
 import RoomIcon from '@material-ui/icons/Room'
 import ReactMapGL, { Marker } from 'react-map-gl'
 
