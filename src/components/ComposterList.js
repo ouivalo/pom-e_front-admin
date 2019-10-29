@@ -1,27 +1,7 @@
 import React from 'react'
 import { ListGuesser, FieldGuesser } from '@api-platform/admin'
 import { TextField, ReferenceField, Filter, ReferenceInput, SelectInput, TextInput } from 'react-admin'
-import { withStyles } from '@material-ui/core/styles'
-import theme from '../theme'
-
-const useStyles = {
-  note: {
-    color: '#fff',
-    textAlign: 'center'
-  },
-  note0: {
-    backgroundColor: theme.palette.secondary.main
-  },
-  note1: {
-    backgroundColor: theme.palette.secondary.main
-  },
-  note2: {
-    backgroundColor: '#FBB447'
-  },
-  note3: {
-    backgroundColor: theme.palette.primary.main
-  }
-}
+import NoteField from './NoteField'
 
 const ComposterFilter = props => (
   <Filter {...props}>
@@ -40,10 +20,6 @@ const ComposterFilter = props => (
     </ReferenceInput>
   </Filter>
 )
-
-const NoteField = withStyles(useStyles)(({ classes, ...props }) => {
-  return <TextField className={[classes[`note${props.record[props.source]}`], classes.note]} {...props} />
-})
 
 const CompostersList = props => (
   <ListGuesser {...props} filters={<ComposterFilter />} sort={{ field: 'DateMiseEnRoute', order: 'DESC' }}>
