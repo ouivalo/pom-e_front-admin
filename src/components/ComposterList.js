@@ -18,6 +18,9 @@ const ComposterFilter = props => (
     <ReferenceInput label="Pavilions volume" source="pavilionsVolume" reference="pavilions_volumes">
       <SelectInput optionText="volume" optionValue="id" />
     </ReferenceInput>
+    <ReferenceInput label="Catégories" source="categorie" reference="categories">
+      <SelectInput optionText="name" optionValue="id" />
+    </ReferenceInput>
   </Filter>
 )
 

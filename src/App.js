@@ -3,14 +3,14 @@ import { HydraAdmin, dataProvider as baseDataProvider, fetchHydra as baseFetchHy
 import parseHydraDocumentation from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation'
 import frenchMessages from 'ra-language-french'
 import { Redirect } from 'react-router-dom'
-import { Room, Person, Archive, LocalShipping, Build, Pageview } from '@material-ui/icons'
+import { Room, Person, Archive, LocalShipping, Build, Pageview, Style, AccessTime } from '@material-ui/icons'
 
 import authProvider from './authProvider'
 import compostriTheme from './theme'
 import Layout from './components/Layout'
-import ReviewsListComposter from './components/ComposterList'
-import ReviewsListSimpleName from './components/SimpleNameList'
+import ComposterList from './components/ComposterList'
 import ComposterEdit from './components/ComposterEdit'
+import SimpleNameList from './components/SimpleNameList'
 import PavilionsVolumeList from './components/PavilionsVolumeList'
 import Dashboard from './components/Dashboard'
 import ComposterShow from './components/ComposterShow'
@@ -58,21 +58,16 @@ export default () => (
     i18nProvider={() => frenchMessages}
     dashboard={Dashboard}
   >
-    <ResourceGuesser
-      name="composters"
-      list={ReviewsListComposter}
-      options={{ label: 'Composteurs' }}
-      edit={ComposterEdit}
-      icon={<Archive />}
-      show={ComposterShow}
-    />
+    <ResourceGuesser name="composters" list={ComposterList} options={{ label: 'Composteurs' }} edit={ComposterEdit} icon={<Archive />} show={ComposterShow} />
     <ResourceGuesser name="suivis" options={{ label: 'Suivis' }} icon={<Pageview />} />
     <ResourceGuesser name="livraison_broyats" options={{ label: 'Livraisons broyat' }} icon={<LocalShipping />} />
     <ResourceGuesser name="reparations" options={{ label: 'Réparations' }} icon={<Build />} />
+    <ResourceGuesser name="permanences" options={{ label: 'Permanences' }} icon={<AccessTime />} />
     <ResourceGuesser name="users" list={PavilionsVolumeList} options={{ label: 'Utilisateurs', nextDivider: true }} icon={<Person />} />
-    <ResourceGuesser name="quartiers" list={ReviewsListSimpleName} options={{ label: 'Quartiers' }} icon={<Room />} />
-    <ResourceGuesser name="communes" list={ReviewsListSimpleName} options={{ label: 'Communes' }} icon={<Room />} />
-    <ResourceGuesser name="poles" list={ReviewsListSimpleName} options={{ label: 'Poles' }} icon={<Room />} />
-    <ResourceGuesser name="pavilions_volumes" list={PavilionsVolumeList} options={{ label: 'Pavilons' }} icon={<Archive />} />
+    <ResourceGuesser name="quartiers" list={SimpleNameList} options={{ label: 'Quartiers' }} icon={<Room />} />
+    <ResourceGuesser name="communes" list={SimpleNameList} options={{ label: 'Communes' }} icon={<Room />} />
+    <ResourceGuesser name="poles" list={SimpleNameList} options={{ label: 'Poles' }} icon={<Room />} />
+    <ResourceGuesser name="categories" options={{ label: 'Catégories' }} list={SimpleNameList} icon={<Style />} />
+    <ResourceGuesser name="pavilions_volumes" list={PavilionsVolumeList} options={{ label: 'Équipement' }} icon={<Archive />} />
   </HydraAdmin>
 )
