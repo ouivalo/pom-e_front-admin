@@ -9,12 +9,13 @@ import authProvider from './authProvider'
 import compostriTheme from './theme'
 import Layout from './components/Layout'
 import ComposterList from './components/ComposterList'
+import ComposterShow from './components/ComposterShow'
 import ComposterEdit from './components/ComposterEdit'
 import PermanencesList from './components/PermanencesList'
+import PermanencesShow from './components/PermanencesShow'
 import SimpleNameList from './components/SimpleNameList'
 import PavilionsVolumeList from './components/PavilionsVolumeList'
 import Dashboard from './components/Dashboard'
-import ComposterShow from './components/ComposterShow'
 import frenchResourcesTranslation from './i18n/fr'
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
@@ -64,7 +65,7 @@ export default () => (
     <ResourceGuesser name="suivis" options={{ label: 'Suivis' }} icon={<Pageview />} />
     <ResourceGuesser name="livraison_broyats" options={{ label: 'Livraisons broyat' }} icon={<LocalShipping />} />
     <ResourceGuesser name="reparations" options={{ label: 'Réparations' }} icon={<Build />} />
-    <ResourceGuesser name="permanences" list={PermanencesList} options={{ label: 'Permanences' }} icon={<AccessTime />} />
+    <ResourceGuesser name="permanences" list={PermanencesList} show={PermanencesShow} options={{ label: 'Permanences' }} icon={<AccessTime />} />
     <ResourceGuesser name="users" list={PavilionsVolumeList} options={{ label: 'Utilisateurs', nextDivider: true }} icon={<Person />} />
     <ResourceGuesser name="quartiers" list={SimpleNameList} options={{ label: 'Quartiers' }} icon={<Room />} />
     <ResourceGuesser name="communes" list={SimpleNameList} options={{ label: 'Communes' }} icon={<Room />} />
