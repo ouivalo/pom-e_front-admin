@@ -28,10 +28,6 @@ const ComposterEdit = props => (
       <SelectInput optionText="username" />
     </ReferenceInput>
     <InputGuesser source="cadena" />
-    <InputGuesser source="animation" />
-    <InputGuesser source="environnement" />
-    <InputGuesser source="technique" />
-    <InputGuesser source="autonomie" />
     <InputGuesser source="DateMiseEnRoute" />
     <InputGuesser source="DateInauguration" />
     <InputGuesser source="DateInstallation" />

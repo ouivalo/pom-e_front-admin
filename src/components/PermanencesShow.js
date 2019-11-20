@@ -1,6 +1,6 @@
 import React from 'react'
 import { ShowGuesser, FieldGuesser } from '@api-platform/admin'
-import { ReferenceField, ChipField, ReferenceArrayField, Datagrid, DateField, TextField, EditButton } from 'react-admin'
+import { ReferenceField, ChipField, ReferenceArrayField, Datagrid, EditButton } from 'react-admin'
 
 const PermanencesShow = props => (
   <ShowGuesser {...props}>

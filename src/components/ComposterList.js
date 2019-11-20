@@ -1,7 +1,6 @@
 import React from 'react'
 import { ListGuesser, FieldGuesser } from '@api-platform/admin'
 import { TextField, ReferenceField, Filter, ReferenceInput, SelectInput, TextInput } from 'react-admin'
-import NoteField from './NoteField'
 
 const ComposterFilter = props => (
   <Filter {...props}>
@@ -34,10 +33,6 @@ const CompostersList = props => (
     <ReferenceField source="quartier" reference="quartiers" linkType={false} allowEmpty={true} sortable={false}>
       <TextField source="name" />
     </ReferenceField>
-    <NoteField source="animation" sortable={false} />
-    <NoteField source="environnement" sortable={false} />
-    <NoteField source="technique" sortable={false} />
-    <NoteField source="autonomie" sortable={false} />
   </ListGuesser>
 )
 

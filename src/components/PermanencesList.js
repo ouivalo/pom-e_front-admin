@@ -5,8 +5,8 @@ import { ReferenceField, ReferenceArrayField, Filter, ReferenceInput, Autocomple
 const PermanencesFilter = props => (
   <Filter {...props}>
     <ReferenceInput source="composter" reference="composters" alwaysOn filterToQuery={searchText => ({ name: searchText })}>
-      {/* TODO J'ai juste un probléme ici a cause l'identifiant composteur. Le filtre passe /composter/{slug} ce qui est normal mais ca ne marche pas sur une liaison, il faut l'id */}
-      <AutocompleteInput optionValue="id" />
+      {/* TODO Avec le rid la liste est bien filtrer mais le filtre ne garde pas le composter selectionné */}
+      <AutocompleteInput optionValue="rid" />
     </ReferenceInput>
   </Filter>
 )

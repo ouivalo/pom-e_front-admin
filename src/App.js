@@ -3,7 +3,7 @@ import { HydraAdmin, dataProvider as baseDataProvider, fetchHydra as baseFetchHy
 import parseHydraDocumentation from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation'
 import frenchMessages from 'ra-language-french'
 import { Redirect } from 'react-router-dom'
-import { Room, Person, Archive, LocalShipping, Build, Pageview, Style, AccessTime } from '@material-ui/icons'
+import { Room, Person, Archive, LocalShipping, Build, Pageview, Style, AccessTime, VerifiedUser } from '@material-ui/icons'
 
 import authProvider from './authProvider'
 import compostriTheme from './theme'
@@ -72,5 +72,6 @@ export default () => (
     <ResourceGuesser name="poles" list={SimpleNameList} options={{ label: 'Poles' }} icon={<Room />} />
     <ResourceGuesser name="categories" options={{ label: 'Catégories' }} list={SimpleNameList} icon={<Style />} />
     <ResourceGuesser name="pavilions_volumes" list={PavilionsVolumeList} options={{ label: 'Équipement' }} icon={<Archive />} />
+    <ResourceGuesser name="user_composters" options={{ label: 'Utilisateurs/composteurs' }} icon={<VerifiedUser />} />
   </HydraAdmin>
 )

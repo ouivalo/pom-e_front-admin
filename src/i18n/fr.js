@@ -1,5 +1,13 @@
 export default {
   resources: {
+    composters: {
+      name: 'Composteur |||| Composteures',
+      fields: {
+        mc: 'Maitre composteur',
+        pavilionsVolume: 'Equipement',
+        openingProcedures: 'Précédure d‘ouverture'
+      }
+    },
     permanences: {
       name: 'Permanence |||| Permanences',
       fields: {
@@ -10,6 +18,12 @@ export default {
         nbUsers: 'Nombre d‘utilisateurs',
         nbBuckets: 'Nombre de bio seaux',
         temperature: 'Température'
+      }
+    },
+    user_composters: {
+      name: 'Utilisateur du composteur |||| Utilisateurs du composteur',
+      fields: {
+        capability: 'droit'
       }
     }
   }

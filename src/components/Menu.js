@@ -5,7 +5,7 @@ import { Divider } from '@material-ui/core'
 import { Dashboard } from '@material-ui/icons'
 import { withRouter } from 'react-router-dom'
 
-const Menu = ({ resources, onMenuClick }) => (
+const Menu = ({ resources, onMenuClick, translate }) => (
   <div>
     <MenuItemLink key="dashboard" to="/" primaryText="Tableau de bord" leftIcon={<Dashboard />} onClick={onMenuClick} />
     {resources.map(resource => {
@@ -28,4 +28,4 @@ const mapStateToProps = state => ({
   resources: getResources(state)
 })
 
-export default withRouter(connect(mapStateToProps)(Menu))
+export default withRouter(connect(mapStateToProps)(translate(Menu)))
