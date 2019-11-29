@@ -15,11 +15,13 @@ const ComposterShow = props => {
       <TabbedShowLayout>
         <Tab label="Informations">
           <TextField source="name" addLabel={true} />
+          <TextField source="serialNumber" addLabel={true} />
           <FieldGuesser source="DateMiseEnRoute" addLabel={true} />
           <FieldGuesser source="DateInauguration" addLabel={true} />
           <FieldGuesser source="DateInstallation" addLabel={true} />
-          <FieldGuesser source="shortDescription" addLabel={true} label="Description courte" />
-          <FieldGuesser source="description" addLabel={true} label="Description" />
+          <FieldGuesser source="permanencesDescription" addLabel={true} />
+          <FieldGuesser source="description" addLabel={true} />
+          <FieldGuesser source="publicDescription" addLabel={true} />
           <ReferenceField source="financeur" reference="financeurs">
             <TextField source="name" />
           </ReferenceField>

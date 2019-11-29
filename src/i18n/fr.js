@@ -6,7 +6,11 @@ export default {
         mc: 'Maitre composteur',
         pavilionsVolume: 'Equipement',
         openingProcedures: 'Précédure d‘ouverture',
-        financeur: 'Financeur propriétaire de l’équipement'
+        financeur: 'Financeur propriétaire de l’équipement',
+        permanencesDescription: 'Permanences',
+        serialNumber: 'Numéro de série',
+        description: 'Description',
+        publicDescription: 'Description public'
       }
     },
     users: {
