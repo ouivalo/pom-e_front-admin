@@ -6,11 +6,12 @@ const LinkToComposter = ({ resource, record }) => {
   return <MenuItemLink to={`/composters?filter={"equipement":"${record.id}"}`} primaryText="Voir les composteurs" />
 }
 
-const SimpleNameList = props => (
+const EquipementsList = props => (
   <ListGuesser {...props} sort={{ field: 'name', order: 'ASC' }}>
-    <FieldGuesser source="volume" label="Nom" />
+    <FieldGuesser source="type" />
+    <FieldGuesser source="capacite" />
     <LinkToComposter />
   </ListGuesser>
 )
 
-export default SimpleNameList
+export default EquipementsList

@@ -20,6 +20,9 @@ const ComposterShow = props => {
           <FieldGuesser source="DateInstallation" addLabel={true} />
           <FieldGuesser source="shortDescription" addLabel={true} label="Description courte" />
           <FieldGuesser source="description" addLabel={true} label="Description" />
+          <ReferenceField source="financeur" reference="financeurs">
+            <TextField source="name" />
+          </ReferenceField>
           <ReferenceField source="commune" reference="communes">
             <TextField source="name" />
           </ReferenceField>

@@ -5,7 +5,8 @@ export default {
       fields: {
         mc: 'Maitre composteur',
         pavilionsVolume: 'Equipement',
-        openingProcedures: 'Précédure d‘ouverture'
+        openingProcedures: 'Précédure d‘ouverture',
+        financeur: 'Financeur propriétaire de l’équipement'
       }
     },
     users: {
@@ -46,6 +47,13 @@ export default {
       name: 'Utilisateur du composteur |||| Utilisateurs du composteur',
       fields: {
         capability: 'Droit'
+      }
+    },
+    equipements: {
+      name: 'Equipement |||| Equipements',
+      fields: {
+        type: 'Type',
+        capacite: 'Capacité'
       }
     }
   }
