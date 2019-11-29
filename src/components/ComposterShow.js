@@ -1,7 +1,13 @@
 import React from 'react'
 import { FieldGuesser } from '@api-platform/admin'
-import { Show, TextField, TabbedShowLayout, Tab, ReferenceField, ReferenceArrayField, Datagrid, EditButton, ReferenceManyField } from 'react-admin'
+import { Show, TextField, TabbedShowLayout, Tab, ReferenceField, ReferenceArrayField, Datagrid, EditButton, ReferenceManyField, translate } from 'react-admin'
 import MapField from './MapField'
+
+const EquipementField = ({ record = {} }) => (
+  <span>
+    {record.type} {record.capacite}
+  </span>
+)
 
 const ComposterShow = props => {
   return (
@@ -30,8 +36,8 @@ const ComposterShow = props => {
           <ReferenceField source="mc" reference="users">
             <TextField source="username" />
           </ReferenceField>
-          <ReferenceField source="pavilionsVolume" reference="pavilions_volumes">
-            <TextField source="volume" />
+          <ReferenceField source="equipement" reference="equipements">
+            <EquipementField source="type" />
           </ReferenceField>
           <FieldGuesser source="openingProcedures" addLabel={true} />
           <ReferenceArrayField source="suivis" reference="suivis">
@@ -61,13 +67,35 @@ const ComposterShow = props => {
         <Tab label="Contact">
           <ReferenceManyField label="Utilisateurs" reference="user_composters" target="composter" source="rid">
             <Datagrid>
-              <ReferenceField source="user" reference="users" sortable={false} label="Nom">
+              <ReferenceField source="user" reference="users" sortable={false} label={props.translate('resources.users.fields.username')}>
                 <FieldGuesser source="username" />
               </ReferenceField>
-              <ReferenceField source="user" reference="users" sortable={false} label="Email">
+              <ReferenceField source="user" reference="users" sortable={false} label={props.translate('resources.users.fields.lastname')}>
+                <FieldGuesser source="lastname" />
+              </ReferenceField>
+              <ReferenceField source="user" reference="users" sortable={false} label={props.translate('resources.users.fields.firstname')}>
+                <FieldGuesser source="firstname" />
+              </ReferenceField>
+              <ReferenceField source="user" reference="users" sortable={false} label={props.translate('resources.users.fields.email')}>
                 <FieldGuesser source="email" />
               </ReferenceField>
+              <ReferenceField source="user" reference="users" sortable={false} label={props.translate('resources.users.fields.phone')}>
+                <FieldGuesser source="phone" />
+              </ReferenceField>
+              <ReferenceField source="user" reference="users" sortable={false} label={props.translate('resources.users.fields.role')}>
+                <FieldGuesser source="role" />
+              </ReferenceField>
               <FieldGuesser source="capability" sortable={false} />
+              <EditButton />
+            </Datagrid>
+          </ReferenceManyField>
+          <ReferenceManyField label="Contacts" reference="contacts" target="composters" source="slug">
+            <Datagrid>
+              <FieldGuesser source="firstName" />
+              <FieldGuesser source="lastName" />
+              <FieldGuesser source="phone" />
+              <FieldGuesser source="email" />
+              <FieldGuesser source="role" />
               <EditButton />
             </Datagrid>
           </ReferenceManyField>
@@ -77,4 +105,4 @@ const ComposterShow = props => {
   )
 }
 
-export default ComposterShow
+export default translate(ComposterShow)

@@ -11,6 +11,7 @@ import Layout from './components/Layout'
 import ComposterList from './components/ComposterList'
 import ComposterShow from './components/ComposterShow'
 import ComposterEdit from './components/ComposterEdit'
+import ContactsList from './components/ContactsList'
 import PermanencesList from './components/PermanencesList'
 import PermanencesShow from './components/PermanencesShow'
 import SimpleNameList from './components/SimpleNameList'
@@ -66,12 +67,13 @@ export default () => (
     <ResourceGuesser name="livraison_broyats" options={{ label: 'Livraisons broyat' }} icon={<LocalShipping />} />
     <ResourceGuesser name="reparations" options={{ label: 'Réparations' }} icon={<Build />} />
     <ResourceGuesser name="permanences" list={PermanencesList} show={PermanencesShow} options={{ label: 'Permanences' }} icon={<AccessTime />} />
+    <ResourceGuesser name="contacts" list={ContactsList} options={{ label: 'Contacts' }} icon={<VerifiedUser />} />
     <ResourceGuesser name="users" list={PavilionsVolumeList} options={{ label: 'Utilisateurs', nextDivider: true }} icon={<Person />} />
     <ResourceGuesser name="quartiers" list={SimpleNameList} options={{ label: 'Quartiers' }} icon={<Room />} />
     <ResourceGuesser name="communes" list={SimpleNameList} options={{ label: 'Communes' }} icon={<Room />} />
     <ResourceGuesser name="poles" list={SimpleNameList} options={{ label: 'Poles' }} icon={<Room />} />
     <ResourceGuesser name="categories" options={{ label: 'Catégories' }} list={SimpleNameList} icon={<Style />} />
-    <ResourceGuesser name="pavilions_volumes" list={PavilionsVolumeList} options={{ label: 'Équipement' }} icon={<Archive />} />
+    <ResourceGuesser name="equipements" list={PavilionsVolumeList} options={{ label: 'Équipement' }} icon={<Archive />} />
     <ResourceGuesser name="user_composters" options={{ label: 'Utilisateurs/composteurs' }} icon={<VerifiedUser />} />
   </HydraAdmin>
 )

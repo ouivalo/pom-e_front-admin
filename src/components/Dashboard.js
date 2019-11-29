@@ -46,14 +46,15 @@ const Dashboard = ({ classes }) => {
                   <CardContent>
                     <Typography variant="subheading">Derniers composteurs mis en route</Typography>
                     <List>
-                      {data.map(composter => (
-                        <ListItem
-                          key={composter.id}
-                          component={MenuItemLink}
-                          to={`/composters/${composter.id}/show`}
-                          primaryText={<ListItemText primary={composter.name} />}
-                        />
-                      ))}
+                      {data &&
+                        data.map(composter => (
+                          <ListItem
+                            key={composter.id}
+                            component={MenuItemLink}
+                            to={`/composters/${composter.id}/show`}
+                            primaryText={<ListItemText primary={composter.name} />}
+                          />
+                        ))}
                     </List>
                   </CardContent>
                 </Card>
@@ -81,14 +82,15 @@ const Dashboard = ({ classes }) => {
                   <CardContent>
                     <Typography variant="subheading">Réparations a venir</Typography>
                     <List>
-                      {data.map(reparation => (
-                        <ListItem
-                          key={reparation.id}
-                          component={MenuItemLink}
-                          to={`/reparations/${reparation.id}/show`}
-                          primaryText={<ListItemText primary={reparation.description} />}
-                        />
-                      ))}
+                      {data &&
+                        data.map(reparation => (
+                          <ListItem
+                            key={reparation.id}
+                            component={MenuItemLink}
+                            to={`/reparations/${reparation.id}/show`}
+                            primaryText={<ListItemText primary={reparation.description} />}
+                          />
+                        ))}
                     </List>
                   </CardContent>
                 </Card>

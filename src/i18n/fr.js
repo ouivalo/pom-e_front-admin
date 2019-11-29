@@ -8,6 +8,28 @@ export default {
         openingProcedures: 'Précédure d‘ouverture'
       }
     },
+    users: {
+      name: 'Utilisateur |||| Utilisateurs',
+      fields: {
+        email: 'Email',
+        phone: 'N° de téléphone',
+        username: 'Speudo',
+        lastname: 'Nom',
+        firstname: 'Prénom',
+        role: 'Fonction'
+      }
+    },
+    contacts: {
+      name: 'Contact |||| Contacts',
+      fields: {
+        email: 'Email',
+        phone: 'N° de téléphone',
+        username: 'Speudo',
+        lastName: 'Nom',
+        firstName: 'Prénom',
+        role: 'Fonction'
+      }
+    },
     permanences: {
       name: 'Permanence |||| Permanences',
       fields: {
@@ -23,7 +45,7 @@ export default {
     user_composters: {
       name: 'Utilisateur du composteur |||| Utilisateurs du composteur',
       fields: {
-        capability: 'droit'
+        capability: 'Droit'
       }
     }
   }

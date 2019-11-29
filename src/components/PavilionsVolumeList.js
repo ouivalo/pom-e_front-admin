@@ -3,7 +3,7 @@ import { ListGuesser, FieldGuesser } from '@api-platform/admin'
 import { MenuItemLink } from 'react-admin'
 
 const LinkToComposter = ({ resource, record }) => {
-  return <MenuItemLink to={`/composters?filter={"pavilionsVolume":"${record.id}"}`} primaryText="Voir les composteurs" />
+  return <MenuItemLink to={`/composters?filter={"equipement":"${record.id}"}`} primaryText="Voir les composteurs" />
 }
 
 const SimpleNameList = props => (

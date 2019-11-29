@@ -21,7 +21,7 @@ const ComposterEdit = props => (
     <ReferenceInput label="Quartier" source="quartier" reference="quartiers">
       <SelectInput optionText="name" />
     </ReferenceInput>
-    <ReferenceInput label="Volume" source="pavilionsVolume" reference="pavilions_volumes">
+    <ReferenceInput label="Volume" source="equipement" reference="equipements">
       <SelectInput optionText="volume" />
     </ReferenceInput>
     <ReferenceInput label="Maitre composter" source="mc" reference="users">

@@ -14,9 +14,6 @@ const ComposterFilter = props => (
     <ReferenceInput label="Pole" source="pole" reference="poles">
       <SelectInput optionText="name" optionValue="id" />
     </ReferenceInput>
-    <ReferenceInput label="Pavilions volume" source="pavilionsVolume" reference="pavilions_volumes">
-      <SelectInput optionText="volume" optionValue="id" />
-    </ReferenceInput>
     <ReferenceInput label="Catégories" source="categorie" reference="categories">
       <SelectInput optionText="name" optionValue="id" />
     </ReferenceInput>
@@ -25,14 +22,15 @@ const ComposterFilter = props => (
 
 const CompostersList = props => (
   <ListGuesser {...props} filters={<ComposterFilter />} sort={{ field: 'DateMiseEnRoute', order: 'DESC' }}>
+    <FieldGuesser source="serialNumber" />
     <FieldGuesser source="name" label="Nom" sortable={false} />
-    <FieldGuesser source="DateMiseEnRoute" />
     <ReferenceField source="commune" reference="communes" linkType={false} allowEmpty={true} sortable={false}>
       <TextField source="name" />
     </ReferenceField>
     <ReferenceField source="quartier" reference="quartiers" linkType={false} allowEmpty={true} sortable={false}>
       <TextField source="name" />
     </ReferenceField>
+    <FieldGuesser source="status" />
   </ListGuesser>
 )
 
