@@ -1,6 +1,18 @@
 import React from 'react'
 import { FieldGuesser } from '@api-platform/admin'
-import { Show, TextField, TabbedShowLayout, Tab, ReferenceField, ReferenceArrayField, Datagrid, EditButton, ReferenceManyField, translate } from 'react-admin'
+import {
+  Show,
+  TextField,
+  TabbedShowLayout,
+  Tab,
+  ReferenceField,
+  ReferenceArrayField,
+  Datagrid,
+  EditButton,
+  ReferenceManyField,
+  translate,
+  ImageField
+} from 'react-admin'
 import MapField from './MapField'
 
 const EquipementField = ({ record = {} }) => (
@@ -9,11 +21,14 @@ const EquipementField = ({ record = {} }) => (
   </span>
 )
 
-const ComposterShow = props => {
+const ComposterShow = ({ translate, ...props }) => {
   return (
     <Show title="C ouf" {...props}>
       <TabbedShowLayout>
         <Tab label="Informations">
+          <ReferenceField source="image" reference="media_objects" addLabel={false}>
+            <ImageField source="contentUrl" />
+          </ReferenceField>
           <TextField source="name" addLabel={true} />
           <TextField source="serialNumber" addLabel={true} />
           <FieldGuesser source="DateMiseEnRoute" addLabel={true} />
@@ -72,22 +87,22 @@ const ComposterShow = props => {
         <Tab label="Contact">
           <ReferenceManyField label="Utilisateurs" reference="user_composters" target="composter" source="rid">
             <Datagrid>
-              <ReferenceField source="user" reference="users" sortable={false} label={props.translate('resources.users.fields.username')}>
+              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.username')}>
                 <FieldGuesser source="username" />
               </ReferenceField>
-              <ReferenceField source="user" reference="users" sortable={false} label={props.translate('resources.users.fields.lastname')}>
+              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.lastname')}>
                 <FieldGuesser source="lastname" />
               </ReferenceField>
-              <ReferenceField source="user" reference="users" sortable={false} label={props.translate('resources.users.fields.firstname')}>
+              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.firstname')}>
                 <FieldGuesser source="firstname" />
               </ReferenceField>
-              <ReferenceField source="user" reference="users" sortable={false} label={props.translate('resources.users.fields.email')}>
+              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.email')}>
                 <FieldGuesser source="email" />
               </ReferenceField>
-              <ReferenceField source="user" reference="users" sortable={false} label={props.translate('resources.users.fields.phone')}>
+              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.phone')}>
                 <FieldGuesser source="phone" />
               </ReferenceField>
-              <ReferenceField source="user" reference="users" sortable={false} label={props.translate('resources.users.fields.role')}>
+              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.role')}>
                 <FieldGuesser source="role" />
               </ReferenceField>
               <FieldGuesser source="capability" sortable={false} />

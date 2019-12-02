@@ -3,7 +3,7 @@ import { HydraAdmin, dataProvider as baseDataProvider, fetchHydra as baseFetchHy
 import parseHydraDocumentation from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation'
 import frenchMessages from 'ra-language-french'
 import { Redirect } from 'react-router-dom'
-import { Room, Person, Archive, LocalShipping, Build, Pageview, Style, AccessTime, VerifiedUser, Contacts, MonetizationOn } from '@material-ui/icons'
+import { Room, Person, Archive, LocalShipping, Build, Pageview, Style, AccessTime, VerifiedUser, Contacts, MonetizationOn, Photo } from '@material-ui/icons'
 
 import authProvider from './authProvider'
 import compostriTheme from './theme'
@@ -18,6 +18,7 @@ import SimpleNameList from './components/SimpleNameList'
 import EquipementsList from './components/EquipementsList'
 import Dashboard from './components/Dashboard'
 import frenchResourcesTranslation from './i18n/fr'
+import MediasList from './components/mediasList'
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
 const fetchHeaders = { Authorization: `Bearer ${window.localStorage.getItem('token')}` }
@@ -69,7 +70,8 @@ export default () => (
     <ResourceGuesser name="permanences" list={PermanencesList} show={PermanencesShow} options={{ label: 'Permanences' }} icon={<AccessTime />} />
     <ResourceGuesser name="users" options={{ label: 'Utilisateurs' }} icon={<Person />} />
     <ResourceGuesser name="contacts" list={ContactsList} options={{ label: 'Contacts' }} icon={<Contacts />} />
-    <ResourceGuesser name="financeurs" list={SimpleNameList} options={{ label: 'Financeurs', nextDivider: true }} icon={<MonetizationOn />} />
+    <ResourceGuesser name="financeurs" list={SimpleNameList} options={{ label: 'Financeurs' }} icon={<MonetizationOn />} />
+    <ResourceGuesser name="media_objects" list={MediasList} options={{ label: 'Images', nextDivider: true }} icon={<Photo />} />
     <ResourceGuesser name="quartiers" list={SimpleNameList} options={{ label: 'Quartiers' }} icon={<Room />} />
     <ResourceGuesser name="communes" list={SimpleNameList} options={{ label: 'Communes' }} icon={<Room />} />
     <ResourceGuesser name="poles" list={SimpleNameList} options={{ label: 'Poles' }} icon={<Room />} />
