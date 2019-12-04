@@ -1,8 +1,7 @@
 import React from 'react'
-import { HydraAdmin, dataProvider as baseDataProvider, fetchHydra as baseFetchHydra, ResourceGuesser } from '@api-platform/admin'
-import parseHydraDocumentation from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation'
+import { HydraAdmin, ResourceGuesser } from '@api-platform/admin'
 import frenchMessages from 'ra-language-french'
-import { Redirect } from 'react-router-dom'
+import { Resource } from 'react-admin'
 import { Room, Person, Archive, LocalShipping, Build, Pageview, Style, AccessTime, VerifiedUser, Contacts, MonetizationOn, Photo } from '@material-ui/icons'
 
 import authProvider from './authProvider'
@@ -18,40 +17,11 @@ import SimpleNameList from './components/SimpleNameList'
 import EquipementsList from './components/EquipementsList'
 import Dashboard from './components/Dashboard'
 import frenchResourcesTranslation from './i18n/fr'
-import MediasList from './components/mediasList'
+import MediasList from './components/MediasList'
+import MediasCreate from './components/MediasCreate'
+import dataProvider from './components/DataProvider'
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
-const fetchHeaders = { Authorization: `Bearer ${window.localStorage.getItem('token')}` }
-const fetchHydra = (url, options = {}) =>
-  baseFetchHydra(url, {
-    ...options,
-    headers: new Headers(fetchHeaders)
-  })
-const apiDocumentationParser = entrypoint =>
-  parseHydraDocumentation(entrypoint, { headers: new Headers(fetchHeaders) }).then(
-    ({ api }) => ({ api }),
-    result => {
-      switch (result.status) {
-        case 401:
-          window.localStorage.removeItem('token')
-          return Promise.resolve({
-            api: result.api,
-            customRoutes: [
-              {
-                props: {
-                  path: '/',
-                  render: () => <Redirect to={`/login`} />
-                }
-              }
-            ]
-          })
-
-        default:
-          return Promise.reject(result)
-      }
-    }
-  )
-const dataProvider = baseDataProvider(entrypoint, fetchHydra, apiDocumentationParser)
 
 export default () => (
   <HydraAdmin
@@ -71,7 +41,7 @@ export default () => (
     <ResourceGuesser name="users" options={{ label: 'Utilisateurs' }} icon={<Person />} />
     <ResourceGuesser name="contacts" list={ContactsList} options={{ label: 'Contacts' }} icon={<Contacts />} />
     <ResourceGuesser name="financeurs" list={SimpleNameList} options={{ label: 'Financeurs' }} icon={<MonetizationOn />} />
-    <ResourceGuesser name="media_objects" list={MediasList} options={{ label: 'Images', nextDivider: true }} icon={<Photo />} />
+    <Resource name="media_objects" list={MediasList} create={MediasCreate} options={{ label: 'Images', nextDivider: true }} icon={<Photo />} />
     <ResourceGuesser name="quartiers" list={SimpleNameList} options={{ label: 'Quartiers' }} icon={<Room />} />
     <ResourceGuesser name="communes" list={SimpleNameList} options={{ label: 'Communes' }} icon={<Room />} />
     <ResourceGuesser name="poles" list={SimpleNameList} options={{ label: 'Poles' }} icon={<Room />} />
