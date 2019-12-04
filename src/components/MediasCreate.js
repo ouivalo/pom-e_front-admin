@@ -1,5 +1,4 @@
 import React from 'react'
-import { CreateGuesser } from '@api-platform/admin'
 import { Create, SimpleForm, ImageInput, ImageField } from 'react-admin'
 
 const MediasCreate = props => (
