@@ -1,36 +1,42 @@
 import React from 'react'
 import { EditGuesser, InputGuesser } from '@api-platform/admin'
-import { ReferenceInput, SelectInput, DisabledInput } from 'react-admin'
+import { ReferenceInput, SelectInput } from 'react-admin'
+
+import { enumStatus } from './Enums'
 import MapInput from './MapInput'
 
 const ComposterEdit = props => (
   <EditGuesser {...props}>
-    <DisabledInput label="Id" source="id" />
     <InputGuesser source="name" label="Nom" />
-    <InputGuesser source="shortDescription" />
-    <InputGuesser source="description" />
-    <InputGuesser source="address" />
-
-    <InputGuesser source="permanences" />
-    <ReferenceInput label="Commune" source="commune" reference="communes">
-      <SelectInput optionText="name" />
-    </ReferenceInput>
-    <ReferenceInput label="Pole" source="pole" reference="poles">
-      <SelectInput optionText="name" />
-    </ReferenceInput>
-    <ReferenceInput label="Quartier" source="quartier" reference="quartiers">
-      <SelectInput optionText="name" />
-    </ReferenceInput>
-    <ReferenceInput label="Volume" source="equipement" reference="equipements">
-      <SelectInput optionText="volume" />
-    </ReferenceInput>
-    <ReferenceInput label="Maitre composter" source="mc" reference="users">
-      <SelectInput optionText="username" />
-    </ReferenceInput>
-    <InputGuesser source="cadena" />
+    <SelectInput source="status" choices={enumStatus} />
+    <InputGuesser source="serialNumber" />
     <InputGuesser source="DateMiseEnRoute" />
     <InputGuesser source="DateInauguration" />
     <InputGuesser source="DateInstallation" />
+    <InputGuesser source="permanencesDescription" />
+    <InputGuesser source="acceptNewMembers" />
+    <InputGuesser source="description" />
+    <InputGuesser source="publicDescription" />
+    <ReferenceInput source="financeur" reference="financeurs">
+      <SelectInput optionText="name" />
+    </ReferenceInput>
+    <ReferenceInput source="commune" reference="communes">
+      <SelectInput optionText="name" />
+    </ReferenceInput>
+    <ReferenceInput source="pole" reference="poles">
+      <SelectInput optionText="name" />
+    </ReferenceInput>
+    <ReferenceInput source="quartier" reference="quartiers">
+      <SelectInput optionText="name" />
+    </ReferenceInput>
+    <InputGuesser source="address" />
+    <ReferenceInput source="mc" reference="users">
+      <SelectInput optionText="username" />
+    </ReferenceInput>
+    <ReferenceInput source="equipement" reference="equipements">
+      <SelectInput optionText={record => (`${record.type} ${record.capacite}`)} />
+    </ReferenceInput>
+    <InputGuesser source="openingProcedures" />
     <InputGuesser source="lat" />
     <InputGuesser source="lng" />
     <MapInput />
