@@ -3,6 +3,7 @@ import { FieldGuesser } from '@api-platform/admin'
 import {
   Show,
   TextField,
+  SelectField,
   TabbedShowLayout,
   Tab,
   ReferenceField,
@@ -13,6 +14,8 @@ import {
   translate,
   ImageField
 } from 'react-admin'
+
+import { enumStatus } from './Enums'
 import MapField from './MapField'
 
 const EquipementField = ({ record = {} }) => (
@@ -30,11 +33,13 @@ const ComposterShow = ({ translate, ...props }) => {
             <ImageField source="contentUrl" />
           </ReferenceField>
           <TextField source="name" addLabel={true} />
+          <SelectField source="status" choices={enumStatus} addLabel={true} />
           <TextField source="serialNumber" addLabel={true} />
           <FieldGuesser source="DateMiseEnRoute" addLabel={true} />
           <FieldGuesser source="DateInauguration" addLabel={true} />
           <FieldGuesser source="DateInstallation" addLabel={true} />
           <FieldGuesser source="permanencesDescription" addLabel={true} />
+          <FieldGuesser source="acceptNewMembers" addLabel={true} />
           <FieldGuesser source="description" addLabel={true} />
           <FieldGuesser source="publicDescription" addLabel={true} />
           <ReferenceField source="financeur" reference="financeurs">

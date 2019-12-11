@@ -3,14 +3,28 @@ export default {
     composters: {
       name: 'Composteur |||| Composteures',
       fields: {
-        mc: 'Maitre composteur',
-        pavilionsVolume: 'Equipement',
-        openingProcedures: 'Précédure d‘ouverture',
+        mc: 'Maître composteur',
+        pavilionsVolume: 'Équipement',
+        openingProcedures: 'Procédure d‘ouverture',
         financeur: 'Financeur propriétaire de l’équipement',
         permanencesDescription: 'Permanences',
+        acceptNewMembers: 'Accepte de nouveaux membres',
         serialNumber: 'Numéro de série',
         description: 'Description',
-        publicDescription: 'Description public'
+        publicDescription: 'Description publique',
+        address: 'Adresse',
+        pole: 'Pôle',
+        lat: 'Latitude',
+        lng: 'Longitude',
+        status: 'Statut',
+        enumStatus: {
+          active: 'En activité',
+          delete: 'Supprimé',
+          moved: 'Déplacé',
+          toBeMoved: 'À déplacer',
+          dormant: 'En dormance',
+          inProject: 'En projet'
+        }
       }
     },
     users: {
@@ -18,7 +32,7 @@ export default {
       fields: {
         email: 'Email',
         phone: 'N° de téléphone',
-        username: 'Speudo',
+        username: 'Pseudo',
         lastname: 'Nom',
         firstname: 'Prénom',
         role: 'Fonction'
@@ -29,7 +43,7 @@ export default {
       fields: {
         email: 'Email',
         phone: 'N° de téléphone',
-        username: 'Speudo',
+        username: 'Pseudo',
         lastName: 'Nom',
         firstName: 'Prénom',
         role: 'Fonction'
@@ -54,7 +68,7 @@ export default {
       }
     },
     equipements: {
-      name: 'Equipement |||| Equipements',
+      name: 'Équipement |||| Équipements',
       fields: {
         type: 'Type',
         capacite: 'Capacité'
