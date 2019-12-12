@@ -1,8 +1,9 @@
 export default {
   resources: {
     composters: {
-      name: 'Composteur |||| Composteures',
+      name: 'Composteur |||| Composteurs',
       fields: {
+        name: 'Nom',
         mc: 'Maître composteur',
         pavilionsVolume: 'Équipement',
         openingProcedures: 'Procédure d‘ouverture',
@@ -24,7 +25,13 @@ export default {
           toBeMoved: 'À déplacer',
           dormant: 'En dormance',
           inProject: 'En projet'
-        }
+        },
+        broyatLevel: 'Niveau de broyat',
+        enumBroyat: {
+          empty: 'Vide',
+          reserve: 'Sur la réserve',
+          full: 'Plein'
+        },
       }
     },
     users: {

@@ -1,3 +1,9 @@
+const enumBroyat = [
+  { id: 'Full', name: 'resources.composters.fields.enumBroyat.full' },
+  { id: 'Reserve', name: 'resources.composters.fields.enumBroyat.reserve' },
+  { id: 'Empty', name: 'resources.composters.fields.enumBroyat.empty' }
+]
+
 const enumStatus = [
   { id: 'Active', name: 'resources.composters.fields.enumStatus.active' },
   { id: 'Delete', name: 'resources.composters.fields.enumStatus.delete' },
@@ -7,4 +13,4 @@ const enumStatus = [
   { id: 'InProject', name: 'resources.composters.fields.enumStatus.inProject' }
 ]
 
-export { enumStatus }
+export { enumBroyat, enumStatus }

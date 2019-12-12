@@ -1,20 +1,22 @@
 import React from 'react'
 import { ListGuesser, FieldGuesser } from '@api-platform/admin'
-import { TextField, ReferenceField, Filter, ReferenceInput, SelectInput, TextInput } from 'react-admin'
+import { SelectField, TextField, ReferenceField, Filter, ReferenceInput, SelectInput, TextInput } from 'react-admin'
+
+import { enumBroyat, enumStatus } from './Enums'
 
 const ComposterFilter = props => (
   <Filter {...props}>
     <TextInput label="Recherche" source="name" alwaysOn />
-    <ReferenceInput label="Commune" source="commune" reference="communes" alwaysOn>
+    <ReferenceInput source="commune" reference="communes" alwaysOn>
       <SelectInput optionText="name" optionValue="id" />
     </ReferenceInput>
-    <ReferenceInput label="Quartier" source="quartier" reference="quartiers">
+    <ReferenceInput source="quartier" reference="quartiers">
       <SelectInput optionText="name" optionValue="id" />
     </ReferenceInput>
-    <ReferenceInput label="Pole" source="pole" reference="poles">
+    <ReferenceInput source="pole" reference="poles">
       <SelectInput optionText="name" optionValue="id" />
     </ReferenceInput>
-    <ReferenceInput label="Catégories" source="categorie" reference="categories">
+    <ReferenceInput source="categorie" reference="categories">
       <SelectInput optionText="name" optionValue="id" />
     </ReferenceInput>
     <ReferenceInput source="financeur" reference="financeurs">
@@ -30,21 +32,22 @@ const ComposterFilter = props => (
         optionValue="id"
       />
     </ReferenceInput>
+    <SelectInput source="broyatLevel" choices={enumBroyat} />
   </Filter>
 )
 
-const CompostersList = props => (
+const ComposterList = props => (
   <ListGuesser {...props} filters={<ComposterFilter />} sort={{ field: 'DateMiseEnRoute', order: 'DESC' }}>
     <FieldGuesser source="serialNumber" />
-    <FieldGuesser source="name" label="Nom" sortable={false} />
+    <FieldGuesser source="name" sortable={false} />
     <ReferenceField source="commune" reference="communes" linkType={false} allowEmpty={true} sortable={false}>
       <TextField source="name" />
     </ReferenceField>
     <ReferenceField source="quartier" reference="quartiers" linkType={false} allowEmpty={true} sortable={false}>
       <TextField source="name" />
     </ReferenceField>
-    <FieldGuesser source="status" />
+    <SelectField source="status" choices={enumStatus} addLabel={true} />
   </ListGuesser>
 )
 
-export default CompostersList
+export default ComposterList
