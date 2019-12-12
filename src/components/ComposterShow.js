@@ -15,7 +15,7 @@ import {
   ImageField
 } from 'react-admin'
 
-import { enumStatus } from './Enums'
+import { enumBroyat, enumStatus } from './Enums'
 import MapField from './MapField'
 
 const EquipementField = ({ record = {} }) => (
@@ -65,6 +65,7 @@ const ComposterShow = ({ translate, ...props }) => {
             <EquipementField source="type" />
           </ReferenceField>
           <FieldGuesser source="openingProcedures" addLabel={true} />
+          <SelectField source="broyatLevel" choices={enumBroyat} addLabel={true} />
           <ReferenceArrayField source="suivis" reference="suivis">
             <Datagrid>
               <FieldGuesser source="date" sortable={false} />

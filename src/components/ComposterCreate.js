@@ -1,20 +1,20 @@
 import React from 'react'
-import { EditGuesser, InputGuesser } from '@api-platform/admin'
-import { ReferenceInput, SelectInput } from 'react-admin'
+import { CreateGuesser, InputGuesser } from '@api-platform/admin'
+import { BooleanInput, ReferenceInput, SelectInput } from 'react-admin'
 
 import { enumBroyat, enumStatus } from './Enums'
 import MapInput from './MapInput'
 
-const ComposterEdit = props => (
-  <EditGuesser {...props}>
+const ComposterCreate = props => (
+  <CreateGuesser {...props}>
     <InputGuesser source="name" />
-    <SelectInput source="status" choices={enumStatus} />
+    <SelectInput source="status" choices={enumStatus} defaultValue={enumStatus[0].id} />
     <InputGuesser source="serialNumber" />
     <InputGuesser source="DateMiseEnRoute" />
     <InputGuesser source="DateInauguration" />
     <InputGuesser source="DateInstallation" />
     <InputGuesser source="permanencesDescription" />
-    <InputGuesser source="acceptNewMembers" />
+    <BooleanInput source="acceptNewMembers" defaultValue={true} />
     <InputGuesser source="description" />
     <InputGuesser source="publicDescription" />
     <ReferenceInput source="financeur" reference="financeurs">
@@ -41,7 +41,7 @@ const ComposterEdit = props => (
     <InputGuesser source="lat" />
     <InputGuesser source="lng" />
     <MapInput />
-  </EditGuesser>
+  </CreateGuesser>
 )
 
-export default ComposterEdit
+export default ComposterCreate
