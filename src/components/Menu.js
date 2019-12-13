@@ -8,19 +8,17 @@ import { withRouter } from 'react-router-dom'
 const Menu = ({ resources, onMenuClick, translate }) => (
   <div>
     <MenuItemLink key="dashboard" to="/" primaryText="Tableau de bord" leftIcon={<Dashboard />} onClick={onMenuClick} />
-    {resources.map(resource => {
-      return (
-        <Fragment key={resource.name}>
-          <MenuItemLink
-            to={`/${resource.name}`}
-            leftIcon={resource.icon}
-            onClick={onMenuClick}
-            primaryText={(resource.options && resource.options.label) || translate(resource.name)}
-          />
-          {resource.options && resource.options.nextDivider && <Divider />}
-        </Fragment>
-      )
-    })}
+    {resources.map(resource => (
+      <Fragment key={resource.name}>
+        <MenuItemLink
+          to={`/${resource.name}`}
+          leftIcon={resource.icon}
+          onClick={onMenuClick}
+          primaryText={(resource.options && resource.options.label) || translate(resource.name)}
+        />
+        {resource.options && resource.options.nextDivider && <Divider />}
+      </Fragment>
+    ))}
   </div>
 )
 

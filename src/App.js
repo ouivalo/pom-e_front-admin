@@ -34,7 +34,15 @@ export default () => (
     i18nProvider={() => ({ ...frenchMessages, ...frenchResourcesTranslation })}
     dashboard={Dashboard}
   >
-    <ResourceGuesser name="composters" create={ComposterCreate} list={ComposterList} options={{ label: 'Composteurs' }} edit={ComposterEdit} icon={<Archive />} show={ComposterShow} />
+    <ResourceGuesser
+      name="composters"
+      create={ComposterCreate}
+      list={ComposterList}
+      options={{ label: 'Composteurs' }}
+      edit={ComposterEdit}
+      icon={<Archive />}
+      show={ComposterShow}
+    />
     <ResourceGuesser name="suivis" options={{ label: 'Suivis' }} icon={<Pageview />} />
     <ResourceGuesser name="livraison_broyats" options={{ label: 'Livraisons broyat' }} icon={<LocalShipping />} />
     <ResourceGuesser name="reparations" options={{ label: 'Réparations' }} icon={<Build />} />
