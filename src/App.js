@@ -22,6 +22,8 @@ import MediasList from './components/MediasList'
 import MediasCreate from './components/MediasCreate'
 import dataProvider from './components/DataProvider'
 
+import { UserCreate, UserEdit, UserList, UserShow } from './components/users'
+
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
 
 export default () => (
@@ -47,7 +49,7 @@ export default () => (
     <ResourceGuesser name="livraison_broyats" options={{ label: 'Livraisons broyat' }} icon={<LocalShipping />} />
     <ResourceGuesser name="reparations" options={{ label: 'Réparations' }} icon={<Build />} />
     <ResourceGuesser name="permanences" list={PermanencesList} show={PermanencesShow} options={{ label: 'Permanences' }} icon={<AccessTime />} />
-    <ResourceGuesser name="users" options={{ label: 'Utilisateurs' }} icon={<Person />} />
+    <ResourceGuesser name="users" list={UserList} create={UserCreate} show={UserShow} edit={UserEdit} options={{ label: 'Utilisateurs' }} icon={<Person />} />
     <ResourceGuesser name="contacts" list={ContactsList} options={{ label: 'Contacts' }} icon={<Contacts />} />
     <ResourceGuesser name="financeurs" list={SimpleNameList} options={{ label: 'Financeurs' }} icon={<MonetizationOn />} />
     <Resource name="media_objects" list={MediasList} create={MediasCreate} options={{ label: 'Images', nextDivider: true }} icon={<Photo />} />

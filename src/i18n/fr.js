@@ -1,5 +1,9 @@
 export default {
   resources: {
+    menu: {
+      composters: 'Composteurs',
+      users: 'Utilisateurs'
+    },
     composters: {
       name: 'Composteur |||| Composteurs',
       fields: {
@@ -31,18 +35,26 @@ export default {
           empty: 'Vide',
           reserve: 'Sur la réserve',
           full: 'Plein'
-        },
+        }
       }
     },
     users: {
+      search: 'Rechercher un pseudo',
       name: 'Utilisateur |||| Utilisateurs',
       fields: {
+        plainPassword: 'Mot de passe',
         email: 'Email',
         phone: 'N° de téléphone',
         username: 'Pseudo',
         lastname: 'Nom',
         firstname: 'Prénom',
-        role: 'Fonction'
+        fullname: 'Nom complet',
+        roles: 'Rôles',
+        enumRoles: {
+          admin: 'Administrateur'
+        },
+        enabled: 'Activer cet utilisateur',
+        isEnabled: 'Utilisateur actif'
       }
     },
     contacts: {

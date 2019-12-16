@@ -13,4 +13,6 @@ const enumStatus = [
   { id: 'InProject', name: 'resources.composters.fields.enumStatus.inProject' }
 ]
 
-export { enumBroyat, enumStatus }
+const enumRoles = [{ id: ['ROLE_ADMIN'], name: 'resources.users.fields.enumRoles.admin' }]
+
+export { enumBroyat, enumStatus, enumRoles }
