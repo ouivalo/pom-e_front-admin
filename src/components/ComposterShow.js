@@ -17,6 +17,7 @@ import {
 
 import { enumBroyat, enumStatus } from './Enums'
 import MapField from './MapField'
+import NoteField from './NoteField'
 
 const EquipementField = ({ record = {} }) => (
   <span>
@@ -70,6 +71,10 @@ const ComposterShow = ({ translate, ...props }) => {
             <Datagrid>
               <FieldGuesser source="date" sortable={false} />
               <FieldGuesser source="description" sortable={false} />
+              <NoteField source="animation" sortable={false} />
+              <NoteField source="environnement" sortable={false} />
+              <NoteField source="technique" sortable={false} />
+              <NoteField source="autonomie" sortable={false} />
               <EditButton />
             </Datagrid>
           </ReferenceArrayField>
