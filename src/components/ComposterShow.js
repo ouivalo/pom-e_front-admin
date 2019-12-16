@@ -78,6 +78,9 @@ const ComposterShow = ({ translate, ...props }) => {
               <EditButton />
             </Datagrid>
           </ReferenceArrayField>
+          <ReferenceField source="approvisionnementBroyat" reference="approvisionnement_broyats">
+            <TextField source="name" />
+          </ReferenceField>
           <ReferenceArrayField source="livraisonBroyats" reference="livraison_broyats">
             <Datagrid>
               <FieldGuesser source="date" sortable={false} />

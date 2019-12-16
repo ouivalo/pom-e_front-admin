@@ -56,6 +56,7 @@ export default () => (
     <ResourceGuesser name="poles" list={SimpleNameList} options={{ label: 'Poles' }} icon={<Room />} />
     <ResourceGuesser name="categories" options={{ label: 'Catégories' }} list={SimpleNameList} icon={<Style />} />
     <ResourceGuesser name="equipements" list={EquipementsList} options={{ label: 'Équipement' }} icon={<Archive />} />
+    <ResourceGuesser name="approvisionnement_broyats" options={{ label: 'Appro Broyat' }} icon={<LocalShipping />} />
     <ResourceGuesser name="user_composters" options={{ label: 'Utilisateurs/composteurs' }} icon={<VerifiedUser />} />
   </HydraAdmin>
 )
