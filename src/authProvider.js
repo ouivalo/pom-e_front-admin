@@ -17,6 +17,7 @@ const authProvider = (type, params) => {
       })
       .then(({ token }) => {
         localStorage.setItem('token', token)
+        window.location.href = '/'
       })
   }
 
