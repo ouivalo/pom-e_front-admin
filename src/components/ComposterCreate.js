@@ -34,7 +34,7 @@ const ComposterCreate = props => (
       <SelectInput optionText="username" />
     </ReferenceInput>
     <ReferenceInput source="equipement" reference="equipements">
-      <SelectInput optionText={record => (`${record.type} ${record.capacite}`)} />
+      <SelectInput optionText={record => `${record.type} ${record.capacite}`} />
     </ReferenceInput>
     <InputGuesser source="openingProcedures" />
     <SelectInput source="broyatLevel" choices={enumBroyat} defaultValue={enumBroyat[0].id} />

@@ -14,7 +14,7 @@ const PermanencesFilter = props => (
 const PermanencesList = props => (
   <ListGuesser {...props} filters={<PermanencesFilter />} sort={{ field: 'date', order: 'DESC' }}>
     <FieldGuesser source="date" />
-    <ReferenceArrayField source="openers" reference="users" allowEmpty={true} sortable={false}>
+    <ReferenceArrayField source="openers" reference="users" allowEmpty sortable={false}>
       <SingleFieldList>
         <ChipField source="username" />
       </SingleFieldList>
@@ -24,7 +24,7 @@ const PermanencesList = props => (
     <FieldGuesser source="nbUsers" sortable={false} />
     <FieldGuesser source="nbBuckets" sortable={false} />
     <FieldGuesser source="temperature" sortable={false} />
-    <ReferenceField source="composter" reference="composters" allowEmpty={true} sortable={false}>
+    <ReferenceField source="composter" reference="composters" allowEmpty sortable={false}>
       <ChipField source="name" />
     </ReferenceField>
     <FieldGuesser source="canceled" />

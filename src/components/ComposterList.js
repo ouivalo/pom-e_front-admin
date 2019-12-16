@@ -40,13 +40,13 @@ const ComposterList = props => (
   <ListGuesser {...props} filters={<ComposterFilter />} sort={{ field: 'DateMiseEnRoute', order: 'DESC' }}>
     <FieldGuesser source="serialNumber" />
     <FieldGuesser source="name" sortable={false} />
-    <ReferenceField source="commune" reference="communes" linkType={false} allowEmpty={true} sortable={false}>
+    <ReferenceField source="commune" reference="communes" linkType={false} allowEmpty sortable={false}>
       <TextField source="name" />
     </ReferenceField>
-    <ReferenceField source="quartier" reference="quartiers" linkType={false} allowEmpty={true} sortable={false}>
+    <ReferenceField source="quartier" reference="quartiers" linkType={false} allowEmpty sortable={false}>
       <TextField source="name" />
     </ReferenceField>
-    <SelectField source="status" choices={enumStatus} addLabel={true} />
+    <SelectField source="status" choices={enumStatus} addLabel />
   </ListGuesser>
 )
 

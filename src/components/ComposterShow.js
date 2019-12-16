@@ -33,16 +33,16 @@ const ComposterShow = ({ translate, ...props }) => {
           <ReferenceField source="image" reference="media_objects" addLabel={false}>
             <ImageField source="contentUrl" />
           </ReferenceField>
-          <TextField source="name" addLabel={true} />
-          <SelectField source="status" choices={enumStatus} addLabel={true} />
-          <TextField source="serialNumber" addLabel={true} />
-          <FieldGuesser source="DateMiseEnRoute" addLabel={true} />
-          <FieldGuesser source="DateInauguration" addLabel={true} />
-          <FieldGuesser source="DateInstallation" addLabel={true} />
-          <FieldGuesser source="permanencesDescription" addLabel={true} />
-          <FieldGuesser source="acceptNewMembers" addLabel={true} />
-          <FieldGuesser source="description" addLabel={true} />
-          <FieldGuesser source="publicDescription" addLabel={true} />
+          <TextField source="name" addLabel />
+          <SelectField source="status" choices={enumStatus} addLabel />
+          <TextField source="serialNumber" addLabel />
+          <FieldGuesser source="DateMiseEnRoute" addLabel />
+          <FieldGuesser source="DateInauguration" addLabel />
+          <FieldGuesser source="DateInstallation" addLabel />
+          <FieldGuesser source="permanencesDescription" addLabel />
+          <FieldGuesser source="acceptNewMembers" addLabel />
+          <FieldGuesser source="description" addLabel />
+          <FieldGuesser source="publicDescription" addLabel />
           <ReferenceField source="financeur" reference="financeurs">
             <TextField source="name" />
           </ReferenceField>
@@ -55,7 +55,7 @@ const ComposterShow = ({ translate, ...props }) => {
           <ReferenceField source="quartier" reference="quartiers">
             <TextField source="name" />
           </ReferenceField>
-          <FieldGuesser source="address" addLabel={true} label="Adresse" />
+          <FieldGuesser source="address" addLabel label="Adresse" />
           <MapField />
         </Tab>
         <Tab label="Suivi">
@@ -65,8 +65,8 @@ const ComposterShow = ({ translate, ...props }) => {
           <ReferenceField source="equipement" reference="equipements">
             <EquipementField source="type" />
           </ReferenceField>
-          <FieldGuesser source="openingProcedures" addLabel={true} />
-          <SelectField source="broyatLevel" choices={enumBroyat} addLabel={true} />
+          <FieldGuesser source="openingProcedures" addLabel />
+          <SelectField source="broyatLevel" choices={enumBroyat} addLabel />
           <ReferenceArrayField source="suivis" reference="suivis">
             <Datagrid>
               <FieldGuesser source="date" sortable={false} />
