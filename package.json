@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@api-platform/admin": "^1.0.1",
+    "@api-platform/admin": "^1.0.2",
     "@api-platform/api-doc-parser": "^0.8.2",
     "@material-ui/core": "^1.4.0",
     "@material-ui/icons": "^1.0.0",

@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@api-platform/admin@^1.0.1":
+"@api-platform/admin@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@api-platform/admin/-/admin-1.0.2.tgz#581576525de19897d6c88199ef8cb528b3b99581"
   integrity sha512-ah+PsU1NFt/Pxvo4JWSLMhg10qe4dbzZoXuZSve1VHOsrSPFOjvnSBoG+icU29EAvv3DlwQ4o24iNYCgzubFHw==

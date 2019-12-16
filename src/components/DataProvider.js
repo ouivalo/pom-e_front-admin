@@ -48,19 +48,26 @@ const addUploadFeature = requestHandler => (type, resource, params) => {
 }
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
-const fetchHeaders = { Authorization: `Bearer ${window.localStorage.getItem('token')}` }
+
 const fetchHydra = (url, options = {}) =>
   baseFetchHydra(url, {
     ...options,
-    headers: new Headers(fetchHeaders)
+    headers: new Headers({
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    })
   })
+
 const apiDocumentationParser = entrypoint =>
-  parseHydraDocumentation(entrypoint, { headers: new Headers(fetchHeaders) }).then(
+  parseHydraDocumentation(entrypoint, {
+    headers: new Headers({
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    })
+  }).then(
     ({ api }) => ({ api }),
     result => {
       switch (result.status) {
         case 401:
-          window.localStorage.removeItem('token')
+          localStorage.removeItem('token')
           return Promise.resolve({
             api: result.api,
             customRoutes: [
@@ -78,6 +85,7 @@ const apiDocumentationParser = entrypoint =>
       }
     }
   )
+
 const dataProvider = addUploadFeature(baseDataProvider(entrypoint, fetchHydra, apiDocumentationParser))
 
 export default dataProvider
