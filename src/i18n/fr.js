@@ -5,6 +5,7 @@ export default {
       users: 'Utilisateurs'
     },
     composters: {
+      search: 'Rechercher un composteur',
       name: 'Composteur |||| Composteurs',
       fields: {
         name: 'Nom',
@@ -61,10 +62,15 @@ export default {
         fullname: 'Nom complet',
         roles: 'Rôles',
         enumRoles: {
-          admin: 'Administrateur'
+          admin: 'Administrateur',
+          user: 'Utilisateur'
         },
         enabled: 'Activer cet utilisateur',
-        isEnabled: 'Utilisateur actif'
+        isEnabled: 'Utilisateur actif',
+        enumDroits: {
+          referer: 'Référent',
+          opener: 'Ouvreur'
+        }
       }
     },
     contacts: {
@@ -99,6 +105,8 @@ export default {
     user_composters: {
       name: 'Utilisateur du composteur |||| Utilisateurs du composteur',
       fields: {
+        user: 'Utilisateur',
+        composter: 'Composteur',
         capability: 'Droit'
       }
     },
