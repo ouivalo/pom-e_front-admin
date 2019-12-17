@@ -92,9 +92,6 @@ const ComposterShow = ({ translate, ...props }) => {
           <FieldGuesser source="acceptNewMembers" addLabel />
           <FieldGuesser source="description" addLabel />
           <FieldGuesser source="publicDescription" addLabel />
-          <ReferenceField source="financeur" reference="financeurs">
-            <TextField source="name" />
-          </ReferenceField>
           <ReferenceField source="commune" reference="communes">
             <TextField source="name" />
           </ReferenceField>
@@ -108,6 +105,12 @@ const ComposterShow = ({ translate, ...props }) => {
           <MapField />
         </Tab>
         <Tab label="Suivi">
+          <ReferenceField source="financeur" reference="financeurs">
+            <TextField source="name" />
+          </ReferenceField>
+          <ReferenceField source="financeurSuivi" reference="financeurs">
+            <TextField source="name" />
+          </ReferenceField>
           <ReferenceField source="mc" reference="users">
             <TextField source="username" />
           </ReferenceField>
