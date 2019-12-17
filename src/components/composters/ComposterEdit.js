@@ -1,20 +1,20 @@
 import React from 'react'
-import { CreateGuesser, InputGuesser } from '@api-platform/admin'
-import { BooleanInput, ReferenceInput, SelectInput } from 'react-admin'
+import { EditGuesser, InputGuesser } from '@api-platform/admin'
+import { ReferenceInput, SelectInput, BooleanInput, NumberInput } from 'react-admin'
 
-import { enumBroyat, enumStatus } from './Enums'
-import MapInput from './MapInput'
+import { enumBroyat, enumStatus } from '../Enums'
+import MapInput from '../MapInput'
 
-const ComposterCreate = props => (
-  <CreateGuesser {...props}>
+const ComposterEdit = props => (
+  <EditGuesser {...props}>
     <InputGuesser source="name" />
-    <SelectInput source="status" choices={enumStatus} defaultValue={enumStatus[0].id} />
+    <SelectInput source="status" choices={enumStatus} />
     <InputGuesser source="serialNumber" />
     <InputGuesser source="DateMiseEnRoute" />
     <InputGuesser source="DateInauguration" />
     <InputGuesser source="DateInstallation" />
     <InputGuesser source="permanencesDescription" />
-    <BooleanInput source="acceptNewMembers" defaultValue={true} />
+    <InputGuesser source="acceptNewMembers" />
     <InputGuesser source="description" />
     <InputGuesser source="publicDescription" />
     <ReferenceInput source="financeur" reference="financeurs">
@@ -38,10 +38,19 @@ const ComposterCreate = props => (
     </ReferenceInput>
     <InputGuesser source="openingProcedures" />
     <SelectInput source="broyatLevel" choices={enumBroyat} defaultValue={enumBroyat[0].id} />
+    <NumberInput source="nbFoyersPotentiels" />
+    <NumberInput source="nbInscrit" />
+    <NumberInput source="nbDeposant" />
+    <BooleanInput source="signaletiqueRond" />
+    <BooleanInput source="signaletiquePanneau" />
+    <BooleanInput source="hasCroc" />
+    <BooleanInput source="hasCadenas" />
+    <BooleanInput source="hasFourche" />
+    <BooleanInput source="hasThermometre" />
     <InputGuesser source="lat" />
     <InputGuesser source="lng" />
     <MapInput />
-  </CreateGuesser>
+  </EditGuesser>
 )
 
-export default ComposterCreate
+export default ComposterEdit

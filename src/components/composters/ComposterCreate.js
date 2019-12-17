@@ -1,20 +1,20 @@
 import React from 'react'
-import { EditGuesser, InputGuesser } from '@api-platform/admin'
-import { ReferenceInput, SelectInput } from 'react-admin'
+import { CreateGuesser, InputGuesser } from '@api-platform/admin'
+import { BooleanInput, NumberInput, ReferenceInput, SelectInput } from 'react-admin'
 
-import { enumBroyat, enumStatus } from './Enums'
-import MapInput from './MapInput'
+import { enumBroyat, enumStatus } from '../Enums'
+import MapInput from '../MapInput'
 
-const ComposterEdit = props => (
-  <EditGuesser {...props}>
+const ComposterCreate = props => (
+  <CreateGuesser {...props}>
     <InputGuesser source="name" />
-    <SelectInput source="status" choices={enumStatus} />
+    <SelectInput source="status" choices={enumStatus} defaultValue={enumStatus[0].id} />
     <InputGuesser source="serialNumber" />
     <InputGuesser source="DateMiseEnRoute" />
     <InputGuesser source="DateInauguration" />
     <InputGuesser source="DateInstallation" />
     <InputGuesser source="permanencesDescription" />
-    <InputGuesser source="acceptNewMembers" />
+    <BooleanInput source="acceptNewMembers" defaultValue={true} />
     <InputGuesser source="description" />
     <InputGuesser source="publicDescription" />
     <ReferenceInput source="financeur" reference="financeurs">
@@ -34,14 +34,23 @@ const ComposterEdit = props => (
       <SelectInput optionText="username" />
     </ReferenceInput>
     <ReferenceInput source="equipement" reference="equipements">
-      <SelectInput optionText={record => (`${record.type} ${record.capacite}`)} />
+      <SelectInput optionText={record => `${record.type} ${record.capacite}`} />
     </ReferenceInput>
     <InputGuesser source="openingProcedures" />
     <SelectInput source="broyatLevel" choices={enumBroyat} defaultValue={enumBroyat[0].id} />
     <InputGuesser source="lat" />
     <InputGuesser source="lng" />
+    <NumberInput source="nbFoyersPotentiels" />
+    <NumberInput source="nbInscrit" />
+    <NumberInput source="nbDeposant" />
+    <BooleanInput source="signaletiqueRond" />
+    <BooleanInput source="signaletiquePanneau" />
+    <BooleanInput source="hasCroc" />
+    <BooleanInput source="hasCadenas" />
+    <BooleanInput source="hasFourche" />
+    <BooleanInput source="hasThermometre" />
     <MapInput />
-  </EditGuesser>
+  </CreateGuesser>
 )
 
-export default ComposterEdit
+export default ComposterCreate

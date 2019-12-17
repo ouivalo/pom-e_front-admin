@@ -2,7 +2,7 @@ import React from 'react'
 import { ListGuesser, FieldGuesser } from '@api-platform/admin'
 import { SelectField, TextField, ReferenceField, Filter, ReferenceInput, SelectInput, TextInput } from 'react-admin'
 
-import { enumBroyat, enumStatus } from './Enums'
+import { enumBroyat, enumStatus } from '../Enums'
 
 const ComposterFilter = props => (
   <Filter {...props}>
