@@ -20,6 +20,9 @@ const ComposterCreate = props => (
     <ReferenceInput source="financeur" reference="financeurs">
       <SelectInput optionText="name" />
     </ReferenceInput>
+    <ReferenceInput source="financeurSuivi" reference="financeurs">
+      <SelectInput optionText="name" />
+    </ReferenceInput>
     <ReferenceInput source="commune" reference="communes">
       <SelectInput optionText="name" />
     </ReferenceInput>
