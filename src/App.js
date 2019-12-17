@@ -9,7 +9,7 @@ import compostriTheme from './theme'
 import Layout from './components/Layout'
 import ComposterCreate from './components/ComposterCreate'
 import ComposterList from './components/ComposterList'
-import SuivisList from './components/SuivisList'
+import { SuivisList, SuivisShow, SuivisEdit, SuivisCreate } from './components/suivis'
 import ComposterShow from './components/ComposterShow'
 import ComposterEdit from './components/ComposterEdit'
 import ContactsList from './components/ContactsList'
@@ -46,7 +46,15 @@ export default () => (
       icon={<Archive />}
       show={ComposterShow}
     />
-    <ResourceGuesser name="suivis" list={SuivisList} options={{ label: 'Suivis' }} icon={<Pageview />} />
+    <ResourceGuesser
+      name="suivis"
+      list={SuivisList}
+      show={SuivisShow}
+      edit={SuivisEdit}
+      create={SuivisCreate}
+      options={{ label: 'Suivis' }}
+      icon={<Pageview />}
+    />
     <ResourceGuesser name="livraison_broyats" options={{ label: 'Livraisons broyat' }} icon={<LocalShipping />} />
     <ResourceGuesser name="reparations" options={{ label: 'Réparations' }} icon={<Build />} />
     <ResourceGuesser name="permanences" list={PermanencesList} show={PermanencesShow} options={{ label: 'Permanences' }} icon={<AccessTime />} />
