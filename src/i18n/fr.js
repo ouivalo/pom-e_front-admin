@@ -42,7 +42,7 @@ export default {
         signaletiqueRond: 'Signalétique rond',
         signaletiquePanneau: 'Signalétique panneau',
         hasCroc: 'Croc',
-        hasCadenas: 'Cadena',
+        hasCadenas: 'Cadenas',
         hasFourche: 'Fourche',
         hasThermometre: 'Thermométre',
         hasPeson: 'Peson'
