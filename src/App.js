@@ -8,6 +8,7 @@ import authProvider from './authProvider'
 import compostriTheme from './theme'
 import Layout from './components/Layout'
 import { SuivisList, SuivisShow, SuivisEdit, SuivisCreate } from './components/suivis'
+import { ReparationList, ReparationEdit, ReparationCreate, ReparationShow } from './components/reparations'
 import ContactsList from './components/ContactsList'
 import PermanencesList from './components/PermanencesList'
 import PermanencesShow from './components/PermanencesShow'
@@ -53,7 +54,15 @@ export default () => (
       icon={<Pageview />}
     />
     <ResourceGuesser name="livraison_broyats" options={{ label: 'Livraisons broyat' }} icon={<LocalShipping />} />
-    <ResourceGuesser name="reparations" options={{ label: 'Réparations' }} icon={<Build />} />
+    <ResourceGuesser
+      name="reparations"
+      list={ReparationList}
+      edit={ReparationEdit}
+      show={ReparationShow}
+      create={ReparationCreate}
+      options={{ label: 'Réparations' }}
+      icon={<Build />}
+    />
     <ResourceGuesser name="permanences" list={PermanencesList} show={PermanencesShow} options={{ label: 'Permanences' }} icon={<AccessTime />} />
     <ResourceGuesser name="users" list={UserList} create={UserCreate} show={UserShow} edit={UserEdit} options={{ label: 'Utilisateurs' }} icon={<Person />} />
     <ResourceGuesser name="contacts" list={ContactsList} options={{ label: 'Contacts' }} icon={<Contacts />} />

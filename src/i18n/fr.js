@@ -90,6 +90,12 @@ export default {
         temperature: 'Température'
       }
     },
+    reparations: {
+      name: 'Réparation |||| Réparations',
+      fields: {
+        done: 'Reparé'
+      }
+    },
     user_composters: {
       name: 'Utilisateur du composteur |||| Utilisateurs du composteur',
       fields: {
