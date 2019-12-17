@@ -14,11 +14,60 @@ import {
   translate,
   ImageField
 } from 'react-admin'
+import { Table, TableHead, TableRow, TableCell, TableBody, Typography } from '@material-ui/core'
+import { Done, Clear } from '@material-ui/icons'
 
 import { enumBroyat, enumStatus } from './Enums'
 import MapField from './MapField'
 import NoteField from './NoteField'
 
+const FreqField = translate(({ translate, record, resource }) => {
+  return (
+    <div style={{ marginTop: 16 }}>
+      <Typography variant="title">Fréquentation / Capacité</Typography>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>{translate(`resources.${resource}.fields.nbFoyersPotentiels`)}</TableCell>
+            <TableCell>{translate(`resources.${resource}.fields.nbInscrit`)}</TableCell>
+            <TableCell>{translate(`resources.${resource}.fields.nbDeposant`)}</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>{record.nbFoyersPotentiels}</TableCell>
+            <TableCell>{record.nbInscrit}</TableCell>
+            <TableCell>{record.nbDeposant}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </div>
+  )
+})
+
+const BooleanArrayField = translate(({ translate, record, resource, fields, title }) => {
+  return (
+    <div style={{ marginTop: 16 }}>
+      <Typography variant="title">{title}</Typography>
+      <Table>
+        <TableHead>
+          <TableRow>
+            {fields.map(f => (
+              <TableCell>{translate(`resources.${resource}.fields.${f}`)}</TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            {fields.map(f => (
+              <TableCell>{record[f] ? <Done /> : <Clear />}</TableCell>
+            ))}
+          </TableRow>
+        </TableBody>
+      </Table>
+    </div>
+  )
+})
 const EquipementField = ({ record = {} }) => (
   <span>
     {record.type} {record.capacite}
@@ -97,6 +146,9 @@ const ComposterShow = ({ translate, ...props }) => {
               <EditButton />
             </Datagrid>
           </ReferenceArrayField>
+          <FreqField />
+          <BooleanArrayField fields={['signaletiqueRond', 'signaletiquePanneau']} title="Signalétique" />
+          <BooleanArrayField fields={['hasCroc', 'hasCadenas', 'hasFourche', 'hasThermometre', 'hasPeson']} title="Outillage présent" />
         </Tab>
         <Tab label="Contact">
           <ReferenceManyField label="Utilisateurs" reference="user_composters" target="composter" source="rid">

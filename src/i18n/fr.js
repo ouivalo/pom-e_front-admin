@@ -35,7 +35,17 @@ export default {
           empty: 'Vide',
           reserve: 'Sur la réserve',
           full: 'Plein'
-        }
+        },
+        nbFoyersPotentiels: 'Nombre de foyers potentiels',
+        nbInscrit: 'Nombre d’inscrits',
+        nbDeposant: 'Nombre de déposants',
+        signaletiqueRond: 'Signalétique rond',
+        signaletiquePanneau: 'Signalétique panneau',
+        hasCroc: 'Croc',
+        hasCadenas: 'Cadena',
+        hasFourche: 'Fourche',
+        hasThermometre: 'Thermométre',
+        hasPeson: 'Peson'
       }
     },
     users: {
