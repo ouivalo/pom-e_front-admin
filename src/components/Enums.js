@@ -13,6 +13,13 @@ const enumStatus = [
   { id: 'InProject', name: 'resources.composters.fields.enumStatus.inProject' }
 ]
 
-const enumRoles = [{ id: ['ROLE_ADMIN'], name: 'resources.users.fields.enumRoles.admin' }]
+const enumAdminRoleOnly = [{ id: ['ROLE_ADMIN'], name: 'resources.users.fields.enumRoles.admin' }]
 
-export { enumBroyat, enumStatus, enumRoles }
+const enumRoles = [...enumAdminRoleOnly, { id: ['ROLE_USER'], name: 'resources.users.fields.enumRoles.user' }]
+
+const enumDroits = [
+  { id: 'Referent', name: 'resources.users.fields.enumDroits.referer' },
+  { id: 'Opener', name: 'resources.users.fields.enumDroits.opener' }
+]
+
+export { enumBroyat, enumStatus, enumAdminRoleOnly, enumRoles, enumDroits }

@@ -2,7 +2,7 @@ import React from 'react'
 import { HydraAdmin, ResourceGuesser } from '@api-platform/admin'
 import frenchMessages from 'ra-language-french'
 import { Resource } from 'react-admin'
-import { Room, Person, Archive, LocalShipping, Build, Pageview, Style, AccessTime, VerifiedUser, Contacts, MonetizationOn, Photo } from '@material-ui/icons'
+import { Room, Person, Archive, LocalShipping, Build, Pageview, Style, AccessTime, Contacts, MonetizationOn, Photo, PersonOutline } from '@material-ui/icons'
 
 import authProvider from './authProvider'
 import compostriTheme from './theme'
@@ -20,8 +20,9 @@ import MediasList from './components/MediasList'
 import MediasCreate from './components/MediasCreate'
 import dataProvider from './components/DataProvider'
 
-import { UserCreate, UserEdit, UserList, UserShow } from './components/users'
 import { ComposterCreate, ComposterList, ComposterShow, ComposterEdit } from './components/composters'
+import { UserCreate, UserEdit, UserList, UserShow } from './components/users'
+import { UserComposterCreate, UserComposterList } from './components/usersComposters'
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
 
@@ -65,6 +66,13 @@ export default () => (
     />
     <ResourceGuesser name="permanences" list={PermanencesList} show={PermanencesShow} options={{ label: 'Permanences' }} icon={<AccessTime />} />
     <ResourceGuesser name="users" list={UserList} create={UserCreate} show={UserShow} edit={UserEdit} options={{ label: 'Utilisateurs' }} icon={<Person />} />
+    <ResourceGuesser
+      name="user_composters"
+      list={UserComposterList}
+      create={UserComposterCreate}
+      options={{ label: 'Utilisateurs/composteurs' }}
+      icon={<PersonOutline />}
+    />
     <ResourceGuesser name="contacts" list={ContactsList} options={{ label: 'Contacts' }} icon={<Contacts />} />
     <ResourceGuesser name="financeurs" list={SimpleNameList} options={{ label: 'Financeurs' }} icon={<MonetizationOn />} />
     <Resource name="media_objects" list={MediasList} create={MediasCreate} options={{ label: 'Images', nextDivider: true }} icon={<Photo />} />
@@ -74,6 +82,5 @@ export default () => (
     <ResourceGuesser name="categories" options={{ label: 'Catégories' }} list={SimpleNameList} icon={<Style />} />
     <ResourceGuesser name="equipements" list={EquipementsList} options={{ label: 'Équipement' }} icon={<Archive />} />
     <ResourceGuesser name="approvisionnement_broyats" options={{ label: 'Appro Broyat' }} icon={<LocalShipping />} />
-    <ResourceGuesser name="user_composters" options={{ label: 'Utilisateurs/composteurs' }} icon={<VerifiedUser />} />
   </HydraAdmin>
 )

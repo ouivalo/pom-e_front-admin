@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputGuesser } from '@api-platform/admin'
 import { required, Create, SimpleForm, SelectInput, TextInput } from 'react-admin'
-import { enumRoles } from '../Enums'
+import { enumAdminRoleOnly } from '../Enums'
 
 const initialValues = { enabled: true }
 
@@ -14,7 +14,7 @@ const UserCreate = props => (
       <InputGuesser source="firstname" />
       <InputGuesser source="lastname" />
       <InputGuesser source="phone" />
-      <SelectInput source="roles" choices={enumRoles} validate={required()} />
+      <SelectInput source="roles" choices={enumAdminRoleOnly} validate={required()} />
     </SimpleForm>
   </Create>
 )
