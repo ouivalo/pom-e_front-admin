@@ -1,6 +1,4 @@
-import UserCreate from './UserCreate'
-import UserEdit from './UserEdit'
-import UserList from './UserList'
-import UserShow from './UserShow'
-
-export { UserCreate, UserEdit, UserList, UserShow }
+export { default as UserCreate } from './UserCreate'
+export { default as UserEdit } from './UserEdit'
+export { default as UserList } from './UserList'
+export { default as UserShow } from './UserShow'
