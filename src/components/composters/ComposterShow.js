@@ -17,9 +17,9 @@ import {
 import { Table, TableHead, TableRow, TableCell, TableBody, Typography } from '@material-ui/core'
 import { Done, Clear } from '@material-ui/icons'
 
-import { enumBroyat, enumStatus } from './Enums'
-import MapField from './MapField'
-import NoteField from './NoteField'
+import { enumBroyat, enumStatus } from '../Enums'
+import MapField from '../MapField'
+import NoteField from '../NoteField'
 
 const FreqField = translate(({ translate, record, resource }) => {
   return (

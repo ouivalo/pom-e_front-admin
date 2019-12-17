@@ -7,11 +7,7 @@ import { Room, Person, Archive, LocalShipping, Build, Pageview, Style, AccessTim
 import authProvider from './authProvider'
 import compostriTheme from './theme'
 import Layout from './components/Layout'
-import ComposterCreate from './components/ComposterCreate'
-import ComposterList from './components/ComposterList'
 import { SuivisList, SuivisShow, SuivisEdit, SuivisCreate } from './components/suivis'
-import ComposterShow from './components/ComposterShow'
-import ComposterEdit from './components/ComposterEdit'
 import ContactsList from './components/ContactsList'
 import PermanencesList from './components/PermanencesList'
 import PermanencesShow from './components/PermanencesShow'
@@ -24,6 +20,7 @@ import MediasCreate from './components/MediasCreate'
 import dataProvider from './components/DataProvider'
 
 import { UserCreate, UserEdit, UserList, UserShow } from './components/users'
+import { ComposterCreate, ComposterList, ComposterShow, ComposterEdit } from './components/composters'
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
 
