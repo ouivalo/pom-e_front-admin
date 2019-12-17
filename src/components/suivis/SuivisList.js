@@ -1,7 +1,7 @@
 import React from 'react'
 import { ListGuesser, FieldGuesser } from '@api-platform/admin'
 import { TextField, ReferenceField } from 'react-admin'
-import NoteField from './NoteField'
+import NoteField from '../NoteField'
 
 const SuivisList = props => (
   <ListGuesser {...props}>
