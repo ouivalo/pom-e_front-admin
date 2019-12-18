@@ -22,6 +22,9 @@ const ComposterFilter = props => (
     <ReferenceInput source="financeur" reference="financeurs">
       <SelectInput optionText="name" optionValue="id" />
     </ReferenceInput>
+    <ReferenceInput source="composterContact" reference="contacts">
+      <SelectInput optionText="firstName" optionValue="id" />
+    </ReferenceInput>
     <ReferenceInput source="equipement" reference="equipements">
       <SelectInput
         optionText={record => (
