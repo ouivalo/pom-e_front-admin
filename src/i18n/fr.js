@@ -117,6 +117,13 @@ export default {
         type: 'Type',
         capacite: 'Capacité'
       }
+    },
+    financeurs: {
+      fields: {
+        name: 'Nom',
+        initials: 'Initiales',
+        id: 'Composteurs'
+      }
     }
   }
 }
