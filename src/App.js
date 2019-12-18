@@ -22,7 +22,7 @@ import dataProvider from './components/DataProvider'
 
 import { ComposterCreate, ComposterList, ComposterShow, ComposterEdit } from './components/composters'
 import { UserCreate, UserEdit, UserList, UserShow } from './components/users'
-import { UserComposterCreate, UserComposterList } from './components/usersComposters'
+import { UserComposterCreate, UserComposterEdit, UserComposterList } from './components/usersComposters'
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
 
@@ -70,6 +70,7 @@ export default () => (
       name="user_composters"
       list={UserComposterList}
       create={UserComposterCreate}
+      edit={UserComposterEdit}
       options={{ label: 'Utilisateurs/composteurs' }}
       icon={<PersonOutline />}
     />
