@@ -85,6 +85,7 @@ const ComposterShow = ({ translate, ...props }) => {
           <TextField source="name" addLabel />
           <SelectField source="status" choices={enumStatus} addLabel />
           <TextField source="serialNumber" addLabel />
+          <TextField source="plateNumber" addLabel />
           <FieldGuesser source="DateMiseEnRoute" addLabel />
           <FieldGuesser source="DateInauguration" addLabel />
           <FieldGuesser source="DateInstallation" addLabel />
