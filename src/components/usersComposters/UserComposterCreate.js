@@ -15,7 +15,7 @@ const UserComposterCreate = props => (
       <TextInput source="user.firstname" label="resources.users.fields.firstname" />
       <TextInput source="user.lastname" label="resources.users.fields.lastname" />
       <TextInput source="user.phone" label="resources.users.fields.phone" />
-      <SelectInput source="capability" choices={enumDroits} validate={required()} />
+      <SelectInput source="capability" choices={enumDroits} defaultValue={enumDroits[0].id} validate={required()} />
       <ReferenceInput source="composter" reference="composters" alwaysOn filterToQuery={name => ({ name })} validate={required()}>
         <AutocompleteInput optionValue="@id" />
       </ReferenceInput>
