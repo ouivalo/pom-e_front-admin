@@ -9,7 +9,6 @@ import compostriTheme from './theme'
 import Layout from './components/Layout'
 import { SuivisList, SuivisShow, SuivisEdit, SuivisCreate } from './components/suivis'
 import { ReparationList, ReparationEdit, ReparationCreate, ReparationShow } from './components/reparations'
-import ContactsList from './components/ContactsList'
 import PermanencesList from './components/PermanencesList'
 import PermanencesShow from './components/PermanencesShow'
 import SimpleNameList from './components/SimpleNameList'
@@ -24,6 +23,7 @@ import { ComposterCreate, ComposterList, ComposterShow, ComposterEdit } from './
 import { FinanceurShow } from './components/financeurs'
 import { UserCreate, UserEdit, UserList, UserShow } from './components/users'
 import { UserComposterCreate, UserComposterEdit, UserComposterList } from './components/usersComposters'
+import { ContactList, ContactCreate, ContactEdit, ContactShow } from './components/contacts'
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
 
@@ -75,8 +75,17 @@ export default () => (
       options={{ label: 'Utilisateurs/composteurs' }}
       icon={<PersonOutline />}
     />
-    <ResourceGuesser name="contacts" list={ContactsList} options={{ label: 'Contacts' }} icon={<Contacts />} />
     <ResourceGuesser name="financeurs" list={SimpleNameList} show={FinanceurShow} options={{ label: 'Financeurs' }} icon={<MonetizationOn />} />
+    <ResourceGuesser
+      name="contacts"
+      list={ContactList}
+      create={ContactCreate}
+      edit={ContactEdit}
+      show={ContactShow}
+      options={{ label: 'Contacts' }}
+      icon={<Contacts />}
+    />
+    <ResourceGuesser name="financeurs" list={SimpleNameList} options={{ label: 'Financeurs' }} icon={<MonetizationOn />} />
     <Resource name="media_objects" list={MediasList} create={MediasCreate} options={{ label: 'Images', nextDivider: true }} icon={<Photo />} />
     <ResourceGuesser name="quartiers" list={SimpleNameList} options={{ label: 'Quartiers' }} icon={<Room />} />
     <ResourceGuesser name="communes" list={SimpleNameList} options={{ label: 'Communes' }} icon={<Room />} />
