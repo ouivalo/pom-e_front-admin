@@ -16,6 +16,7 @@ export default {
         permanencesDescription: 'Permanences',
         acceptNewMembers: 'Accepte de nouveaux membres',
         serialNumber: 'Numéro de série',
+        plateNumber: 'Numéro de plaque',
         description: 'Description',
         publicDescription: 'Description publique',
         address: 'Adresse',

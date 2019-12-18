@@ -1,6 +1,6 @@
 import React from 'react'
 import { CreateGuesser, InputGuesser } from '@api-platform/admin'
-import { BooleanInput, NumberInput, ReferenceInput, SelectInput } from 'react-admin'
+import { BooleanInput, NumberInput, ReferenceInput, SelectInput, TextInput } from 'react-admin'
 
 import { enumBroyat, enumStatus } from '../Enums'
 import MapInput from '../MapInput'
@@ -10,6 +10,7 @@ const ComposterCreate = props => (
     <InputGuesser source="name" />
     <SelectInput source="status" choices={enumStatus} defaultValue={enumStatus[0].id} />
     <InputGuesser source="serialNumber" />
+    <TextInput source="plateNumber" />
     <InputGuesser source="DateMiseEnRoute" />
     <InputGuesser source="DateInauguration" />
     <InputGuesser source="DateInstallation" />
