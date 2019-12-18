@@ -124,6 +124,12 @@ export default {
         initials: 'Initiales',
         id: 'Composteurs'
       }
+    },
+    livraison_broyats: {
+      fields: {
+        quantite: 'Quantité ( en litre )',
+        composter: 'Composteur'
+      }
     }
   }
 }

@@ -109,7 +109,7 @@ const ComposterShow = ({ translate, ...props }) => {
           <ReferenceField source="financeur" reference="financeurs">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="financeurSuivi" reference="financeurs">
+          <ReferenceField source="financeurSuivi" reference="financeurs" allowEmpty>
             <TextField source="name" />
           </ReferenceField>
           <ReferenceField source="mc" reference="users">
@@ -138,7 +138,9 @@ const ComposterShow = ({ translate, ...props }) => {
             <Datagrid>
               <FieldGuesser source="date" sortable={false} />
               <FieldGuesser source="quantite" sortable={false} />
-              <FieldGuesser source="livreur" sortable={false} />
+              <ReferenceField source="livreur" reference="approvisionnement_broyats" linkType={false} allowEmpty sortable={false}>
+                <TextField source="name" />
+              </ReferenceField>
               <EditButton />
             </Datagrid>
           </ReferenceArrayField>
