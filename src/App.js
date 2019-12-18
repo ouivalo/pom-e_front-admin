@@ -2,29 +2,13 @@ import React from 'react'
 import { HydraAdmin, ResourceGuesser } from '@api-platform/admin'
 import frenchMessages from 'ra-language-french'
 import { Resource } from 'react-admin'
-import {
-  Room,
-  Person,
-  Archive,
-  LocalShipping,
-  Build,
-  Pageview,
-  Style,
-  AccessTime,
-  Contacts,
-  Photo,
-  PersonOutline,
-  EuroSymbol,
-  LocationCity
-} from '@material-ui/icons'
+import { Room, Person, Archive, LocalShipping, Build, Pageview, Style, Contacts, Photo, PersonOutline, EuroSymbol, LocationCity } from '@material-ui/icons'
 
 import authProvider from './authProvider'
 import compostriTheme from './theme'
 import Layout from './components/Layout'
 import { SuivisList, SuivisShow, SuivisEdit, SuivisCreate } from './components/suivis'
 import { ReparationList, ReparationEdit, ReparationCreate, ReparationShow } from './components/reparations'
-import PermanencesList from './components/PermanencesList'
-import PermanencesShow from './components/PermanencesShow'
 import SimpleNameList from './components/SimpleNameList'
 import EquipementsList from './components/EquipementsList'
 import Dashboard from './components/Dashboard'
@@ -38,6 +22,7 @@ import { FinanceurCreate, FinanceurEdit, FinanceurShow } from './components/fina
 import { UserCreate, UserEdit, UserList, UserShow } from './components/users'
 import { UserComposterCreate, UserComposterEdit, UserComposterList } from './components/usersComposters'
 import { ContactList, ContactCreate, ContactEdit, ContactShow } from './components/contacts'
+import { LivraisonBroyatsCreate, LivraisonBroyatsEdit, LivraisonBroyatsShow, LivraisonBroyatsList } from './components/livraisonBroyats'
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
 
@@ -69,7 +54,15 @@ export default () => (
       options={{ label: 'Suivis' }}
       icon={<Pageview />}
     />
-    <ResourceGuesser name="livraison_broyats" options={{ label: 'Livraisons broyat' }} icon={<LocalShipping />} />
+    <ResourceGuesser
+      name="livraison_broyats"
+      create={LivraisonBroyatsCreate}
+      edit={LivraisonBroyatsEdit}
+      show={LivraisonBroyatsShow}
+      list={LivraisonBroyatsList}
+      options={{ label: 'Livraisons broyat' }}
+      icon={<LocalShipping />}
+    />
     <ResourceGuesser
       name="reparations"
       create={ReparationCreate}
@@ -79,7 +72,6 @@ export default () => (
       options={{ label: 'Réparations' }}
       icon={<Build />}
     />
-    <ResourceGuesser name="permanences" list={PermanencesList} show={PermanencesShow} options={{ label: 'Permanences' }} icon={<AccessTime />} />
     <ResourceGuesser name="users" list={UserList} create={UserCreate} show={UserShow} edit={UserEdit} options={{ label: 'Utilisateurs' }} icon={<Person />} />
     <ResourceGuesser
       name="user_composters"
