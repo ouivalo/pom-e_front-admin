@@ -4,7 +4,7 @@ import { Create, SimpleForm, ImageInput, ImageField } from 'react-admin'
 const MediasCreate = props => (
   <Create {...props}>
     <SimpleForm redirect="list">
-      <ImageInput source="media_objects" label="Related pictures" accept="image/*">
+      <ImageInput source="media_objects" accept="image/*">
         <ImageField source="file" src="file" />
       </ImageInput>
     </SimpleForm>

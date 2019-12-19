@@ -36,7 +36,7 @@ const MapInput = () => {
                 dispatch(change(REDUX_FORM_NAME, 'lat', lngLat[1]))
               }}
             >
-              <RoomIcon color="primary" fontSize="large" />
+              <RoomIcon color="primary" />
             </Marker>
           </ReactMapGL>
         )

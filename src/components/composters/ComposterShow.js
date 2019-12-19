@@ -1,18 +1,18 @@
 import React from 'react'
 import { FieldGuesser } from '@api-platform/admin'
 import {
-  Show,
-  TextField,
-  SelectField,
-  TabbedShowLayout,
-  Tab,
-  ReferenceField,
-  ReferenceArrayField,
   Datagrid,
   EditButton,
+  ImageField,
+  ReferenceArrayField,
+  ReferenceField,
   ReferenceManyField,
-  translate,
-  ImageField
+  SelectField,
+  Show,
+  Tab,
+  TabbedShowLayout,
+  TextField,
+  translate
 } from 'react-admin'
 import { Table, TableHead, TableRow, TableCell, TableBody, Typography } from '@material-ui/core'
 import { Done, Clear } from '@material-ui/icons'
@@ -76,7 +76,7 @@ const EquipementField = ({ record = {} }) => (
 
 const ComposterShow = ({ translate, ...props }) => {
   return (
-    <Show title="C ouf" {...props}>
+    <Show {...props}>
       <TabbedShowLayout>
         <Tab label="Informations">
           <ReferenceField source="image" reference="media_objects" addLabel={false}>
@@ -174,7 +174,7 @@ const ComposterShow = ({ translate, ...props }) => {
               <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.phone')}>
                 <FieldGuesser source="phone" />
               </ReferenceField>
-              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.role')}>
+              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.roles')}>
                 <FieldGuesser source="role" />
               </ReferenceField>
               <FieldGuesser source="capability" sortable={false} />

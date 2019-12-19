@@ -1,11 +1,11 @@
 import React from 'react'
+import { DeleteButton, ImageField, List } from 'react-admin'
 import { Grid } from '@material-ui/core'
-import { List, DeleteButton, ImageField } from 'react-admin'
 
 const MediaGrid = ({ ids, data, basePath }) => (
   <Grid container>
     {ids.map(id => (
-      <Grid item xs={12} sm={6} md={3}>
+      <Grid key={id} item xs={12} sm={6} md={3} style={{ marginBottom: '1rem' }}>
         <ImageField record={data[id]} source="contentUrl" src="contentUrl" />
         <DeleteButton resource="media_objects" basePath={basePath} record={data[id]} />
       </Grid>
