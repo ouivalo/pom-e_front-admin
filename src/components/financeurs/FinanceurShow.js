@@ -1,20 +1,19 @@
 import React from 'react'
-import { FieldGuesser, ShowGuesser } from '@api-platform/admin'
-import { Datagrid, Pagination, ReferenceManyField } from 'react-admin'
+import { Datagrid, DateField, Pagination, ReferenceManyField, Show, SimpleShowLayout, TextField } from 'react-admin'
 
-const FinanceurShow = props => {
-  return (
-    <ShowGuesser {...props}>
-      <FieldGuesser source="name" addLabel />
-      <FieldGuesser source="initials" addLabel />
+const FinanceurShow = props => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <TextField source="name" addLabel />
+      <TextField source="initials" addLabel />
       <ReferenceManyField source="id" reference="composters" target="financeur" pagination={<Pagination />}>
         <Datagrid>
-          <FieldGuesser source="DateMiseEnRoute" />
-          <FieldGuesser source="name" />
+          <DateField source="DateMiseEnRoute" />
+          <TextField source="name" />
         </Datagrid>
       </ReferenceManyField>
-    </ShowGuesser>
-  )
-}
+    </SimpleShowLayout>
+  </Show>
+)
 
 export default FinanceurShow

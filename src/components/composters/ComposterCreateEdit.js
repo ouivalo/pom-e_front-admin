@@ -1,17 +1,17 @@
 import React from 'react'
 import { Create, Edit } from 'react-admin'
 
-import ComposterFields from './ComposterFields'
+import ComposterInputs from './ComposterInputs'
 
 const ComposterCreate = props => (
   <Create {...props}>
-    <ComposterFields {...props} />
+    <ComposterInputs {...props} />
   </Create>
 )
 
 const ComposterEdit = props => (
   <Edit {...props}>
-    <ComposterFields {...props} />
+    <ComposterInputs {...props} />
   </Edit>
 )
 

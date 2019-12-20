@@ -1,5 +1,5 @@
 import React from 'react'
-import { required, AutocompleteInput, Create, ReferenceInput, SelectInput, SimpleForm, TextInput } from 'react-admin'
+import { required, AutocompleteInput, Create, Edit, ReferenceField, ReferenceInput, SelectInput, SimpleForm, TextField, TextInput } from 'react-admin'
 import { enumDroits } from '../Enums'
 
 const initialValues = {
@@ -23,4 +23,18 @@ const UserComposterCreate = props => (
   </Create>
 )
 
-export default UserComposterCreate
+const UserComposterEdit = props => (
+  <Edit {...props}>
+    <SimpleForm redirect="show">
+      <ReferenceField source="user" reference="users">
+        <TextField source="username" />
+      </ReferenceField>
+      <ReferenceInput source="composter" reference="composters" alwaysOn filterToQuery={name => ({ name })}>
+        <AutocompleteInput optionValue="@id" />
+      </ReferenceInput>
+      <SelectInput source="capability" choices={enumDroits} />
+    </SimpleForm>
+  </Edit>
+)
+
+export { UserComposterCreate, UserComposterEdit }

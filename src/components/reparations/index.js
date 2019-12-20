@@ -1,4 +1,2 @@
-export { default as ReparationList } from './ReparationList'
-export { default as ReparationShow } from './ReparationShow'
-export { default as ReparationEdit } from './ReparationEdit'
-export { default as ReparationCreate } from './ReparationCreate'
+export { ReparationCreate, ReparationEdit } from './ReparationCreateEdit'
+export { ReparationList, ReparationShow } from './ReparationListShow'

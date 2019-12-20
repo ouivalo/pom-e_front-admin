@@ -1,6 +1,5 @@
 import React from 'react'
-import { ListGuesser } from '@api-platform/admin'
-import { Filter, ReferenceField, SelectField, SelectInput, TextField, TextInput } from 'react-admin'
+import { Datagrid, EditButton, Filter, List, ReferenceField, SelectField, SelectInput, ShowButton, TextField, TextInput } from 'react-admin'
 import { enumDroits } from '../Enums'
 
 const UserComposterFilter = props => (
@@ -12,15 +11,19 @@ const UserComposterFilter = props => (
 )
 
 const UserComposterList = props => (
-  <ListGuesser {...props} filters={<UserComposterFilter />} sort={{ field: 'id', order: 'ASC' }}>
-    <ReferenceField source="user" reference="users" linkType={'show'}>
-      <TextField source="username" />
-    </ReferenceField>
-    <ReferenceField source="composter" reference="composters" linkType={'show'}>
-      <TextField source="name" />
-    </ReferenceField>
-    <SelectField source="capability" choices={enumDroits} addLabel />
-  </ListGuesser>
+  <List {...props} filters={<UserComposterFilter />} sort={{ field: 'id', order: 'ASC' }}>
+    <Datagrid>
+      <ReferenceField source="user" reference="users" linkType={'show'}>
+        <TextField source="username" />
+      </ReferenceField>
+      <ReferenceField source="composter" reference="composters" linkType={'show'}>
+        <TextField source="name" />
+      </ReferenceField>
+      <SelectField source="capability" choices={enumDroits} addLabel />
+      <ShowButton />
+      <EditButton />
+    </Datagrid>
+  </List>
 )
 
 export default UserComposterList

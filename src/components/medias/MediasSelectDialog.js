@@ -1,7 +1,5 @@
 import React, { Component, useState } from 'react'
-import { connect } from 'react-redux'
-import { change, submit, isSubmitting } from 'redux-form'
-import { crudGetMatching, fetchEnd, fetchStart, showNotification, Button, Loading, Query } from 'react-admin'
+import { Button, Loading, Query } from 'react-admin'
 import { ButtonBase, Dialog, DialogTitle, Grid, Table, TableBody, TableCell, TableFooter, TablePagination, TableRow } from '@material-ui/core'
 import { Edit } from '@material-ui/icons'
 import { withStyles } from '@material-ui/core/styles'
@@ -188,11 +186,6 @@ class MediasSelect extends Component {
     this.props.onSelected(id)
   }
 
-  handleSubmit = values => {
-    const { change, crudGetMatching, fetchStart, fetchEnd, showNotification } = this.props
-    console.log('values', values)
-  }
-
   render() {
     const { showDialog } = this.state
     return (
@@ -209,17 +202,4 @@ class MediasSelect extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isSubmitting: isSubmitting('quick-select')(state)
-})
-
-const mapDispatchToProps = {
-  change,
-  crudGetMatching,
-  fetchEnd,
-  fetchStart,
-  showNotification,
-  submit
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MediasSelect)
+export default MediasSelect

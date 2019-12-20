@@ -19,7 +19,7 @@ import MediasSelectDialog from '../medias/MediasSelectDialog'
 import { enumBroyat, enumStatus } from '../Enums'
 import MapInput from '../MapInput'
 
-const ComposterFields = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
+const ComposterInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
   const [image, setImage] = useState(null)
   return (
     <SimpleForm {...rest} redirect="show">
@@ -100,4 +100,4 @@ const ComposterFields = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
     </SimpleForm>
   )
 }
-export default ComposterFields
+export default ComposterInputs

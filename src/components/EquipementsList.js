@@ -1,17 +1,20 @@
 import React from 'react'
-import { ListGuesser, FieldGuesser } from '@api-platform/admin'
-import { MenuItemLink } from 'react-admin'
+import { Datagrid, EditButton, List, MenuItemLink, ShowButton, TextField } from 'react-admin'
 
-const LinkToComposter = ({ resource, record }) => {
+const LinkToComposter = ({ record }) => {
   return <MenuItemLink to={`/composters?filter={"equipement":"${record.id}"}`} primaryText="Voir les composteurs" />
 }
 
 const EquipementsList = props => (
-  <ListGuesser {...props} sort={{ field: 'name', order: 'ASC' }}>
-    <FieldGuesser source="type" />
-    <FieldGuesser source="capacite" />
-    <LinkToComposter />
-  </ListGuesser>
+  <List {...props} sort={{ field: 'name', order: 'ASC' }}>
+    <Datagrid>
+      <TextField source="type" />
+      <TextField source="capacite" />
+      <LinkToComposter />
+      <ShowButton />
+      <EditButton />
+    </Datagrid>
+  </List>
 )
 
 export default EquipementsList
