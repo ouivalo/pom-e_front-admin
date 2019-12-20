@@ -1,6 +1,8 @@
 import React from 'react'
-import { Datagrid, EditButton, List, MenuItemLink, ShowButton, TextField } from 'react-admin'
+import { Datagrid, EditButton, List, MenuItemLink, SelectField, ShowButton, TextField } from 'react-admin'
 import { stringify } from 'query-string'
+
+import { enumContactType } from '../Enums'
 
 const LinkToComposter = ({ record }) => {
   return (
@@ -23,9 +25,10 @@ const ContactList = props => (
     <Datagrid>
       <TextField source="firstName" />
       <TextField source="lastName" />
-      <TextField source="phone" />
+      <TextField source="phone" sortable={false} />
       <TextField source="email" />
       <LinkToComposter />
+      <SelectField source="contactType" choices={enumContactType} addLabel />
       <ShowButton />
       <EditButton />
     </Datagrid>
