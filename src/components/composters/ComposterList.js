@@ -1,6 +1,5 @@
 import React from 'react'
-import { ListGuesser, FieldGuesser } from '@api-platform/admin'
-import { SelectField, TextField, ReferenceField, Filter, ReferenceInput, SelectInput, TextInput } from 'react-admin'
+import { Datagrid, EditButton, ShowButton, List, SelectField, TextField, ReferenceField, Filter, ReferenceInput, SelectInput, TextInput } from 'react-admin'
 
 import { enumBroyat, enumStatus } from '../Enums'
 
@@ -40,17 +39,21 @@ const ComposterFilter = props => (
 )
 
 const ComposterList = props => (
-  <ListGuesser {...props} filters={<ComposterFilter />} sort={{ field: 'DateMiseEnRoute', order: 'DESC' }}>
-    <FieldGuesser source="serialNumber" />
-    <FieldGuesser source="name" sortable={false} />
-    <ReferenceField source="commune" reference="communes" linkType={false} allowEmpty sortable={false}>
-      <TextField source="name" />
-    </ReferenceField>
-    <ReferenceField source="quartier" reference="quartiers" linkType={false} allowEmpty sortable={false}>
-      <TextField source="name" />
-    </ReferenceField>
-    <SelectField source="status" choices={enumStatus} addLabel />
-  </ListGuesser>
+  <List {...props} filters={<ComposterFilter />} sort={{ field: 'DateMiseEnRoute', order: 'DESC' }}>
+    <Datagrid>
+      <TextField source="serialNumber" />
+      <TextField source="name" sortable={false} />
+      <ReferenceField source="commune" reference="communes" linkType={false} allowEmpty sortable={false}>
+        <TextField source="name" />
+      </ReferenceField>
+      <ReferenceField source="quartier" reference="quartiers" linkType={false} allowEmpty sortable={false}>
+        <TextField source="name" />
+      </ReferenceField>
+      <SelectField source="status" choices={enumStatus} addLabel />
+      <ShowButton />
+      <EditButton />
+    </Datagrid>
+  </List>
 )
 
 export default ComposterList

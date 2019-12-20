@@ -1,9 +1,18 @@
 import React from 'react'
-import { FieldGuesser } from '@api-platform/admin'
+import { AutocompleteArrayInput, ReferenceInput, SimpleForm, TextInput } from 'react-admin'
 
-export default [
-  <FieldGuesser source="firstName" addLabel />,
-  <FieldGuesser source="lastName" addLabel />,
-  <FieldGuesser source="phone" addLabel />,
-  <FieldGuesser source="email" addLabel />
-]
+const ComposterFields = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => (
+  <SimpleForm {...rest} redirect="show">
+    <TextInput source="firstName" />
+    <TextInput source="lastName" />
+    <TextInput source="phone" />
+    <TextInput source="email" />
+    <ReferenceInput source="composter" reference="composters" alwaysOn filterToQuery={name => ({ name })}>
+      <AutocompleteArrayInput optionValue="@id" />
+    </ReferenceInput>
+    <TextInput source="role" />
+    <TextInput source="contactType" />
+  </SimpleForm>
+)
+
+export default ComposterFields

@@ -1,8 +1,5 @@
 import React from 'react'
-import { ListGuesser } from '@api-platform/admin'
-import ContactFields from './ContactFields'
-
-import { MenuItemLink } from 'react-admin'
+import { Datagrid, EditButton, List, MenuItemLink, ShowButton, TextField } from 'react-admin'
 import { stringify } from 'query-string'
 
 const LinkToComposter = ({ record }) => {
@@ -22,10 +19,17 @@ const LinkToComposter = ({ record }) => {
 }
 
 const ContactList = props => (
-  <ListGuesser {...props}>
-    {ContactFields}
-    <LinkToComposter />
-  </ListGuesser>
+  <List {...props}>
+    <Datagrid>
+      <TextField source="firstName" />
+      <TextField source="lastName" />
+      <TextField source="phone" />
+      <TextField source="email" />
+      <LinkToComposter />
+      <ShowButton />
+      <EditButton />
+    </Datagrid>
+  </List>
 )
 
 export default ContactList
