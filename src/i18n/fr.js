@@ -46,7 +46,7 @@ export default {
         hasCroc: 'Croc',
         hasCadenas: 'Cadenas',
         hasFourche: 'Fourche',
-        hasThermometre: 'Thermométre',
+        hasThermometre: 'Thermomètre',
         hasPeson: 'Peson'
       }
     },
@@ -129,6 +129,12 @@ export default {
       fields: {
         quantite: 'Quantité ( en litre )',
         composter: 'Composteur'
+      }
+    },
+    media_objects: {
+      fields: {
+        media_objects: 'Image',
+        perPage: 'Nombre d’images par page'
       }
     }
   }

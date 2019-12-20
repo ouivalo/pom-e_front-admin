@@ -1,4 +1,4 @@
-import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK } from 'react-admin'
+import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK, AUTH_GET_PERMISSIONS } from 'react-admin'
 
 const authProvider = (type, params) => {
   if (type === AUTH_LOGIN) {
@@ -41,7 +41,11 @@ const authProvider = (type, params) => {
     return Promise.resolve()
   }
 
-  return Promise.resolve()
+  if (type === AUTH_GET_PERMISSIONS) {
+    return Promise.resolve()
+  }
+
+  return Promise.reject()
 }
 
 export default authProvider
