@@ -1,6 +1,5 @@
 import React from 'react'
-import { ListGuesser, FieldGuesser } from '@api-platform/admin'
-import { MenuItemLink } from 'react-admin'
+import { Datagrid, EditButton, List, MenuItemLink, ShowButton, TextField } from 'react-admin'
 import { stringify } from 'query-string'
 
 const LinkToComposter = ({ resource, record }) => {
@@ -21,10 +20,14 @@ const LinkToComposter = ({ resource, record }) => {
 }
 
 const SimpleNameList = props => (
-  <ListGuesser {...props} sort={{ field: 'name', order: 'ASC' }}>
-    <FieldGuesser source="name" label="Nom" />
-    <LinkToComposter />
-  </ListGuesser>
+  <List {...props} sort={{ field: 'name', order: 'ASC' }}>
+    <Datagrid>
+      <TextField source="name" label="Nom" />
+      <LinkToComposter />
+      <ShowButton />
+      <EditButton />
+    </Datagrid>
+  </List>
 )
 
 export default SimpleNameList

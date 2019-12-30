@@ -82,7 +82,14 @@ export default {
         username: 'Pseudo',
         lastName: 'Nom',
         firstName: 'Prénom',
-        role: 'Fonction'
+        role: 'Fonction',
+        composters: 'Composteurs',
+        contactType: 'Type',
+        enumContactType: {
+          institution: 'Institution',
+          school: 'Établissement scolaire',
+          syndic: 'Syndic'
+        }
       }
     },
     permanences: {

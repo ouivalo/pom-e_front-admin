@@ -1,3 +1,2 @@
-export { default as UserComposterCreate } from './UserComposterCreate'
-export { default as UserComposterEdit } from './UserComposterEdit'
+export { UserComposterCreate, UserComposterEdit } from './UserComposterCreateEdit'
 export { default as UserComposterList } from './UserComposterList'

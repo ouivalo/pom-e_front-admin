@@ -1,7 +1,8 @@
 import React from 'react'
-import { FieldGuesser } from '@api-platform/admin'
 import {
+  BooleanField,
   Datagrid,
+  DateField,
   EditButton,
   ImageField,
   ReferenceArrayField,
@@ -86,13 +87,13 @@ const ComposterShow = ({ translate, ...props }) => {
           <SelectField source="status" choices={enumStatus} addLabel />
           <TextField source="serialNumber" addLabel />
           <TextField source="plateNumber" addLabel />
-          <FieldGuesser source="DateMiseEnRoute" addLabel />
-          <FieldGuesser source="DateInauguration" addLabel />
-          <FieldGuesser source="DateInstallation" addLabel />
-          <FieldGuesser source="permanencesDescription" addLabel />
-          <FieldGuesser source="acceptNewMembers" addLabel />
-          <FieldGuesser source="description" addLabel />
-          <FieldGuesser source="publicDescription" addLabel />
+          <DateField source="DateMiseEnRoute" addLabel />
+          <DateField source="DateInauguration" addLabel />
+          <DateField source="DateInstallation" addLabel />
+          <TextField source="permanencesDescription" addLabel />
+          <BooleanField source="acceptNewMembers" addLabel />
+          <TextField source="description" addLabel />
+          <TextField source="publicDescription" addLabel />
           <ReferenceField source="commune" reference="communes">
             <TextField source="name" />
           </ReferenceField>
@@ -102,7 +103,7 @@ const ComposterShow = ({ translate, ...props }) => {
           <ReferenceField source="quartier" reference="quartiers">
             <TextField source="name" />
           </ReferenceField>
-          <FieldGuesser source="address" addLabel label="Adresse" />
+          <TextField source="address" addLabel label="Adresse" />
           <MapField />
         </Tab>
         <Tab label="Suivi">
@@ -118,12 +119,12 @@ const ComposterShow = ({ translate, ...props }) => {
           <ReferenceField source="equipement" reference="equipements">
             <EquipementField source="type" />
           </ReferenceField>
-          <FieldGuesser source="openingProcedures" addLabel />
+          <TextField source="openingProcedures" addLabel />
           <SelectField source="broyatLevel" choices={enumBroyat} addLabel />
           <ReferenceArrayField source="suivis" reference="suivis">
             <Datagrid>
-              <FieldGuesser source="date" sortable={false} />
-              <FieldGuesser source="description" sortable={false} />
+              <DateField source="date" sortable={false} />
+              <TextField source="description" sortable={false} />
               <NoteField source="animation" sortable={false} />
               <NoteField source="environnement" sortable={false} />
               <NoteField source="technique" sortable={false} />
@@ -136,8 +137,8 @@ const ComposterShow = ({ translate, ...props }) => {
           </ReferenceField>
           <ReferenceArrayField source="livraisonBroyats" reference="livraison_broyats">
             <Datagrid>
-              <FieldGuesser source="date" sortable={false} />
-              <FieldGuesser source="quantite" sortable={false} />
+              <DateField source="date" sortable={false} />
+              <TextField source="quantite" sortable={false} />
               <ReferenceField source="livreur" reference="approvisionnement_broyats" linkType={false} allowEmpty sortable={false}>
                 <TextField source="name" />
               </ReferenceField>
@@ -146,9 +147,9 @@ const ComposterShow = ({ translate, ...props }) => {
           </ReferenceArrayField>
           <ReferenceArrayField source="reparations" reference="reparations">
             <Datagrid>
-              <FieldGuesser source="date" sortable={false} />
-              <FieldGuesser source="done" sortable={false} />
-              <FieldGuesser source="description" sortable={false} />
+              <DateField source="date" sortable={false} />
+              <BooleanField source="done" sortable={false} />
+              <TextField source="description" sortable={false} />
               <EditButton />
             </Datagrid>
           </ReferenceArrayField>
@@ -160,34 +161,34 @@ const ComposterShow = ({ translate, ...props }) => {
           <ReferenceManyField label="Utilisateurs" reference="user_composters" target="composter" source="rid">
             <Datagrid>
               <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.username')}>
-                <FieldGuesser source="username" />
+                <TextField source="username" />
               </ReferenceField>
               <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.lastname')}>
-                <FieldGuesser source="lastname" />
+                <TextField source="lastname" />
               </ReferenceField>
               <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.firstname')}>
-                <FieldGuesser source="firstname" />
+                <TextField source="firstname" />
               </ReferenceField>
               <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.email')}>
-                <FieldGuesser source="email" />
+                <TextField source="email" />
               </ReferenceField>
               <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.phone')}>
-                <FieldGuesser source="phone" />
+                <TextField source="phone" />
               </ReferenceField>
               <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.roles')}>
-                <FieldGuesser source="role" />
+                <TextField source="role" />
               </ReferenceField>
-              <FieldGuesser source="capability" sortable={false} />
+              <TextField source="capability" sortable={false} />
               <EditButton />
             </Datagrid>
           </ReferenceManyField>
           <ReferenceManyField label="Contacts" reference="contacts" target="composters" source="slug">
             <Datagrid>
-              <FieldGuesser source="firstName" />
-              <FieldGuesser source="lastName" />
-              <FieldGuesser source="phone" />
-              <FieldGuesser source="email" />
-              <FieldGuesser source="role" />
+              <TextField source="firstName" />
+              <TextField source="lastName" />
+              <TextField source="phone" />
+              <TextField source="email" />
+              <TextField source="role" />
               <EditButton />
             </Datagrid>
           </ReferenceManyField>

@@ -1,3 +1,2 @@
-export { default as FinanceurCreate } from './FinanceurCreate'
-export { default as FinanceurEdit } from './FinanceurEdit'
+export { FinanceurCreate, FinanceurEdit } from './FinanceurCreateEdit'
 export { default as FinanceurShow } from './FinanceurShow'

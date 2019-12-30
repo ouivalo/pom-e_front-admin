@@ -1,18 +1,23 @@
 import React from 'react'
-import { ShowGuesser, FieldGuesser } from '@api-platform/admin'
-import ContactFields from './ContactFields'
+import { ReferenceArrayField, Datagrid, SelectField, Show, SimpleShowLayout, TextField } from 'react-admin'
 
-import { ReferenceArrayField, Datagrid } from 'react-admin'
+import { enumContactType } from '../Enums'
 
 const ContactShow = props => (
-  <ShowGuesser {...props}>
-    {ContactFields}
-    <ReferenceArrayField source="composters" reference="composters">
-      <Datagrid>
-        <FieldGuesser source="name" sortable={false} />
-      </Datagrid>
-    </ReferenceArrayField>
-  </ShowGuesser>
+  <Show {...props}>
+    <SimpleShowLayout>
+      <TextField source="firstName" addLabel />
+      <TextField source="lastName" addLabel />
+      <TextField source="phone" addLabel />
+      <TextField source="email" addLabel />
+      <SelectField source="contactType" choices={enumContactType} addLabel />
+      <ReferenceArrayField source="composters" reference="composters">
+        <Datagrid>
+          <TextField source="name" sortable={false} />
+        </Datagrid>
+      </ReferenceArrayField>
+    </SimpleShowLayout>
+  </Show>
 )
 
 export default ContactShow

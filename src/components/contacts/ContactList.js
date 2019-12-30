@@ -1,9 +1,8 @@
 import React from 'react'
-import { ListGuesser } from '@api-platform/admin'
-import ContactFields from './ContactFields'
-
-import { MenuItemLink } from 'react-admin'
+import { Datagrid, EditButton, List, MenuItemLink, SelectField, ShowButton, TextField } from 'react-admin'
 import { stringify } from 'query-string'
+
+import { enumContactType } from '../Enums'
 
 const LinkToComposter = ({ record }) => {
   return (
@@ -22,10 +21,18 @@ const LinkToComposter = ({ record }) => {
 }
 
 const ContactList = props => (
-  <ListGuesser {...props}>
-    {ContactFields}
-    <LinkToComposter />
-  </ListGuesser>
+  <List {...props}>
+    <Datagrid>
+      <TextField source="firstName" />
+      <TextField source="lastName" />
+      <TextField source="phone" sortable={false} />
+      <TextField source="email" />
+      <LinkToComposter />
+      <SelectField source="contactType" choices={enumContactType} addLabel />
+      <ShowButton />
+      <EditButton />
+    </Datagrid>
+  </List>
 )
 
 export default ContactList

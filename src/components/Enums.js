@@ -22,4 +22,10 @@ const enumDroits = [
   { id: 'Opener', name: 'resources.users.fields.enumDroits.opener' }
 ]
 
-export { enumBroyat, enumStatus, enumAdminRoleOnly, enumRoles, enumDroits }
+const enumContactType = [
+  { id: 'Syndic', name: 'resources.contacts.fields.enumContactType.syndic' },
+  { id: 'Institution', name: 'resources.contacts.fields.enumContactType.institution' },
+  { id: 'Établissement scolaire', name: 'resources.contacts.fields.enumContactType.school' }
+]
+
+export { enumBroyat, enumStatus, enumAdminRoleOnly, enumRoles, enumDroits, enumContactType }
