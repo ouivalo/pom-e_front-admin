@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardContent, Grid, CardHeader, Button, List, ListItem, ListItemText, ListItemIcon, Typography, withStyles } from '@material-ui/core'
 import { More, Add, LocalShipping } from '@material-ui/icons'
 import { withRouter } from 'react-router-dom'
-import { Query, Loading, BooleanField, translate, MenuItemLink } from 'react-admin'
+import { Query, Loading, BooleanField, translate } from 'react-admin'
 import { stringify } from 'query-string'
 
 const styles = theme => ({
