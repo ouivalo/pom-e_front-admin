@@ -80,7 +80,7 @@ const ComposterShow = ({ translate, ...props }) => {
     <Show {...props}>
       <TabbedShowLayout>
         <Tab label="Informations">
-          <ReferenceField source="image" reference="media_objects" addLabel={false}>
+          <ReferenceField source="image" reference="media_objects" addLabel={false} allowEmpty>
             <ImageField source="contentUrl" />
           </ReferenceField>
           <TextField source="name" addLabel />
