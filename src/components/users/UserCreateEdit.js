@@ -1,5 +1,5 @@
 import React from 'react'
-import { required, BooleanInput, Create, Edit, SimpleForm, SelectInput, TextInput } from 'react-admin'
+import { required, BooleanInput, Toolbar, SaveButton, Create, Edit, SimpleForm, SelectInput, TextInput } from 'react-admin'
 import { enumAdminRoleOnly, enumRoles } from '../Enums'
 
 const initialValues = { enabled: true }
@@ -19,9 +19,15 @@ const UserCreate = props => (
   </Create>
 )
 
+const EditUserToolbar = props => (
+  <Toolbar {...props}>
+    <SaveButton />
+  </Toolbar>
+)
+
 const UserEdit = props => (
   <Edit {...props}>
-    <SimpleForm redirect="list" defaultValue={initialValues}>
+    <SimpleForm redirect="list" defaultValue={initialValues} toolbar={<EditUserToolbar />}>
       {UserInputs1}
       {UserInputs2}
       <SelectInput source="roles" choices={enumRoles} validate={required()} />
