@@ -4,8 +4,9 @@ import { enumDroits } from '../Enums'
 
 const UserComposterFilter = props => (
   <Filter {...props}>
-    <TextInput label={'resources.users.search'} source="user.username" alwaysOn />
-    <TextInput label={'resources.composters.search'} source="composter.name" alwaysOn />
+    <TextInput label={'resources.users.fields.email'} source="user.email" alwaysOn />
+    <TextInput label={'resources.user_composters.fields.composter'} source="composter.name" alwaysOn />
+    <TextInput label={'resources.users.fields.lastname'} source="user.lastname" />
     <SelectInput source="capability" choices={enumDroits} />
   </Filter>
 )
