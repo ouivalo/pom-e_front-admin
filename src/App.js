@@ -1,5 +1,6 @@
 import React from 'react'
 import { HydraAdmin, ResourceGuesser } from '@api-platform/admin'
+import { Route } from 'react-router-dom'
 import frenchMessages from 'ra-language-french'
 import { Room, Person, Archive, LocalShipping, Build, Pageview, Style, Contacts, Photo, PersonOutline, EuroSymbol, LocationCity } from '@material-ui/icons'
 
@@ -21,6 +22,7 @@ import { ReparationList, ReparationEdit, ReparationCreate, ReparationShow } from
 import { SuivisList, SuivisShow, SuivisEdit, SuivisCreate } from './components/suivis'
 import { UserCreate, UserEdit, UserList, UserShow } from './components/users'
 import { UserComposterCreate, UserComposterEdit, UserComposterList } from './components/usersComposters'
+import { ProfileEdit } from './components/profile'
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
 
@@ -33,6 +35,7 @@ export default () => (
     theme={compostriTheme}
     i18nProvider={() => ({ ...frenchMessages, ...frenchResourcesTranslation })}
     dashboard={Dashboard}
+    customRoutes={[<Route key="profile" path="/mon-profile" component={ProfileEdit} />]}
   >
     <ResourceGuesser
       name="composters"

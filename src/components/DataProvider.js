@@ -22,6 +22,7 @@ const convertFileToBase64 = file =>
  * the `picture` sent property, with `src` and `title` attributes.
  */
 const addUploadFeature = requestHandler => (type, resource, params) => {
+  // Gestion des medias
   if (type === 'CREATE' && resource === 'media_objects') {
     // notice that following condition can be true only when `<ImageInput source="pictures" />` component has parameter `multiple={true}`
     // if parameter `multiple` is false, then data.pictures is not an array, but single object
@@ -35,7 +36,6 @@ const addUploadFeature = requestHandler => (type, resource, params) => {
           imageName: newPicture.name
         }))
         .then(transformedNewPicture => {
-          console.log(transformedNewPicture)
           return requestHandler(type, resource, {
             ...params,
             data: transformedNewPicture
@@ -43,6 +43,7 @@ const addUploadFeature = requestHandler => (type, resource, params) => {
         })
     }
   }
+
   // for other request types and resources, fall back to the default request handler
   return requestHandler(type, resource, params)
 }
