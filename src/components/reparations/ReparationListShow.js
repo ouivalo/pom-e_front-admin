@@ -8,10 +8,12 @@ import {
   Filter,
   List,
   ReferenceField,
+  TextInput,
   Show,
   ShowButton,
   SimpleShowLayout,
-  TextField
+  TextField,
+  translate
 } from 'react-admin'
 
 const ReparationFields = [
@@ -25,11 +27,12 @@ const ReparationFields = [
   <TextField source="montant" addLabel />
 ]
 
-const ReparationFilter = props => (
+const ReparationFilter = translate(({ translate, ...props }) => (
   <Filter {...props}>
-    <BooleanInput source="done" defaultValue={false} />
+    <BooleanInput source="done" defaultValue={false} alwaysOn />
+    <TextInput source="composter.name" alwaysOn label={translate('resources.reparations.fields.composter')} />
   </Filter>
-)
+))
 
 const ReparationList = props => (
   <List {...props} filters={<ReparationFilter />}>

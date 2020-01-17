@@ -107,6 +107,7 @@ export default {
     reparations: {
       name: 'Réparation |||| Réparations',
       fields: {
+        composter: 'Composteurs',
         done: 'Reparé'
       }
     },
