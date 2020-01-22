@@ -6,6 +6,7 @@ import { enumBroyat, enumStatus } from '../Enums'
 const ComposterFilter = props => (
   <Filter {...props}>
     <TextInput label="Recherche" source="name" alwaysOn />
+    <TextInput source="serialNumber" />
     <ReferenceInput source="commune" reference="communes" alwaysOn>
       <SelectInput optionText="name" optionValue="id" />
     </ReferenceInput>
@@ -42,7 +43,7 @@ const ComposterFilter = props => (
 )
 
 const ComposterList = props => (
-  <List {...props} filters={<ComposterFilter />} sort={{ field: 'DateMiseEnRoute', order: 'DESC' }}>
+  <List {...props} filters={<ComposterFilter />} sort={{ field: 'serialNumber', order: 'DESC' }}>
     <Datagrid>
       <TextField source="serialNumber" />
       <TextField source="name" sortable={false} />
