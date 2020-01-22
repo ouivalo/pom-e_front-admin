@@ -59,8 +59,8 @@ const ComposterInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
       <DateInput source="DateInstallation" />
       <TextInput source="permanencesDescription" />
       <BooleanInput source="acceptNewMembers" />
-      <TextInput source="description" />
-      <TextInput source="publicDescription" />
+      <TextInput source="description" multiline />
+      <TextInput source="publicDescription" multiline />
       <ReferenceInput source="financeur" reference="financeurs">
         <SelectInput optionText="name" />
       </ReferenceInput>

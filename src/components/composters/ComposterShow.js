@@ -94,13 +94,13 @@ const ComposterShow = ({ translate, ...props }) => {
           <BooleanField source="acceptNewMembers" addLabel />
           <TextField source="description" addLabel />
           <TextField source="publicDescription" addLabel />
-          <ReferenceField source="commune" reference="communes">
+          <ReferenceField source="commune" reference="communes" allowEmpty>
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="pole" reference="poles">
+          <ReferenceField source="pole" reference="poles" allowEmpty>
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="quartier" reference="quartiers">
+          <ReferenceField source="quartier" reference="quartiers" allowEmpty>
             <TextField source="name" />
           </ReferenceField>
           <TextField source="address" addLabel label="Adresse" />
