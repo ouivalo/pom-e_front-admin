@@ -69,11 +69,7 @@ const BooleanArrayField = translate(({ translate, record, resource, fields, titl
     </div>
   )
 })
-const EquipementField = ({ record = {} }) => (
-  <span>
-    {record.type} {record.capacite}
-  </span>
-)
+const EquipementField = ({ record = {} }) => <span>{record && `${record.type} ${record.capacite}`}</span>
 
 const ComposterShow = ({ translate, ...props }) => {
   return (
@@ -90,33 +86,36 @@ const ComposterShow = ({ translate, ...props }) => {
           <DateField source="DateMiseEnRoute" addLabel />
           <DateField source="DateInauguration" addLabel />
           <DateField source="DateInstallation" addLabel />
+          <ReferenceField source="categorie" reference="categories" allowEmpty linkType="show">
+            <TextField source="name" />
+          </ReferenceField>
           <TextField source="permanencesDescription" addLabel />
           <BooleanField source="acceptNewMembers" addLabel />
           <TextField source="description" addLabel />
           <TextField source="publicDescription" addLabel />
-          <ReferenceField source="commune" reference="communes" allowEmpty>
+          <ReferenceField source="commune" reference="communes" allowEmpty linkType="show">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="pole" reference="poles" allowEmpty>
+          <ReferenceField source="pole" reference="poles" allowEmpty linkType="show">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="quartier" reference="quartiers" allowEmpty>
+          <ReferenceField source="quartier" reference="quartiers" allowEmpty linkType="show">
             <TextField source="name" />
           </ReferenceField>
           <TextField source="address" addLabel label="Adresse" />
           <MapField />
         </Tab>
         <Tab label="Suivi">
-          <ReferenceField source="financeur" reference="financeurs">
+          <ReferenceField source="financeur" reference="financeurs" allowEmpty linkType="show">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="financeurSuivi" reference="financeurs" allowEmpty>
+          <ReferenceField source="financeurSuivi" reference="financeurs" allowEmpty linkType="show">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="mc" reference="users">
+          <ReferenceField source="mc" reference="users" linkType="show">
             <TextField source="username" />
           </ReferenceField>
-          <ReferenceField source="equipement" reference="equipements">
+          <ReferenceField source="equipement" reference="equipements" allowEmpty linkType="show">
             <EquipementField source="type" />
           </ReferenceField>
           <TextField source="openingProcedures" addLabel />
@@ -132,7 +131,7 @@ const ComposterShow = ({ translate, ...props }) => {
               <EditButton />
             </Datagrid>
           </ReferenceArrayField>
-          <ReferenceField source="approvisionnementBroyat" reference="approvisionnement_broyats">
+          <ReferenceField source="approvisionnementBroyat" allowEmpty reference="approvisionnement_broyats">
             <TextField source="name" />
           </ReferenceField>
           <ReferenceArrayField source="livraisonBroyats" reference="livraison_broyats">

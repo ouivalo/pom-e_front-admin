@@ -57,6 +57,9 @@ const ComposterInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
       <DateInput source="DateMiseEnRoute" />
       <DateInput source="DateInauguration" />
       <DateInput source="DateInstallation" />
+      <ReferenceInput source="categorie" reference="categories" allowEmpty>
+        <SelectInput optionText="name" />
+      </ReferenceInput>
       <TextInput source="permanencesDescription" />
       <BooleanInput source="acceptNewMembers" />
       <TextInput source="description" multiline />
