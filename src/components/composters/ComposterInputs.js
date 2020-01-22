@@ -61,19 +61,19 @@ const ComposterInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
       <BooleanInput source="acceptNewMembers" />
       <TextInput source="description" multiline />
       <TextInput source="publicDescription" multiline />
-      <ReferenceInput source="financeur" reference="financeurs">
+      <ReferenceInput source="financeur" reference="financeurs" allowEmpty>
         <SelectInput optionText="name" />
       </ReferenceInput>
-      <ReferenceInput source="financeurSuivi" reference="financeurs">
+      <ReferenceInput source="financeurSuivi" reference="financeurs" allowEmpty>
         <SelectInput optionText="name" />
       </ReferenceInput>
-      <ReferenceInput source="commune" reference="communes">
+      <ReferenceInput source="commune" reference="communes" allowEmpty>
         <SelectInput optionText="name" />
       </ReferenceInput>
-      <ReferenceInput source="pole" reference="poles">
+      <ReferenceInput source="pole" reference="poles" allowEmpty>
         <SelectInput optionText="name" />
       </ReferenceInput>
-      <ReferenceInput source="quartier" reference="quartiers">
+      <ReferenceInput source="quartier" reference="quartiers" allowEmpty>
         <SelectInput optionText="name" />
       </ReferenceInput>
       <TextInput source="address" validate={required()} />
@@ -84,6 +84,9 @@ const ComposterInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
         <SelectInput optionText={record => `${record.type} ${record.capacite}`} />
       </ReferenceInput>
       <TextInput source="openingProcedures" />
+      <ReferenceInput source="approvisionnementBroyat" reference="approvisionnement_broyats" allowEmpty>
+        <SelectInput source="name" />
+      </ReferenceInput>
       <SelectInput source="broyatLevel" choices={enumBroyat} defaultValue={enumBroyat[0].id} />
       <NumberInput source="nbFoyersPotentiels" />
       <NumberInput source="nbInscrit" />
