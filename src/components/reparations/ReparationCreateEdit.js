@@ -5,7 +5,7 @@ const ReparationFields = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => 
   <SimpleForm {...rest} redirect="list">
     <BooleanInput source="done" defaultValue={false} />
     <DateInput source="date" validate={required()} />
-    <TextInput source="description" validate={required()} />
+    <TextInput source="description" validate={required()} multiline />
     <ReferenceInput source="composter" reference="composters" alwaysOn filterToQuery={name => ({ name })} validate={required()}>
       <AutocompleteInput optionValue="@id" />
     </ReferenceInput>
