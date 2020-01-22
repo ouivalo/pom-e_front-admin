@@ -17,14 +17,14 @@ import {
 } from 'react-admin'
 
 const ReparationFields = [
-  <BooleanField source="done" addLabel />,
+  <BooleanField source="done" addLabel sortable={false} />,
   <DateField source="date" addLabel />,
-  <TextField source="description" addLabel />,
-  <ReferenceField source="composter" reference="composters">
+  <TextField source="description" addLabel sortable={false} />,
+  <ReferenceField source="composter" reference="composters" linkType="show" sortable={false}>
     <TextField source="name" />
   </ReferenceField>,
-  <TextField source="refFacture" addLabel />,
-  <TextField source="montant" addLabel />
+  <TextField source="refFacture" addLabel sortable={false} />,
+  <TextField source="montant" addLabel sortable={false} />
 ]
 
 const ReparationFilter = translate(({ translate, ...props }) => (
@@ -35,7 +35,7 @@ const ReparationFilter = translate(({ translate, ...props }) => (
 ))
 
 const ReparationList = props => (
-  <List {...props} filters={<ReparationFilter />}>
+  <List {...props} filters={<ReparationFilter />} sort={{ field: 'date', order: 'DESC' }}>
     <Datagrid>
       {ReparationFields}
       <ShowButton />

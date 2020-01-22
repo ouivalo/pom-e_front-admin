@@ -3,7 +3,7 @@ import { Datagrid, DateField, EditButton, List, ReferenceField, Show, ShowButton
 
 const LivraisonBroyatsFields = [
   <DateField source="date" addLabel />,
-  <TextField source="quantite" addLabel />,
+  <TextField source="quantite" addLabel sortable={false} />,
   <ReferenceField source="composter" reference="composters" linkType="show" allowEmpty sortable={false}>
     <TextField source="name" />
   </ReferenceField>,

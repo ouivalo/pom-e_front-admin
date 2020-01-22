@@ -23,12 +23,12 @@ const LinkToComposter = ({ record }) => {
 const ContactList = props => (
   <List {...props}>
     <Datagrid>
-      <TextField source="firstName" />
-      <TextField source="lastName" />
+      <TextField source="firstName" sortable={false} />
+      <TextField source="lastName" sortable={false} />
       <TextField source="phone" sortable={false} />
-      <TextField source="email" />
+      <TextField source="email" sortable={false} />
       <LinkToComposter />
-      <SelectField source="contactType" choices={enumContactType} addLabel />
+      <SelectField source="contactType" choices={enumContactType} addLabel sortable={false} />
       <ShowButton />
       <EditButton />
     </Datagrid>

@@ -4,14 +4,14 @@ import NoteField from '../NoteField'
 
 const SuivisFields = [
   <DateField source="date" addLabel />,
-  <TextField source="description" addLabel />,
-  <ReferenceField source="composter" reference="composters">
+  <TextField source="description" addLabel sortable={false} />,
+  <ReferenceField source="composter" reference="composters" linkType="show" sortable={false}>
     <TextField source="name" />
   </ReferenceField>,
-  <NoteField source="animation" addLabel />,
-  <NoteField source="environnement" addLabel />,
-  <NoteField source="technique" addLabel />,
-  <NoteField source="autonomie" addLabel />
+  <NoteField source="animation" addLabel sortable={false} />,
+  <NoteField source="environnement" addLabel sortable={false} />,
+  <NoteField source="technique" addLabel sortable={false} />,
+  <NoteField source="autonomie" addLabel sortable={false} />
 ]
 
 const SuivisList = props => (

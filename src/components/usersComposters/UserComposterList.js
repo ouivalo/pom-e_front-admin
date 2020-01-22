@@ -14,13 +14,13 @@ const UserComposterFilter = props => (
 const UserComposterList = props => (
   <List {...props} filters={<UserComposterFilter />} sort={{ field: 'id', order: 'ASC' }}>
     <Datagrid>
-      <ReferenceField source="user" reference="users" linkType={'show'}>
+      <ReferenceField source="user" reference="users" linkType={'show'} sortable={false}>
         <TextField source="username" />
       </ReferenceField>
-      <ReferenceField source="composter" reference="composters" linkType={'show'}>
+      <ReferenceField source="composter" reference="composters" linkType={'show'} sortable={false}>
         <TextField source="name" />
       </ReferenceField>
-      <SelectField source="capability" choices={enumDroits} addLabel />
+      <SelectField source="capability" choices={enumDroits} addLabel sortable={false} />
       <ShowButton />
       <EditButton />
     </Datagrid>

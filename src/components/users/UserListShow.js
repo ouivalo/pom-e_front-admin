@@ -32,10 +32,10 @@ const UserFilter = props => (
 const UserList = props => (
   <List {...props} filters={<UserFilter />} sort={{ field: 'id', order: 'ASC' }}>
     <Datagrid>
-      <TextField source="username" />
-      <TextField source="email" />
-      <NameField label={'resources.users.fields.fullname'} {...props} />
-      <TextField source="phone" />
+      <TextField source="username" sortable={false} />
+      <TextField source="email" sortable={false} />
+      <NameField label={'resources.users.fields.fullname'} {...props} sortable={false} />
+      <TextField source="phone" sortable={false} />
       <ShowButton />
       <EditButton />
     </Datagrid>

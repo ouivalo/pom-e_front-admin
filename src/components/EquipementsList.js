@@ -6,10 +6,10 @@ const LinkToComposter = ({ record }) => {
 }
 
 const EquipementsList = props => (
-  <List {...props} sort={{ field: 'name', order: 'ASC' }}>
+  <List {...props}>
     <Datagrid>
-      <TextField source="type" />
-      <TextField source="capacite" />
+      <TextField source="type" sortable={false} />
+      <TextField source="capacite" sortable={false} />
       <LinkToComposter />
       <ShowButton />
       <EditButton />
