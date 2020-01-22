@@ -94,8 +94,8 @@ const ComposterInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
       <BooleanInput source="hasCadenas" />
       <BooleanInput source="hasFourche" />
       <BooleanInput source="hasThermometre" />
-      <TextInput source="lat" />
-      <TextInput source="lng" />
+      <TextInput source="lat" type="number" />
+      <TextInput source="lng" type="number" />
       <MapInput />
     </SimpleForm>
   )

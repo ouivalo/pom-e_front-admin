@@ -14,8 +14,8 @@ const MapInput = () => {
   return (
     <FormDataConsumer>
       {({ formData, dispatch, ...rest }) => {
-        const defaultLat = formData && formData.lat ? formData.lat : 47.214293
-        const defaultLng = formData && formData.lng ? formData.lng : -1.537765
+        const defaultLat = formData && formData.lat && parseFloat(formData.lat) ? parseFloat(formData.lat) : 47.214293
+        const defaultLng = formData && formData.lng && parseFloat(formData.lng) ? parseFloat(formData.lng) : -1.537765
         const defautViewport = { latitude: defaultLat, longitude: defaultLng, ...viewport }
         return (
           <ReactMapGL
