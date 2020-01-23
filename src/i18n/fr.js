@@ -50,6 +50,9 @@ export default {
         hasPeson: 'Peson'
       }
     },
+    suivis: {
+      name: 'Suivi |||| Suivis'
+    },
     users: {
       search: 'Rechercher un pseudo',
       name: 'Utilisateur |||| Utilisateurs',
@@ -126,7 +129,23 @@ export default {
         capacite: 'Capacité'
       }
     },
+    poles: {
+      name: 'Pole |||| Poles'
+    },
+    quartiers: {
+      name: 'Quartier |||| Quartiers'
+    },
+    communes: {
+      name: 'Commune |||| Communes'
+    },
+    categories: {
+      name: 'Catégorie |||| Catégories'
+    },
+    approvisionnement_broyats: {
+      name: 'Appro Broyat |||| Appro Broyat'
+    },
     financeurs: {
+      name: 'Financeur |||| Financeurs',
       fields: {
         name: 'Nom',
         initials: 'Initiales',
@@ -134,12 +153,14 @@ export default {
       }
     },
     livraison_broyats: {
+      name: 'Livraison broyat |||| Livraisons broyat',
       fields: {
         quantite: 'Quantité ( en litre )',
         composter: 'Composteur'
       }
     },
     media_objects: {
+      name: 'Image |||| Images',
       fields: {
         media_objects: 'Image',
         perPage: 'Nombre d’images par page'

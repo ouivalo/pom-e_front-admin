@@ -20,7 +20,7 @@ const ReparationFields = [
   <BooleanField source="done" addLabel sortable={false} />,
   <DateField source="date" addLabel />,
   <TextField source="description" addLabel sortable={false} />,
-  <ReferenceField source="composter" reference="composters" linkType="show" sortable={false}>
+  <ReferenceField source="composter" reference="composters" link="show" sortable={false}>
     <TextField source="name" />
   </ReferenceField>,
   <TextField source="refFacture" addLabel sortable={false} />,

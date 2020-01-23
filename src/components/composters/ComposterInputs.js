@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from 'react'
 import {
   FormDataConsumer,
-  REDUX_FORM_NAME,
   required,
   BooleanInput,
   DateInput,
@@ -13,14 +12,34 @@ import {
   SimpleForm,
   TextInput
 } from 'react-admin'
-import { change } from 'redux-form'
+import { useForm } from 'react-final-form'
 
 import MediasSelectDialog from '../medias/MediasSelectDialog'
 import { enumBroyat, enumStatus } from '../Enums'
 import MapInput from '../MapInput'
 
+const MediaDialog = ({ setImage }) => {
+  const form = useForm()
+
+  return (
+    <FormDataConsumer>
+      {() => (
+        <Fragment>
+          <MediasSelectDialog
+            onSelected={img => {
+              setImage(img)
+              form.change('image', img.id)
+            }}
+          />
+        </Fragment>
+      )}
+    </FormDataConsumer>
+  )
+}
+
 const ComposterInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
   const [image, setImage] = useState(null)
+
   return (
     <SimpleForm {...rest} redirect="show">
       <TextInput source="name" validate={required()} />
@@ -39,18 +58,7 @@ const ComposterInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
           }}
         />
       )}
-      <FormDataConsumer>
-        {({ dispatch }) => (
-          <Fragment>
-            <MediasSelectDialog
-              onSelected={img => {
-                setImage(img)
-                dispatch(change(REDUX_FORM_NAME, 'image', img.id))
-              }}
-            />
-          </Fragment>
-        )}
-      </FormDataConsumer>
+      <MediaDialog setImage={setImage} />
       <SelectInput source="status" choices={enumStatus} />
       <TextInput source="serialNumber" />
       <TextInput source="plateNumber" />

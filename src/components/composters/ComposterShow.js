@@ -86,36 +86,36 @@ const ComposterShow = ({ translate, ...props }) => {
           <DateField source="DateMiseEnRoute" addLabel />
           <DateField source="DateInauguration" addLabel />
           <DateField source="DateInstallation" addLabel />
-          <ReferenceField source="categorie" reference="categories" allowEmpty linkType="show">
+          <ReferenceField source="categorie" reference="categories" allowEmpty link="show">
             <TextField source="name" />
           </ReferenceField>
           <TextField source="permanencesDescription" addLabel />
           <BooleanField source="acceptNewMembers" addLabel />
           <TextField source="description" addLabel />
           <TextField source="publicDescription" addLabel />
-          <ReferenceField source="commune" reference="communes" allowEmpty linkType="show">
+          <ReferenceField source="commune" reference="communes" allowEmpty link="show">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="pole" reference="poles" allowEmpty linkType="show">
+          <ReferenceField source="pole" reference="poles" allowEmpty link="show">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="quartier" reference="quartiers" allowEmpty linkType="show">
+          <ReferenceField source="quartier" reference="quartiers" allowEmpty link="show">
             <TextField source="name" />
           </ReferenceField>
           <TextField source="address" addLabel label="Adresse" />
           <MapField />
         </Tab>
         <Tab label="Suivi">
-          <ReferenceField source="financeur" reference="financeurs" allowEmpty linkType="show">
+          <ReferenceField source="financeur" reference="financeurs" allowEmpty link="show">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="financeurSuivi" reference="financeurs" allowEmpty linkType="show">
+          <ReferenceField source="financeurSuivi" reference="financeurs" allowEmpty link="show">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="mc" reference="users" linkType="show">
+          <ReferenceField source="mc" reference="users" link="show">
             <TextField source="username" />
           </ReferenceField>
-          <ReferenceField source="equipement" reference="equipements" allowEmpty linkType="show">
+          <ReferenceField source="equipement" reference="equipements" allowEmpty link="show">
             <EquipementField source="type" />
           </ReferenceField>
           <TextField source="openingProcedures" addLabel />
@@ -138,7 +138,7 @@ const ComposterShow = ({ translate, ...props }) => {
             <Datagrid>
               <DateField source="date" sortable={false} />
               <TextField source="quantite" sortable={false} />
-              <ReferenceField source="livreur" reference="approvisionnement_broyats" linkType={false} allowEmpty sortable={false}>
+              <ReferenceField source="livreur" reference="approvisionnement_broyats" link={false} allowEmpty sortable={false}>
                 <TextField source="name" />
               </ReferenceField>
               <EditButton />

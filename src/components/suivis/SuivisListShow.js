@@ -5,7 +5,7 @@ import NoteField from '../NoteField'
 const SuivisFields = [
   <DateField source="date" addLabel />,
   <TextField source="description" addLabel sortable={false} />,
-  <ReferenceField source="composter" reference="composters" linkType="show" sortable={false}>
+  <ReferenceField source="composter" reference="composters" link="show" sortable={false}>
     <TextField source="name" />
   </ReferenceField>,
   <NoteField source="animation" addLabel sortable={false} />,

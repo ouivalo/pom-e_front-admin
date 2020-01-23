@@ -1,5 +1,5 @@
 import React from 'react'
-import { dataProvider as baseDataProvider, fetchHydra as baseFetchHydra } from '@api-platform/admin'
+import { hydraDataProvider as baseHydraDataProvider, fetchHydra as baseFetchHydra } from '@api-platform/admin'
 import parseHydraDocumentation from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation'
 import { Redirect } from 'react-router-dom'
 
@@ -47,35 +47,26 @@ const addUploadFeature = requestHandler => (type, resource, params) => {
   // for other request types and resources, fall back to the default request handler
   return requestHandler(type, resource, params)
 }
-
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
-
+const fetchHeaders = () => ({ Authorization: `Bearer ${localStorage.getItem('token')}` })
 const fetchHydra = (url, options = {}) =>
   baseFetchHydra(url, {
     ...options,
-    headers: new Headers({
-      Authorization: `Bearer ${localStorage.getItem('token')}`
-    })
+    headers: new Headers(fetchHeaders())
   })
-
 const apiDocumentationParser = entrypoint =>
-  parseHydraDocumentation(entrypoint, {
-    headers: new Headers({
-      Authorization: `Bearer ${localStorage.getItem('token')}`
-    })
-  }).then(
+  parseHydraDocumentation(entrypoint, { headers: new Headers(fetchHeaders()) }).then(
     ({ api }) => ({ api }),
     result => {
       switch (result.status) {
         case 401:
-          localStorage.removeItem('token')
           return Promise.resolve({
             api: result.api,
             customRoutes: [
               {
                 props: {
                   path: '/',
-                  render: () => <Redirect to={`/login`} />
+                  render: () => <Redirect to={'/login'} />
                 }
               }
             ]
@@ -86,7 +77,6 @@ const apiDocumentationParser = entrypoint =>
       }
     }
   )
-
-const dataProvider = addUploadFeature(baseDataProvider(entrypoint, fetchHydra, apiDocumentationParser))
+const dataProvider = baseHydraDataProvider(entrypoint, fetchHydra, apiDocumentationParser)
 
 export default dataProvider

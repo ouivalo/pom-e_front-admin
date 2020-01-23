@@ -1,8 +1,5 @@
-import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK, AUTH_GET_PERMISSIONS } from 'react-admin'
-
-const authProvider = (type, params) => {
-  if (type === AUTH_LOGIN) {
-    const { username, password } = params
+export default {
+  login: ({ username, password }) => {
     const request = new Request(`${process.env.REACT_APP_API_ENTRYPOINT}/login_check`, {
       method: 'POST',
       body: JSON.stringify({ email: username, password }),
@@ -17,35 +14,20 @@ const authProvider = (type, params) => {
       })
       .then(({ token }) => {
         localStorage.setItem('token', token)
-        window.location.href = '/'
       })
-  }
-
-  if (type === AUTH_ERROR) {
-    const status = params.status
+  },
+  logout: () => {
+    localStorage.removeItem('token')
+    return Promise.resolve()
+  },
+  checkAuth: () => (localStorage.getItem('token') ? Promise.resolve() : Promise.reject()),
+  checkError: ({ response }) => {
+    const status = response.status
     if (status === 401 || status === 403) {
       localStorage.removeItem('token')
       return Promise.reject()
     }
     return Promise.resolve()
-  }
-
-  // On vérifie qu'on a bien un token a chaque changement de page. Sinon on est rediriger vers le login
-  if (type === AUTH_CHECK) {
-    return localStorage.getItem('token') ? Promise.resolve() : Promise.reject()
-  }
-
-  // Sur l'action logout on supprime le token
-  if (type === AUTH_LOGOUT) {
-    localStorage.removeItem('token')
-    return Promise.resolve()
-  }
-
-  if (type === AUTH_GET_PERMISSIONS) {
-    return Promise.resolve()
-  }
-
-  return Promise.reject()
+  },
+  getPermissions: params => Promise.resolve()
 }
-
-export default authProvider

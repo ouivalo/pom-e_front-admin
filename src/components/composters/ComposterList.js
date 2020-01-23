@@ -47,10 +47,10 @@ const ComposterList = props => (
     <Datagrid>
       <TextField source="serialNumber" />
       <TextField source="name" sortable={false} />
-      <ReferenceField source="commune" reference="communes" linkType={false} allowEmpty sortable={false}>
+      <ReferenceField source="commune" reference="communes" link={false} allowEmpty sortable={false}>
         <TextField source="name" />
       </ReferenceField>
-      <ReferenceField source="quartier" reference="quartiers" linkType={false} allowEmpty sortable={false}>
+      <ReferenceField source="quartier" reference="quartiers" link={false} allowEmpty sortable={false}>
         <TextField source="name" />
       </ReferenceField>
       <SelectField source="status" choices={enumStatus} addLabel />

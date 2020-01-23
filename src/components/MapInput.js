@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { FormDataConsumer, REDUX_FORM_NAME } from 'react-admin'
-import { change } from 'redux-form'
+import { FormDataConsumer } from 'react-admin'
+import { useForm } from 'react-final-form'
 import RoomIcon from '@material-ui/icons/Room'
 import ReactMapGL, { Marker } from 'react-map-gl'
 
@@ -10,6 +10,8 @@ const MapInput = () => {
     height: 400,
     zoom: 12
   })
+
+  const form = useForm()
 
   return (
     <FormDataConsumer>
@@ -32,8 +34,8 @@ const MapInput = () => {
               offsetTop={-35}
               onDragEnd={event => {
                 const lngLat = event.lngLat
-                dispatch(change(REDUX_FORM_NAME, 'lng', lngLat[0]))
-                dispatch(change(REDUX_FORM_NAME, 'lat', lngLat[1]))
+                form.change('lng', lngLat[0])
+                form.change('lat', lngLat[1])
               }}
             >
               <RoomIcon color="primary" />
