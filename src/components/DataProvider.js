@@ -17,36 +17,6 @@ const convertFileToBase64 = file =>
     reader.onerror = reject
   })
 
-/**
- * For posts update only, convert uploaded image in base 64 and attach it to
- * the `picture` sent property, with `src` and `title` attributes.
- */
-const addUploadFeature = requestHandler => (type, resource, params) => {
-  // Gestion des medias
-  if (type === 'CREATE' && resource === 'media_objects') {
-    // notice that following condition can be true only when `<ImageInput source="pictures" />` component has parameter `multiple={true}`
-    // if parameter `multiple` is false, then data.pictures is not an array, but single object
-    if (params.data.media_objects.file) {
-      // only freshly dropped pictures are instance of File
-      const newPicture = params.data.media_objects.rawFile
-
-      return convertFileToBase64(newPicture)
-        .then(base64Picture => ({
-          data: base64Picture,
-          imageName: newPicture.name
-        }))
-        .then(transformedNewPicture => {
-          return requestHandler(type, resource, {
-            ...params,
-            data: transformedNewPicture
-          })
-        })
-    }
-  }
-
-  // for other request types and resources, fall back to the default request handler
-  return requestHandler(type, resource, params)
-}
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
 const fetchHeaders = () => ({ Authorization: `Bearer ${localStorage.getItem('token')}` })
 const fetchHydra = (url, options = {}) =>
@@ -77,6 +47,31 @@ const apiDocumentationParser = entrypoint =>
       }
     }
   )
-const dataProvider = baseHydraDataProvider(entrypoint, fetchHydra, apiDocumentationParser)
+
+const baseDataProvider = baseHydraDataProvider(entrypoint, fetchHydra, apiDocumentationParser)
+const dataProvider = {
+  ...baseDataProvider,
+  create: (resource, params) => {
+    // TODO Il faut trouver comment sortir de la boucle inifi
+    if (resource === 'media_objects' && params.data.media_objects && params.data.media_objects.file) {
+      // Freshly dropped pictures are File objects and must be converted to base64 strings
+      const newPicture = params.data.media_objects.rawFile
+
+      return convertFileToBase64(newPicture)
+        .then(base64Picture => ({
+          data: base64Picture,
+          imageName: newPicture.name
+        }))
+        .then(transformedNewPicture => {
+          return baseDataProvider.create(resource, {
+            ...params,
+            data: transformedNewPicture
+          })
+        })
+    }
+    // Ici c'est le default
+    return baseDataProvider.create(resource, params)
+  }
+}
 
 export default dataProvider

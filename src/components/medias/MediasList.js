@@ -14,7 +14,7 @@ const MediaGrid = ({ ids, data, basePath }) => (
 )
 
 const MediasList = props => (
-  <List title="Les images" {...props} exporter={false} perPage={25}>
+  <List title="Les images" {...props} exporter={false} perPage={25} sort={{ field: 'id', order: 'DESC' }}>
     <MediaGrid />
   </List>
 )

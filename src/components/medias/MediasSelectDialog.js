@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react'
-import { Button, Loading, Query } from 'react-admin'
+import { Button, Loading, useQuery } from 'react-admin'
 import { ButtonBase, Dialog, DialogTitle, Grid, Table, TableBody, TableCell, TableFooter, TablePagination, TableRow } from '@material-ui/core'
 import { Edit } from '@material-ui/icons'
 import { withStyles } from '@material-ui/core/styles'
@@ -136,38 +136,38 @@ const MediasList2 = ({ selectOnly, onSelected, ...props }) => {
     setPayload(p)
   }
 
+  const { data, loading, loaded, total } = useQuery({
+    type: 'getList',
+    resource: 'media_objects',
+    payload: payload
+  })
+
+  if (loading) {
+    return <Loading />
+  }
   return (
-    <Query type="GET_LIST" resource="media_objects" payload={payload}>
-      {({ data, total, loading, error }) => {
-        if (loading) {
-          return <Loading />
-        }
-        return (
-          <Table>
-            <TableBody>
-              <TableRow>
-                <TableCell>
-                  <MediaGridButtons onSelected={onSelected} data={data} />
-                </TableCell>
-              </TableRow>
-            </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  count={total}
-                  labelRowsPerPage={'resources.media_objects.fields.perPage'}
-                  rowsPerPageOptions={[10, 25, 100]}
-                  rowsPerPage={payload.pagination.perPage}
-                  page={payload.page}
-                  onChangePage={handleChangePage}
-                  onChangeRowsPerPage={handleChangeRowsPerPage}
-                />
-              </TableRow>
-            </TableFooter>
-          </Table>
-        )
-      }}
-    </Query>
+    <Table>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <MediaGridButtons onSelected={onSelected} data={data} />
+          </TableCell>
+        </TableRow>
+      </TableBody>
+      <TableFooter>
+        <TableRow>
+          <TablePagination
+            count={total}
+            labelRowsPerPage={'resources.media_objects.fields.perPage'}
+            rowsPerPageOptions={[10, 25, 100]}
+            rowsPerPage={payload.pagination.perPage}
+            page={payload.page}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+          />
+        </TableRow>
+      </TableFooter>
+    </Table>
   )
 }
 
