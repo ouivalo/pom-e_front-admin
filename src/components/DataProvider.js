@@ -52,7 +52,6 @@ const baseDataProvider = baseHydraDataProvider(entrypoint, fetchHydra, apiDocume
 const dataProvider = {
   ...baseDataProvider,
   create: (resource, params) => {
-    // TODO Il faut trouver comment sortir de la boucle inifi
     if (resource === 'media_objects' && params.data.media_objects && params.data.media_objects.file) {
       // Freshly dropped pictures are File objects and must be converted to base64 strings
       const newPicture = params.data.media_objects.rawFile
@@ -73,5 +72,4 @@ const dataProvider = {
     return baseDataProvider.create(resource, params)
   }
 }
-
 export default dataProvider

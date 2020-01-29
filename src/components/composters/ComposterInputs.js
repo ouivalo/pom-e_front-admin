@@ -60,7 +60,7 @@ const ComposterInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
       )}
       <MediaDialog setImage={setImage} />
       <SelectInput source="status" choices={enumStatus} />
-      <TextInput source="serialNumber" />
+      <NumberInput source="serialNumber" />
       <TextInput source="plateNumber" />
       <DateInput source="DateMiseEnRoute" />
       <DateInput source="DateInauguration" />

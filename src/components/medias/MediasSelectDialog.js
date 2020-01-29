@@ -136,7 +136,7 @@ const MediasList2 = ({ selectOnly, onSelected, ...props }) => {
     setPayload(p)
   }
 
-  const { data, loading, loaded, total } = useQuery({
+  const { data, loading, total } = useQuery({
     type: 'getList',
     resource: 'media_objects',
     payload: payload
