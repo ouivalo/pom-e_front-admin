@@ -42,7 +42,7 @@ const BroyatLevelWidget = translate(({ translate, handleClick }) => {
           {loaded && data && (
             <List>
               {data.map(composter => (
-                <ListItem key={composter.id} button onClick={() => handleClick(`/composters/${composter.id.replace(/\//g, '%2F')}/show`)}>
+                <ListItem key={composter.id} button onClick={() => history.push(`/composters/${composter.id.replace(/\//g, '%2F')}/show`)}>
                   <ListItemIcon>
                     <LocalShipping style={{ color: composter.broyatLevel === 'Empty' ? 'red' : 'orange' }} />
                   </ListItemIcon>
