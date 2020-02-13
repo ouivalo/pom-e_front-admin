@@ -1,7 +1,7 @@
 import React from 'react'
 import { hydraDataProvider as baseHydraDataProvider, fetchHydra as baseFetchHydra } from '@api-platform/admin'
 import parseHydraDocumentation from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 
 /**
  * Convert a `File` object returned by the upload input into a base 64 string.
@@ -32,14 +32,7 @@ const apiDocumentationParser = entrypoint =>
         case 401:
           return Promise.resolve({
             api: result.api,
-            customRoutes: [
-              {
-                props: {
-                  path: '/',
-                  render: () => <Redirect to={'/login'} />
-                }
-              }
-            ]
+            customRoutes: [<Route path="/" render={() => (window.localStorage.getItem('token') ? window.location.reload() : <Redirect to="/login" />)} />]
           })
 
         default:
@@ -72,4 +65,5 @@ const dataProvider = {
     return baseDataProvider.create(resource, params)
   }
 }
+
 export default dataProvider

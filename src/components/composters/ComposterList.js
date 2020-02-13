@@ -5,28 +5,28 @@ import { enumBroyat, enumStatus } from '../Enums'
 
 const ComposterFilter = props => (
   <Filter {...props}>
-    <TextInput label="Recherche" source="name" alwaysOn />
+    <TextInput source="name" alwaysOn />
     <TextInput source="serialNumber" />
     <ReferenceInput source="commune" reference="communes" alwaysOn>
-      <SelectInput optionText="name" optionValue="id" />
+      <SelectInput optionText="name" optionValue="id" helperText="" />
     </ReferenceInput>
     <ReferenceInput source="quartier" reference="quartiers">
-      <SelectInput optionText="name" optionValue="id" />
+      <SelectInput optionText="name" optionValue="id" helperText="" />
     </ReferenceInput>
     <ReferenceInput source="pole" reference="poles">
-      <SelectInput optionText="name" optionValue="id" />
+      <SelectInput optionText="name" optionValue="id" helperText="" />
     </ReferenceInput>
     <ReferenceInput source="categorie" reference="categories">
-      <SelectInput optionText="name" optionValue="id" />
+      <SelectInput optionText="name" optionValue="id" helperText="" />
     </ReferenceInput>
     <ReferenceInput source="financeur" reference="financeurs">
-      <SelectInput optionText="name" optionValue="id" />
+      <SelectInput optionText="name" optionValue="id" helperText="" />
     </ReferenceInput>
     <ReferenceInput source="financeurSuivi" reference="financeurs">
-      <SelectInput optionText="name" optionValue="id" />
+      <SelectInput optionText="name" optionValue="id" helperText="" />
     </ReferenceInput>
     <ReferenceInput source="composterContact" reference="contacts">
-      <SelectInput optionText="firstName" optionValue="id" />
+      <SelectInput optionText="firstName" optionValue="id" helperText="" />
     </ReferenceInput>
     <ReferenceInput source="equipement" reference="equipements">
       <SelectInput
@@ -36,9 +36,10 @@ const ComposterFilter = props => (
           </span>
         )}
         optionValue="id"
+        helperText=""
       />
     </ReferenceInput>
-    <SelectInput source="broyatLevel" choices={enumBroyat} />
+    <SelectInput source="broyatLevel" choices={enumBroyat} helperText="" />
   </Filter>
 )
 

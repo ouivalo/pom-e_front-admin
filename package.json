@@ -9,7 +9,7 @@
     "@material-ui/icons": "^4.5.1",
     "express": "^4.17.1",
     "jwt-decode": "^2.2.0",
-    "query-string": "latest",
+    "query-string": "^6.11.0",
     "ra-data-simple-rest": "^2.9.7",
     "ra-language-french": "^2.9.3",
     "react": "^16.10.1",
