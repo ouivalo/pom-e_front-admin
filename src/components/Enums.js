@@ -13,9 +13,9 @@ const enumStatus = [
   { id: 'InProject', name: 'resources.composters.fields.enumStatus.inProject' }
 ]
 
-const enumAdminRoleOnly = [{ id: ['ROLE_ADMIN'], name: 'resources.users.fields.enumRoles.admin' }]
+const enumAdminRoleOnly = [{ id: 'ROLE_ADMIN', name: 'resources.users.fields.enumRoles.admin' }]
 
-const enumRoles = [...enumAdminRoleOnly, { id: ['ROLE_USER'], name: 'resources.users.fields.enumRoles.user' }]
+const enumRoles = [...enumAdminRoleOnly, { id: 'ROLE_USER', name: 'resources.users.fields.enumRoles.user' }]
 
 const enumDroits = [
   { id: 'Referent', name: 'resources.users.fields.enumDroits.referer' },
