@@ -15,7 +15,7 @@ const SuivisFields = [
 ]
 
 const SuivisList = props => (
-  <List {...props}>
+  <List {...props} perPage={25}>
     <Datagrid>
       {SuivisFields}
       <ShowButton />

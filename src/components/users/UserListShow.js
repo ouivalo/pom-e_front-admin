@@ -30,7 +30,7 @@ const UserFilter = props => (
 )
 
 const UserList = props => (
-  <List {...props} filters={<UserFilter />} sort={{ field: 'id', order: 'ASC' }}>
+  <List {...props} filters={<UserFilter />} sort={{ field: 'id', order: 'ASC' }} perPage={25}>
     <Datagrid>
       <TextField source="username" sortable={false} />
       <TextField source="email" sortable={false} />

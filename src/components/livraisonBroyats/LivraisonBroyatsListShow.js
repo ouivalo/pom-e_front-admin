@@ -13,7 +13,7 @@ const LivraisonBroyatsFields = [
 ]
 
 const LivraisonBroyatsList = props => (
-  <List {...props}>
+  <List {...props} perPage={25}>
     <Datagrid>
       {LivraisonBroyatsFields}
       <ShowButton />

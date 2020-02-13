@@ -20,7 +20,7 @@ const LinkToComposter = ({ resource, record }) => {
 }
 
 const SimpleNameList = props => (
-  <List {...props} sort={{ field: 'name', order: 'ASC' }}>
+  <List {...props} sort={{ field: 'name', order: 'ASC' }} perPage={25}>
     <Datagrid>
       <TextField source="name" label="Nom" />
       <LinkToComposter />

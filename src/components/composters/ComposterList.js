@@ -45,7 +45,7 @@ const ComposterFilter = props => (
 )
 
 const ComposterList = props => (
-  <List {...props} filters={<ComposterFilter />} sort={{ field: 'serialNumber', order: 'DESC' }}>
+  <List {...props} filters={<ComposterFilter />} sort={{ field: 'serialNumber', order: 'DESC' }} perPage={25}>
     <Datagrid>
       <TextField source="serialNumber" />
       <TextField source="name" sortable={false} />

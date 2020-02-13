@@ -21,7 +21,7 @@ const LinkToComposter = ({ record }) => {
 }
 
 const ContactList = props => (
-  <List {...props}>
+  <List {...props} perPage={25}>
     <Datagrid>
       <TextField source="firstName" sortable={false} />
       <TextField source="lastName" sortable={false} />

@@ -35,7 +35,7 @@ const ReparationFilter = translate(({ translate, ...props }) => (
 ))
 
 const ReparationList = props => (
-  <List {...props} filters={<ReparationFilter />} sort={{ field: 'date', order: 'DESC' }}>
+  <List {...props} filters={<ReparationFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
     <Datagrid>
       {ReparationFields}
       <ShowButton />

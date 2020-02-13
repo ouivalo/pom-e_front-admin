@@ -6,7 +6,7 @@ const LinkToComposter = ({ record }) => {
 }
 
 const EquipementsList = props => (
-  <List {...props}>
+  <List {...props} perPage={25}>
     <Datagrid>
       <TextField source="type" sortable={false} />
       <TextField source="capacite" sortable={false} />

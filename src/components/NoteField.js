@@ -23,7 +23,7 @@ const useStyles = {
 }
 
 const NoteField = withStyles(useStyles)(({ classes, ...props }) => {
-  return <TextField className={[classes[`note${props.record[props.source]}`], classes.note]} {...props} />
+  return <TextField className={[classes[`note${props.record[props.source]}`], classes.note]} {...props} component="div" />
 })
 
 export default NoteField

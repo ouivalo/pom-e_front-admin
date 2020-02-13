@@ -12,7 +12,7 @@ const UserComposterFilter = props => (
 )
 
 const UserComposterList = props => (
-  <List {...props} filters={<UserComposterFilter />} sort={{ field: 'id', order: 'ASC' }}>
+  <List {...props} filters={<UserComposterFilter />} sort={{ field: 'id', order: 'ASC' }} perPage={25}>
     <Datagrid>
       <ReferenceField source="user" reference="users" link={'show'} sortable={false}>
         <TextField source="username" />
