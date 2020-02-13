@@ -6,10 +6,11 @@ import { enumBroyat, enumStatus } from '../Enums'
 const ComposterFilter = props => (
   <Filter {...props}>
     <TextInput source="name" alwaysOn />
-    <TextInput source="serialNumber" />
     <ReferenceInput source="commune" reference="communes" alwaysOn>
       <SelectInput optionText="name" optionValue="id" helperText="" />
     </ReferenceInput>
+    <TextInput source="serialNumber" />
+    <SelectInput source="status" helperText="" choices={enumStatus} />
     <ReferenceInput source="quartier" reference="quartiers">
       <SelectInput optionText="name" optionValue="id" helperText="" />
     </ReferenceInput>
