@@ -88,7 +88,7 @@ const ComposterInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
         <SelectInput optionText="name" />
       </ReferenceInput>
       <TextInput source="address" validate={required()} />
-      <ReferenceInput source="mc" reference="users">
+      <ReferenceInput source="mc" reference="users" filter={{ roles: 'ROLE_ADMIN' }}>
         <SelectInput optionText="username" />
       </ReferenceInput>
       <ReferenceInput source="equipement" reference="equipements">
