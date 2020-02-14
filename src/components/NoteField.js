@@ -6,7 +6,8 @@ import { TextField } from 'react-admin'
 const useStyles = {
   note: {
     color: '#fff',
-    textAlign: 'center'
+    textAlign: 'center',
+    maxWidth: 70
   },
   note0: {
     backgroundColor: theme.palette.secondary.main

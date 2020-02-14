@@ -1,6 +1,12 @@
 import React from 'react'
-import { required, AutocompleteInput, Create, DateInput, Edit, NumberInput, ReferenceInput, SimpleForm, TextInput } from 'react-admin'
+import { required, AutocompleteInput, Create, DateInput, Edit, NumberInput, ReferenceInput, SimpleForm, TextInput, SelectInput } from 'react-admin'
 
+const noteChoices = [
+  { id: 0, name: '0' },
+  { id: 1, name: '1' },
+  { id: 2, name: '2' },
+  { id: 3, name: '3' }
+]
 const SuivisInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => (
   <SimpleForm {...rest} redirect="show">
     <DateInput source="date" validate={required()} />
@@ -8,10 +14,10 @@ const SuivisInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => (
     <ReferenceInput source="composter" reference="composters" alwaysOn filterToQuery={name => ({ name })} validate={required()}>
       <AutocompleteInput optionValue="@id" />
     </ReferenceInput>
-    <NumberInput source="animation" />
-    <NumberInput source="environnement" />
-    <NumberInput source="technique" />
-    <NumberInput source="autonomie" />
+    <SelectInput source="animation" choices={noteChoices} />
+    <SelectInput source="environnement" choices={noteChoices} />
+    <SelectInput source="technique" choices={noteChoices} />
+    <SelectInput source="autonomie" choices={noteChoices} />
   </SimpleForm>
 )
 
