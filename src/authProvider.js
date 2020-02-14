@@ -27,7 +27,7 @@ export default {
       localStorage.removeItem('token')
       return Promise.reject()
     }
-    return Promise.reject()
+    return Promise.resolve()
   },
   getPermissions: params => Promise.resolve()
 }

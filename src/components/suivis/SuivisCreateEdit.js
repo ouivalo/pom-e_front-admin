@@ -1,5 +1,5 @@
 import React from 'react'
-import { required, AutocompleteInput, Create, DateInput, Edit, NumberInput, ReferenceInput, SimpleForm, TextInput, SelectInput } from 'react-admin'
+import { required, AutocompleteInput, Create, DateInput, Edit, ReferenceInput, SimpleForm, TextInput, SelectInput } from 'react-admin'
 
 const noteChoices = [
   { id: 0, name: '0' },

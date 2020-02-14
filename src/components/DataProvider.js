@@ -2,6 +2,7 @@ import React from 'react'
 import { hydraDataProvider as baseHydraDataProvider, fetchHydra as baseFetchHydra } from '@api-platform/admin'
 import parseHydraDocumentation from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation'
 import { Redirect, Route } from 'react-router-dom'
+import jwtDecode from 'jwt-decode'
 
 /**
  * Convert a `File` object returned by the upload input into a base 64 string.
@@ -32,7 +33,26 @@ const apiDocumentationParser = entrypoint =>
         case 401:
           return Promise.resolve({
             api: result.api,
-            customRoutes: [<Route path="/" render={() => (window.localStorage.getItem('token') ? window.location.reload() : <Redirect to="/login" />)} />]
+            customRoutes: [
+              <Route
+                path="/"
+                render={() => {
+                  const token = localStorage.getItem('token')
+                  let valideToken = false
+
+                  if (token) {
+                    const decodeToken = jwtDecode(token)
+                    valideToken = decodeToken.exp > Date.now() / 1000
+
+                    if (!valideToken) {
+                      localStorage.removeItem('token')
+                    }
+                  }
+
+                  return valideToken ? window.location.reload() : <Redirect to="/login" />
+                }}
+              />
+            ]
           })
 
         default:
