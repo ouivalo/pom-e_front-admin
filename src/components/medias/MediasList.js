@@ -1,5 +1,5 @@
 import React from 'react'
-import { DeleteButton, ImageField, List } from 'react-admin'
+import { DeleteWithConfirmButton, ImageField, List } from 'react-admin'
 import { Grid } from '@material-ui/core'
 
 const MediaGrid = ({ ids, data, basePath }) => (
@@ -7,7 +7,7 @@ const MediaGrid = ({ ids, data, basePath }) => (
     {ids.map(id => (
       <Grid key={id} item xs={12} sm={6} md={3} style={{ marginBottom: '1rem' }}>
         <ImageField record={data[id]} source="contentUrl" src="contentUrl" />
-        <DeleteButton resource="media_objects" basePath={basePath} record={data[id]} />
+        <DeleteWithConfirmButton resource="media_objects" basePath={basePath} record={data[id]} />
       </Grid>
     ))}
   </Grid>
