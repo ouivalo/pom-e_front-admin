@@ -1,6 +1,32 @@
 import React from 'react'
-import { Datagrid, DateField, EditButton, List, ReferenceField, Show, ShowButton, SimpleShowLayout, TextField } from 'react-admin'
+import {
+  Datagrid,
+  DateField,
+  EditButton,
+  List,
+  ReferenceField,
+  Filter,
+  Show,
+  ShowButton,
+  SimpleShowLayout,
+  TextField,
+  TextInput,
+  SelectInput,
+  ReferenceInput
+} from 'react-admin'
 import NoteField from '../NoteField'
+
+const SuiviFilter = props => (
+  <Filter {...props}>
+    <TextInput label="Composteurs" source="composter.name" alwaysOn />
+    <ReferenceInput source="composter.pole" label="Poles" reference="poles">
+      <SelectInput optionText="name" optionValue="id" helperText="" />
+    </ReferenceInput>
+    <ReferenceInput source="composter.commune" label="Communes" reference="communes">
+      <SelectInput optionText="name" optionValue="id" helperText="" />
+    </ReferenceInput>
+  </Filter>
+)
 
 const SuivisFields = [
   <DateField source="date" addLabel />,
@@ -15,7 +41,7 @@ const SuivisFields = [
 ]
 
 const SuivisList = props => (
-  <List {...props} perPage={25}>
+  <List {...props} filters={<SuiviFilter />} perPage={25}>
     <Datagrid>
       {SuivisFields}
       <ShowButton />

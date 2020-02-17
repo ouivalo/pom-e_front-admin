@@ -11,7 +11,8 @@ import {
   ShowButton,
   SimpleShowLayout,
   TextField,
-  TextInput
+  TextInput,
+  SelectInput
 } from 'react-admin'
 
 import { enumRoles } from '../Enums'
@@ -25,6 +26,7 @@ const UserFilter = props => (
     <TextInput source="lastname" />
     <TextInput source="firstname" />
     <TextInput source="phone" />
+    <SelectInput source="roles" choices={enumRoles} />
     <BooleanInput source="enabled" label={'resources.users.fields.isEnabled'} defaultValue={true} />
   </Filter>
 )
