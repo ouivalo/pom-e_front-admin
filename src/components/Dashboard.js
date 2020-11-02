@@ -79,7 +79,7 @@ const ReparationWidget = () => {
                   <Add />
                 </IconButton>
               </Tooltip>
-              <Tooltip title="Voir toutes les réparations a prévoire">
+              <Tooltip title="Voir toutes les réparations a prévoir">
                 <IconButton
                   color="primary"
                   onClick={() =>
