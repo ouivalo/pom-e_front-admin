@@ -1,5 +1,22 @@
 import React from 'react'
-import { Datagrid, DateField, EditButton, List, ReferenceField, Show, ShowButton, SimpleShowLayout, TextField } from 'react-admin'
+import {
+    Datagrid,
+    DateField,
+    EditButton,
+    Filter,
+    List,
+    ReferenceField,
+    Show,
+    ShowButton,
+    SimpleShowLayout,
+    TextField, TextInput
+} from 'react-admin'
+
+const LivraisonBroyatsFilter = props => (
+    <Filter {...props}>
+        <TextInput label="Composteurs" source="composter.name" alwaysOn />
+    </Filter>
+)
 
 const LivraisonBroyatsFields = [
   <DateField source="date" addLabel />,
@@ -13,7 +30,7 @@ const LivraisonBroyatsFields = [
 ]
 
 const LivraisonBroyatsList = props => (
-  <List {...props} perPage={25}>
+  <List {...props} filters={<LivraisonBroyatsFilter />} perPage={25}>
     <Datagrid>
       {LivraisonBroyatsFields}
       <ShowButton />
