@@ -1,11 +1,11 @@
 import React from 'react'
 import {
   BooleanField,
+  Button,
   Datagrid,
   DateField,
   EditButton,
   ImageField,
-  ReferenceArrayField,
   ReferenceField,
   ReferenceManyField,
   SelectField,
@@ -13,14 +13,60 @@ import {
   Tab,
   TabbedShowLayout,
   TextField,
-  translate
+  translate,
 } from 'react-admin'
+import { Link } from 'react-router-dom'
 import { Table, TableHead, TableRow, TableCell, TableBody, Typography } from '@material-ui/core'
-import { Done, Clear } from '@material-ui/icons'
+import { Done, Clear, Add } from '@material-ui/icons'
 
 import { enumBroyat, enumStatus } from '../Enums'
 import MapField from '../MapField'
 import NoteField from '../NoteField'
+
+const AddNewLivraisonBroyatButton = ({ record }) => {
+  return (
+    <Button
+      component={Link}
+      to={{
+        pathname: `/livraison_broyats/create?composter=${record['@id']}`,
+      }}
+      label="Ajouter une livraison"
+      variant="outlined"
+    >
+      <Add />
+    </Button>
+  )
+}
+
+const AddNewSuivitButton = ({ record }) => {
+  return (
+    <Button
+      component={Link}
+      to={{
+        pathname: `/suivis/create?composter=${record['@id']}`,
+      }}
+      label="Ajouter un suivi"
+      variant="outlined"
+    >
+      <Add />
+    </Button>
+  )
+}
+
+const AddNewReparationsButton = ({ record }) => {
+  return (
+    <Button
+      component={Link}
+      to={{
+        pathname: `/reparations/create?composter=${record['@id']}`,
+      }}
+      label="Ajouter une réparation"
+      variant="outlined"
+    >
+      <Add />
+    </Button>
+  )
+}
 
 const FreqField = translate(({ translate, record, resource }) => {
   return (
@@ -53,14 +99,14 @@ const BooleanArrayField = translate(({ translate, record, resource, fields, titl
       <Table>
         <TableHead>
           <TableRow>
-            {fields.map(f => (
+            {fields.map((f) => (
               <TableCell>{translate(`resources.${resource}.fields.${f}`)}</TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
-            {fields.map(f => (
+            {fields.map((f) => (
               <TableCell>{record[f] ? <Done /> : <Clear />}</TableCell>
             ))}
           </TableRow>
@@ -71,7 +117,9 @@ const BooleanArrayField = translate(({ translate, record, resource, fields, titl
 })
 const EquipementField = ({ record = {} }) => <span>{record && `${record.type} ${record.capacite}`}</span>
 
-const ComposterShow = ({ translate, ...props }) => {
+const ComposterShow = (props) => {
+  const { translate, id } = props
+  const slug = id.replace('/composters/', '')
   return (
     <Show {...props}>
       <TabbedShowLayout>
@@ -120,9 +168,9 @@ const ComposterShow = ({ translate, ...props }) => {
           </ReferenceField>
           <TextField source="openingProcedures" addLabel />
           <SelectField source="broyatLevel" choices={enumBroyat} addLabel />
-          <ReferenceArrayField source="suivis" reference="suivis">
+          <ReferenceManyField source="suivis" reference="suivis" filter={{ 'composter.slug': slug }} sort={{ field: 'date', order: 'DESC' }}>
             <Datagrid>
-              <DateField source="date" sortable={false} />
+              <DateField source="date" />
               <TextField source="description" sortable={false} />
               <NoteField source="animation" sortable={false} />
               <NoteField source="environnement" sortable={false} />
@@ -130,28 +178,36 @@ const ComposterShow = ({ translate, ...props }) => {
               <NoteField source="autonomie" sortable={false} />
               <EditButton />
             </Datagrid>
-          </ReferenceArrayField>
+          </ReferenceManyField>
+          <AddNewSuivitButton />
           <ReferenceField source="approvisionnementBroyat" allowEmpty reference="approvisionnement_broyats">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceArrayField source="livraisonBroyats" reference="livraison_broyats">
+          <ReferenceManyField
+            source="livraisonBroyats"
+            reference="livraison_broyats"
+            filter={{ 'composter.slug': slug }}
+            sort={{ field: 'date', order: 'DESC' }}
+          >
             <Datagrid>
-              <DateField source="date" sortable={false} />
+              <DateField source="date" />
               <TextField source="quantite" sortable={false} />
               <ReferenceField source="livreur" reference="approvisionnement_broyats" link={false} allowEmpty sortable={false}>
                 <TextField source="name" />
               </ReferenceField>
               <EditButton />
             </Datagrid>
-          </ReferenceArrayField>
-          <ReferenceArrayField source="reparations" reference="reparations">
+          </ReferenceManyField>
+          <AddNewLivraisonBroyatButton />
+          <ReferenceManyField source="reparations" reference="reparations" filter={{ 'composter.slug': slug }} sort={{ field: 'date', order: 'DESC' }}>
             <Datagrid>
-              <DateField source="date" sortable={false} />
+              <DateField source="date" />
               <BooleanField source="done" sortable={false} />
               <TextField source="description" sortable={false} />
               <EditButton />
             </Datagrid>
-          </ReferenceArrayField>
+          </ReferenceManyField>
+          <AddNewReparationsButton />
           <FreqField />
           <BooleanArrayField fields={['signaletiqueRond', 'signaletiquePanneau']} title="Signalétique" />
           <BooleanArrayField fields={['hasCroc', 'hasCadenas', 'hasFourche', 'hasThermometre', 'hasPeson']} title="Outillage présent" />

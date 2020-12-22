@@ -44,5 +44,8 @@
     "semi": false,
     "singleQuote": true,
     "printWidth": 160
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
   }
 }
