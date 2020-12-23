@@ -9,7 +9,7 @@ import jwtDecode from 'jwt-decode'
  * That's not the most optimized way to store images in production, but it's
  * enough to illustrate the idea of data provider decoration.
  */
-const convertFileToBase64 = file =>
+const convertFileToBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
@@ -23,12 +23,12 @@ const fetchHeaders = () => ({ Authorization: `Bearer ${localStorage.getItem('tok
 const fetchHydra = (url, options = {}) =>
   baseFetchHydra(url, {
     ...options,
-    headers: new Headers(fetchHeaders())
+    headers: new Headers(fetchHeaders()),
   })
-const apiDocumentationParser = entrypoint =>
+const apiDocumentationParser = (entrypoint) =>
   parseHydraDocumentation(entrypoint, { headers: new Headers(fetchHeaders()) }).then(
     ({ api }) => ({ api }),
-    result => {
+    (result) => {
       switch (result.status) {
         case 401:
           return Promise.resolve({
@@ -51,8 +51,8 @@ const apiDocumentationParser = entrypoint =>
 
                   return valideToken ? window.location.reload() : <Redirect to="/login" />
                 }}
-              />
-            ]
+              />,
+            ],
           })
 
         default:
@@ -61,7 +61,7 @@ const apiDocumentationParser = entrypoint =>
     }
   )
 
-const baseDataProvider = baseHydraDataProvider(entrypoint, fetchHydra, apiDocumentationParser)
+const baseDataProvider = baseHydraDataProvider(entrypoint, fetchHydra, apiDocumentationParser, true)
 const dataProvider = {
   ...baseDataProvider,
   create: (resource, params) => {
@@ -70,20 +70,20 @@ const dataProvider = {
       const newPicture = params.data.media_objects.rawFile
 
       return convertFileToBase64(newPicture)
-        .then(base64Picture => ({
+        .then((base64Picture) => ({
           data: base64Picture,
-          imageName: newPicture.name
+          imageName: newPicture.name,
         }))
-        .then(transformedNewPicture => {
+        .then((transformedNewPicture) => {
           return baseDataProvider.create(resource, {
             ...params,
-            data: transformedNewPicture
+            data: transformedNewPicture,
           })
         })
     }
     // Ici c'est le default
     return baseDataProvider.create(resource, params)
-  }
+  },
 }
 
 export default dataProvider
