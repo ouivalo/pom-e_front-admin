@@ -10,7 +10,7 @@ import {
   ReferenceInput,
   SelectInput,
   SimpleForm,
-  TextInput
+  TextInput,
 } from 'react-admin'
 import { useForm } from 'react-final-form'
 
@@ -26,7 +26,7 @@ const MediaDialog = ({ setImage }) => {
       {() => (
         <Fragment>
           <MediasSelectDialog
-            onSelected={img => {
+            onSelected={(img) => {
               setImage(img)
               form.change('image', img.id)
             }}
@@ -43,7 +43,7 @@ const ComposterInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
   return (
     <SimpleForm {...rest} redirect="show">
       <TextInput source="name" validate={required()} />
-      <ReferenceField source="image" reference="media_objects" allowEmpty>
+      <ReferenceField source="image[@id]" reference="media_objects" allowEmpty>
         <ImageField source="contentUrl" style={{ display: image ? 'none' : 'block' }} />
       </ReferenceField>
       {image && (
@@ -54,7 +54,7 @@ const ComposterInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
             backgroundRepeat: 'no-repeat',
             height: '10rem',
             display: 'block',
-            margin: '0.5rem'
+            margin: '0.5rem',
           }}
         />
       )}
@@ -65,37 +65,37 @@ const ComposterInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
       <DateInput source="DateMiseEnRoute" />
       <DateInput source="DateInauguration" />
       <DateInput source="DateInstallation" />
-      <ReferenceInput source="categorie" reference="categories" allowEmpty>
+      <ReferenceInput source="categorie[@id]" reference="categories" allowEmpty>
         <SelectInput optionText="name" />
       </ReferenceInput>
       <TextInput source="permanencesDescription" />
       <BooleanInput source="acceptNewMembers" />
       <TextInput source="description" multiline />
       <TextInput source="publicDescription" multiline />
-      <ReferenceInput source="financeur" reference="financeurs" allowEmpty>
+      <ReferenceInput source="financeur[@id]" reference="financeurs" allowEmpty>
         <SelectInput optionText="name" />
       </ReferenceInput>
-      <ReferenceInput source="financeurSuivi" reference="financeurs" allowEmpty>
+      <ReferenceInput source="financeurSuivi[@id]" reference="financeurs" allowEmpty>
         <SelectInput optionText="name" />
       </ReferenceInput>
-      <ReferenceInput source="commune" reference="communes" allowEmpty>
+      <ReferenceInput source="commune[@id]" reference="communes" allowEmpty>
         <SelectInput optionText="name" />
       </ReferenceInput>
-      <ReferenceInput source="pole" reference="poles" allowEmpty>
+      <ReferenceInput source="pole[@id]" reference="poles" allowEmpty>
         <SelectInput optionText="name" />
       </ReferenceInput>
-      <ReferenceInput source="quartier" reference="quartiers" allowEmpty>
+      <ReferenceInput source="quartier[@id]" reference="quartiers" allowEmpty>
         <SelectInput optionText="name" />
       </ReferenceInput>
       <TextInput source="address" validate={required()} />
-      <ReferenceInput source="mc" reference="users" filter={{ roles: 'ROLE_ADMIN' }}>
+      <ReferenceInput source="mc[@id]" reference="users" filter={{ roles: 'ROLE_ADMIN' }}>
         <SelectInput optionText="username" />
       </ReferenceInput>
-      <ReferenceInput source="equipement" reference="equipements">
-        <SelectInput optionText={record => `${record.type} ${record.capacite}`} />
+      <ReferenceInput source="equipement[@id]" reference="equipements">
+        <SelectInput optionText={(record) => `${record.type} ${record.capacite}`} />
       </ReferenceInput>
       <TextInput source="openingProcedures" />
-      <ReferenceInput source="approvisionnementBroyat" reference="approvisionnement_broyats" allowEmpty>
+      <ReferenceInput source="approvisionnementBroyat[@id]" reference="approvisionnement_broyats" allowEmpty>
         <SelectInput source="name" />
       </ReferenceInput>
       <SelectInput source="broyatLevel" choices={enumBroyat} defaultValue={enumBroyat[0].id} />

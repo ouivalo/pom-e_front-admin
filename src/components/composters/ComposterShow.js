@@ -118,13 +118,13 @@ const BooleanArrayField = translate(({ translate, record, resource, fields, titl
 const EquipementField = ({ record = {} }) => <span>{record && `${record.type} ${record.capacite}`}</span>
 
 const ComposterShow = (props) => {
-  const { translate, id } = props
+  const { id } = props
   const slug = id.replace('/composters/', '')
   return (
     <Show {...props}>
       <TabbedShowLayout>
         <Tab label="Informations">
-          <ReferenceField source="image" reference="media_objects" addLabel={false} allowEmpty>
+          <ReferenceField source="image[@id]" reference="media_objects" addLabel={false} allowEmpty>
             <ImageField source="contentUrl" />
           </ReferenceField>
           <TextField source="name" addLabel />
@@ -134,36 +134,36 @@ const ComposterShow = (props) => {
           <DateField source="DateMiseEnRoute" addLabel />
           <DateField source="DateInauguration" addLabel />
           <DateField source="DateInstallation" addLabel />
-          <ReferenceField source="categorie" reference="categories" allowEmpty link="show">
+          <ReferenceField source="categorie[@id]" reference="categories" allowEmpty link="show">
             <TextField source="name" />
           </ReferenceField>
           <TextField source="permanencesDescription" addLabel />
           <BooleanField source="acceptNewMembers" addLabel />
           <TextField source="description" addLabel />
           <TextField source="publicDescription" addLabel />
-          <ReferenceField source="commune" reference="communes" allowEmpty link="show">
+          <ReferenceField source="commune[@id]" reference="communes" allowEmpty link="show">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="pole" reference="poles" allowEmpty link="show">
+          <ReferenceField source="pole[@id]" reference="poles" allowEmpty link="show">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="quartier" reference="quartiers" allowEmpty link="show">
+          <ReferenceField source="quartier[@id]" reference="quartiers" allowEmpty link="show">
             <TextField source="name" />
           </ReferenceField>
           <TextField source="address" addLabel label="Adresse" />
           <MapField />
         </Tab>
         <Tab label="Suivi">
-          <ReferenceField source="financeur" reference="financeurs" allowEmpty link="show">
+          <ReferenceField source="financeur[@id]" reference="financeurs" allowEmpty link="show">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="financeurSuivi" reference="financeurs" allowEmpty link="show">
+          <ReferenceField source="financeurSuivi[@id]" reference="financeurs" allowEmpty link="show">
             <TextField source="name" />
           </ReferenceField>
-          <ReferenceField source="mc" reference="users" link="show">
+          <ReferenceField source="mc[@id]" reference="users" link="show">
             <TextField source="username" />
           </ReferenceField>
-          <ReferenceField source="equipement" reference="equipements" allowEmpty link="show">
+          <ReferenceField source="equipement[@id]" reference="equipements" allowEmpty link="show">
             <EquipementField source="type" />
           </ReferenceField>
           <TextField source="openingProcedures" addLabel />
@@ -180,7 +180,7 @@ const ComposterShow = (props) => {
             </Datagrid>
           </ReferenceManyField>
           <AddNewSuivitButton />
-          <ReferenceField source="approvisionnementBroyat" allowEmpty reference="approvisionnement_broyats">
+          <ReferenceField source="approvisionnementBroyat[@id]" allowEmpty reference="approvisionnement_broyats">
             <TextField source="name" />
           </ReferenceField>
           <ReferenceManyField
@@ -192,7 +192,7 @@ const ComposterShow = (props) => {
             <Datagrid>
               <DateField source="date" />
               <TextField source="quantite" sortable={false} />
-              <ReferenceField source="livreur" reference="approvisionnement_broyats" link={false} allowEmpty sortable={false}>
+              <ReferenceField source="livreur[@id]" reference="approvisionnement_broyats" link={false} allowEmpty sortable={false}>
                 <TextField source="name" />
               </ReferenceField>
               <EditButton />
@@ -215,24 +215,12 @@ const ComposterShow = (props) => {
         <Tab label="Contact">
           <ReferenceManyField label="Utilisateurs" reference="user_composters" target="composter" source="rid">
             <Datagrid>
-              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.username')}>
-                <TextField source="username" />
-              </ReferenceField>
-              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.lastname')}>
-                <TextField source="lastname" />
-              </ReferenceField>
-              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.firstname')}>
-                <TextField source="firstname" />
-              </ReferenceField>
-              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.email')}>
-                <TextField source="email" />
-              </ReferenceField>
-              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.phone')}>
-                <TextField source="phone" />
-              </ReferenceField>
-              <ReferenceField source="user" reference="users" sortable={false} label={translate('resources.users.fields.roles')}>
-                <TextField source="role" />
-              </ReferenceField>
+              <TextField source="user.username" />
+              <TextField source="user.firstname" />
+              <TextField source="user.lastname" />
+              <TextField source="user.email" />
+              <TextField source="user.phone" />
+              <TextField source="user.role" />
               <TextField source="capability" sortable={false} />
               <EditButton />
             </Datagrid>

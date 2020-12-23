@@ -10,9 +10,14 @@ export default {
       fields: {
         name: 'Nom',
         mc: 'Maître composteur',
+        'mc[@id]': 'Maître composteur',
+        'equipement[@id]': 'Equipement',
+        'categorie[@id]': 'Catégorie',
         pavilionsVolume: 'Équipement',
         openingProcedures: 'Procédure d‘ouverture',
         financeur: 'Financeur propriétaire de l’équipement',
+        'financeur[@id]': 'Financeur propriétaire de l’équipement',
+        'financeurSuivi[@id]': 'Financeur du suivi',
         permanencesDescription: 'Permanences',
         acceptNewMembers: 'Accepte de nouveaux membres',
         serialNumber: 'Numéro de série',
@@ -21,9 +26,12 @@ export default {
         publicDescription: 'Description publique',
         address: 'Adresse',
         pole: 'Pôle',
+        'pole[@id]': 'Pôle',
         lat: 'Latitude',
         lng: 'Longitude',
         status: 'Statut',
+        'commune[@id]': 'Commnue',
+        'quartier[@id]': 'Quartier',
         enumStatus: {
           active: 'En activité',
           delete: 'Supprimé',
@@ -32,6 +40,7 @@ export default {
           dormant: 'En dormance',
           inProject: 'En projet',
         },
+        'approvisionnementBroyat[@id]': 'Approvisionnement broyat',
         broyatLevel: 'Niveau de broyat',
         enumBroyat: {
           empty: 'Vide',
@@ -52,6 +61,9 @@ export default {
     },
     suivis: {
       name: 'Suivi |||| Suivis',
+      fields: {
+        'composter[@id]': 'Composteur',
+      },
     },
     users: {
       search: 'Rechercher un pseudo',
@@ -122,7 +134,9 @@ export default {
       name: 'Utilisateur du composteur |||| Utilisateurs du composteur',
       fields: {
         user: 'Utilisateur',
+        'user[@id]': 'Utilisateur',
         composter: 'Composteur',
+        'composter[@id]': 'Composteur',
         capability: 'Droit',
       },
     },
@@ -161,6 +175,8 @@ export default {
       fields: {
         quantite: 'Quantité ( en litre )',
         composter: 'Composteur',
+        'composter[@id]': 'Composteur',
+        'livreur[@id]': 'Livreur',
       },
     },
     media_objects: {

@@ -14,7 +14,6 @@ import {
   TextInput,
   SelectInput,
   useTranslate,
-  ReferenceInput,
 } from 'react-admin'
 import { Chip } from '@material-ui/core'
 

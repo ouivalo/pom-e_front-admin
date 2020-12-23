@@ -13,7 +13,7 @@ import {
   BooleanInput,
   FormDataConsumer,
   SaveButton,
-  Toolbar
+  Toolbar,
 } from 'react-admin'
 import { Box } from '@material-ui/core'
 import { useForm } from 'react-final-form'
@@ -28,15 +28,7 @@ const CreatUserToolBar = ({ handleSubmitWithRedirect, ...props }) => {
       form.batch(() => {
         form.change('user.roles', 'ROLE_USER')
         form.change('user.userConfirmedAccountURL', `${process.env.REACT_APP_FRONTEND_ENTRYPOINT}/confirmation`)
-        form.change(
-          'user.plainPassword',
-          Math.random()
-            .toString(36)
-            .substring(2, 15) +
-            Math.random()
-              .toString(36)
-              .substring(2, 15)
-        )
+        form.change('user.plainPassword', Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15))
       })
     }
 
@@ -62,7 +54,7 @@ const NewUserInput = () => {
   )
 }
 
-const UserComposterCreate = props => {
+const UserComposterCreate = (props) => {
   return (
     <Create {...props}>
       <SimpleForm redirect="list" toolbar={<CreatUserToolBar />}>
@@ -72,7 +64,7 @@ const UserComposterCreate = props => {
             formData.newUser ? (
               <NewUserInput />
             ) : (
-              <ReferenceInput source="user" reference="users" validate={required()} filterToQuery={email => ({ email })}>
+              <ReferenceInput source="user" reference="users" validate={required()} filterToQuery={(email) => ({ email })}>
                 <AutocompleteInput optionValue="@id" optionText="email" />
               </ReferenceInput>
             )
@@ -80,7 +72,7 @@ const UserComposterCreate = props => {
         </FormDataConsumer>
 
         <SelectInput source="capability" choices={enumDroits} defaultValue={enumDroits[0].id} validate={required()} />
-        <ReferenceInput source="composter" reference="composters" alwaysOn filterToQuery={name => ({ name })} validate={required()}>
+        <ReferenceInput source="composter[@id]" reference="composters" alwaysOn filterToQuery={(name) => ({ name })} validate={required()}>
           <AutocompleteInput optionValue="@id" />
         </ReferenceInput>
       </SimpleForm>
@@ -88,13 +80,13 @@ const UserComposterCreate = props => {
   )
 }
 
-const UserComposterEdit = props => (
+const UserComposterEdit = (props) => (
   <Edit {...props}>
     <SimpleForm redirect="show">
-      <ReferenceField source="user" reference="users">
+      <ReferenceField source="user[@id]" reference="users">
         <TextField source="username" />
       </ReferenceField>
-      <ReferenceInput source="composter" reference="composters" alwaysOn filterToQuery={name => ({ name })}>
+      <ReferenceInput source="composter[@id]" reference="composters" alwaysOn filterToQuery={(name) => ({ name })}>
         <AutocompleteInput optionValue="@id" />
       </ReferenceInput>
       <SelectInput source="capability" choices={enumDroits} />

@@ -12,15 +12,15 @@ const LinkToComposter = ({ record }) => {
         search: stringify({
           page: 1,
           perPage: 25,
-          filter: JSON.stringify({ composterContact: record.id })
-        })
+          filter: JSON.stringify({ contacts: record.id }),
+        }),
       }}
       primaryText="Voir les composteurs"
     />
   )
 }
 
-const ContactList = props => (
+const ContactList = (props) => (
   <List {...props} perPage={25}>
     <Datagrid>
       <TextField source="firstName" sortable={false} />

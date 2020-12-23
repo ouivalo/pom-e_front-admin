@@ -1,9 +1,9 @@
 import React from 'react'
-import { ReferenceArrayField, Datagrid, SelectField, Show, SimpleShowLayout, TextField } from 'react-admin'
+import { ArrayField, Datagrid, SelectField, Show, SimpleShowLayout, TextField } from 'react-admin'
 
 import { enumContactType } from '../Enums'
 
-const ContactShow = props => (
+const ContactShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="firstName" addLabel />
@@ -11,11 +11,11 @@ const ContactShow = props => (
       <TextField source="phone" addLabel />
       <TextField source="email" addLabel />
       <SelectField source="contactType" choices={enumContactType} addLabel />
-      <ReferenceArrayField source="composters" reference="composters">
+      <ArrayField source="composters" reference="composters">
         <Datagrid>
           <TextField source="name" sortable={false} />
         </Datagrid>
-      </ReferenceArrayField>
+      </ArrayField>
     </SimpleShowLayout>
   </Show>
 )

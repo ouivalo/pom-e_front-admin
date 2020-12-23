@@ -1,8 +1,21 @@
 import React from 'react'
-import { Datagrid, EditButton, Filter, List, ReferenceField, SelectField, SelectInput, ShowButton, TextField, TextInput } from 'react-admin'
+import {
+  BooleanField,
+  Datagrid,
+  EditButton,
+  Filter,
+  List,
+  SelectField,
+  SelectInput,
+  Show,
+  ShowButton,
+  SimpleShowLayout,
+  TextField,
+  TextInput,
+} from 'react-admin'
 import { enumDroits } from '../Enums'
 
-const UserComposterFilter = props => (
+const UserComposterFilter = (props) => (
   <Filter {...props}>
     <TextInput label={'resources.users.fields.email'} source="user.email" alwaysOn />
     <TextInput label={'resources.user_composters.fields.composter'} source="composter.name" alwaysOn />
@@ -11,15 +24,11 @@ const UserComposterFilter = props => (
   </Filter>
 )
 
-const UserComposterList = props => (
+export const UserComposterList = (props) => (
   <List {...props} filters={<UserComposterFilter />} sort={{ field: 'id', order: 'ASC' }} perPage={25}>
     <Datagrid>
-      <ReferenceField source="user" reference="users" link={'show'} sortable={false}>
-        <TextField source="username" />
-      </ReferenceField>
-      <ReferenceField source="composter" reference="composters" link={'show'} sortable={false}>
-        <TextField source="name" />
-      </ReferenceField>
+      <TextField source="user.username" />
+      <TextField source="composter.name" />
       <SelectField source="capability" choices={enumDroits} addLabel sortable={false} />
       <ShowButton />
       <EditButton />
@@ -27,4 +36,13 @@ const UserComposterList = props => (
   </List>
 )
 
-export default UserComposterList
+export const UserComposterShow = (props) => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <TextField source="user.username" />
+      <TextField source="composter.name" />
+      <SelectField source="capability" choices={enumDroits} addLabel sortable={false} />
+      <BooleanField source="notif" />
+    </SimpleShowLayout>
+  </Show>
+)

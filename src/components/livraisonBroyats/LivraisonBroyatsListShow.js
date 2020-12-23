@@ -24,16 +24,16 @@ const LivraisonBroyatsFilter = (props) => (
 const LivraisonBroyatsFields = [
   <DateField source="date" addLabel />,
   <TextField source="quantite" addLabel sortable={false} />,
-  <ReferenceField source="composter" reference="composters" link="show" allowEmpty sortable={false}>
+  <ReferenceField source="composter[@id]" reference="composters" link="show" allowEmpty sortable={false}>
     <TextField source="name" />
   </ReferenceField>,
-  <ReferenceField source="livreur" reference="approvisionnement_broyats" link={false} allowEmpty sortable={false}>
+  <ReferenceField source="livreur[@id]" reference="approvisionnement_broyats" link={false} allowEmpty sortable={false}>
     <TextField source="name" />
   </ReferenceField>,
 ]
 
 const LivraisonBroyatsList = (props) => (
-  <List {...props} filters={<LivraisonBroyatsFilter />} perPage={25}>
+  <List {...props} filters={<LivraisonBroyatsFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
     <Datagrid>
       {LivraisonBroyatsFields}
       <ShowButton />

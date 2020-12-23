@@ -3,7 +3,7 @@ import { Datagrid, EditButton, ShowButton, List, SelectField, TextField, Referen
 
 import { enumBroyat, enumStatus } from '../Enums'
 
-const ComposterFilter = props => (
+const ComposterFilter = (props) => (
   <Filter {...props}>
     <TextInput source="name" alwaysOn />
     <ReferenceInput source="commune" reference="communes" alwaysOn>
@@ -31,7 +31,7 @@ const ComposterFilter = props => (
     </ReferenceInput>
     <ReferenceInput source="equipement" reference="equipements">
       <SelectInput
-        optionText={record => (
+        optionText={(record) => (
           <span>
             {record.type} {record.capacite}
           </span>
@@ -44,15 +44,15 @@ const ComposterFilter = props => (
   </Filter>
 )
 
-const ComposterList = props => (
+const ComposterList = (props) => (
   <List {...props} filters={<ComposterFilter />} sort={{ field: 'serialNumber', order: 'DESC' }} perPage={25}>
     <Datagrid>
       <TextField source="serialNumber" />
       <TextField source="name" sortable={false} />
-      <ReferenceField source="commune" reference="communes" link={false} allowEmpty sortable={false}>
+      <ReferenceField source="commune[@id]" reference="communes" link={false} allowEmpty sortable={false}>
         <TextField source="name" />
       </ReferenceField>
-      <ReferenceField source="quartier" reference="quartiers" link={false} allowEmpty sortable={false}>
+      <ReferenceField source="quartier[@id]" reference="quartiers" link={false} allowEmpty sortable={false}>
         <TextField source="name" />
       </ReferenceField>
       <SelectField source="status" choices={enumStatus} addLabel />

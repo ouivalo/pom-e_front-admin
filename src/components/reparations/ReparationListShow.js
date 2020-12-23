@@ -13,18 +13,18 @@ import {
   ShowButton,
   SimpleShowLayout,
   TextField,
-  translate
+  translate,
 } from 'react-admin'
 
 const ReparationFields = [
   <BooleanField source="done" addLabel sortable={false} />,
   <DateField source="date" addLabel />,
   <TextField source="description" addLabel sortable={false} />,
-  <ReferenceField source="composter" reference="composters" link="show" sortable={false}>
+  <ReferenceField source="composter[@id]" label="Composteur" reference="composters" link="show" sortable={false}>
     <TextField source="name" />
   </ReferenceField>,
   <TextField source="refFacture" addLabel sortable={false} />,
-  <TextField source="montant" addLabel sortable={false} />
+  <TextField source="montant" addLabel sortable={false} />,
 ]
 
 const ReparationFilter = translate(({ translate, ...props }) => (
@@ -34,7 +34,7 @@ const ReparationFilter = translate(({ translate, ...props }) => (
   </Filter>
 ))
 
-const ReparationList = props => (
+const ReparationList = (props) => (
   <List {...props} filters={<ReparationFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
     <Datagrid>
       {ReparationFields}
@@ -44,7 +44,7 @@ const ReparationList = props => (
   </List>
 )
 
-const ReparationShow = props => (
+const ReparationShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>{ReparationFields}</SimpleShowLayout>
   </Show>
