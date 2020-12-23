@@ -13,7 +13,9 @@ import {
   TextField,
   TextInput,
   TopToolbar,
+  SimpleList,
 } from 'react-admin'
+import { useMediaQuery } from '@material-ui/core'
 
 const LivraisonBroyatsFilter = (props) => (
   <Filter {...props}>
@@ -32,15 +34,27 @@ const LivraisonBroyatsFields = [
   </ReferenceField>,
 ]
 
-const LivraisonBroyatsList = (props) => (
-  <List {...props} filters={<LivraisonBroyatsFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
-    <Datagrid>
-      {LivraisonBroyatsFields}
-      <ShowButton />
-      <EditButton />
-    </Datagrid>
-  </List>
-)
+const LivraisonBroyatsList = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'))
+
+  return (
+    <List {...props} filters={<LivraisonBroyatsFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
+      {isSmall ? (
+        <SimpleList
+          primaryText={(record) => `${record.quantite} L`}
+          secondaryText={(record) => `${new Date(record.date).toLocaleDateString()} ${record.composter.name}`}
+          tertiaryText={(record) => record.livreur.name}
+        />
+      ) : (
+        <Datagrid>
+          {LivraisonBroyatsFields}
+          <ShowButton />
+          <EditButton />
+        </Datagrid>
+      )}
+    </List>
+  )
+}
 
 const LivraisonBroyatsShowActions = ({ basePath, data, resource }) => (
   <TopToolbar>

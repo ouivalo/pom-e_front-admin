@@ -14,10 +14,12 @@ import {
   TextInput,
   SelectInput,
   useTranslate,
+  SimpleList,
 } from 'react-admin'
-import { Chip } from '@material-ui/core'
+import { Chip, useMediaQuery } from '@material-ui/core'
 
 import { enumRoles } from '../Enums'
+import { Clear, Done } from '@material-ui/icons'
 
 const NameField = ({ record }) => <span>{`${record.firstname ? record.firstname : ''} ${record.lastname ? record.lastname : ''}`}</span>
 
@@ -42,17 +44,26 @@ const UserFilter = (props) => (
 )
 
 const UserList = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'))
+
   return (
     <List {...props} filters={<UserFilter />} sort={{ field: 'id', order: 'ASC' }} perPage={25}>
-      <Datagrid>
-        <TextField source="username" sortable={false} />
-        <TextField source="email" sortable={false} />
-        <NameField label={'resources.users.fields.fullname'} {...props} sortable={false} />
-        <TextField source="phone" sortable={false} />
-        <ComposterField source="userComposters" />
-        <ShowButton />
-        <EditButton />
-      </Datagrid>
+      {isSmall ? (
+        <SimpleList
+          primaryText={(record) => `${record.firstname ? record.firstname : ''} ${record.lastname ? record.lastname : ''}`}
+          secondaryText={(record) => record.email}
+        />
+      ) : (
+        <Datagrid>
+          <TextField source="username" sortable={false} />
+          <TextField source="email" sortable={false} />
+          <NameField label={'resources.users.fields.fullname'} {...props} sortable={false} />
+          <TextField source="phone" sortable={false} />
+          <ComposterField source="userComposters" />
+          <ShowButton />
+          <EditButton />
+        </Datagrid>
+      )}
     </List>
   )
 }

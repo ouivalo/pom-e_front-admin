@@ -13,8 +13,10 @@ import {
   TextInput,
   SelectInput,
   ReferenceInput,
+  SimpleList,
 } from 'react-admin'
 import NoteField from '../NoteField'
+import { useMediaQuery } from '@material-ui/core'
 
 const SuiviFilter = (props) => (
   <Filter {...props}>
@@ -40,15 +42,26 @@ const SuivisFields = [
   <NoteField source="autonomie" addLabel sortable={false} />,
 ]
 
-const SuivisList = (props) => (
-  <List {...props} filters={<SuiviFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
-    <Datagrid>
-      {SuivisFields}
-      <ShowButton />
-      <EditButton />
-    </Datagrid>
-  </List>
-)
+const SuivisList = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'))
+
+  return (
+    <List {...props} filters={<SuiviFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
+      {isSmall ? (
+        <SimpleList
+          primaryText={(record) => `Anim:${record.animation} Env:${record.environnement} Tech:${record.technique} Aut:${record.autonomie}`}
+          secondaryText={(record) => `${new Date(record.date).toLocaleDateString()} ${record.composter.name}`}
+        />
+      ) : (
+        <Datagrid>
+          {SuivisFields}
+          <ShowButton />
+          <EditButton />
+        </Datagrid>
+      )}
+    </List>
+  )
+}
 
 const SuivisShow = (props) => (
   <Show {...props}>

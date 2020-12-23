@@ -12,7 +12,9 @@ import {
   SelectInput,
   TextInput,
   BooleanInput,
+  SimpleList,
 } from 'react-admin'
+import { useMediaQuery } from '@material-ui/core'
 
 import { enumBroyat, enumStatus } from '../Enums'
 
@@ -58,22 +60,29 @@ const ComposterFilter = (props) => (
   </Filter>
 )
 
-const ComposterList = (props) => (
-  <List {...props} filters={<ComposterFilter />} sort={{ field: 'serialNumber', order: 'DESC' }} perPage={25}>
-    <Datagrid>
-      <TextField source="serialNumber" />
-      <TextField source="name" sortable={false} />
-      <ReferenceField source="commune[@id]" reference="communes" link={false} allowEmpty sortable={false}>
-        <TextField source="name" />
-      </ReferenceField>
-      <ReferenceField source="quartier[@id]" reference="quartiers" link={false} allowEmpty sortable={false}>
-        <TextField source="name" />
-      </ReferenceField>
-      <SelectField source="status" choices={enumStatus} addLabel />
-      <ShowButton />
-      <EditButton />
-    </Datagrid>
-  </List>
-)
+const ComposterList = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'))
+  return (
+    <List {...props} filters={<ComposterFilter />} sort={{ field: 'serialNumber', order: 'DESC' }} perPage={25}>
+      {isSmall ? (
+        <SimpleList primaryText={(record) => record.name} secondaryText={(record) => record.commune.name} tertiaryText={(record) => record.status} />
+      ) : (
+        <Datagrid>
+          <TextField source="serialNumber" />
+          <TextField source="name" sortable={false} />
+          <ReferenceField source="commune[@id]" reference="communes" link={false} allowEmpty sortable={false}>
+            <TextField source="name" />
+          </ReferenceField>
+          <ReferenceField source="quartier[@id]" reference="quartiers" link={false} allowEmpty sortable={false}>
+            <TextField source="name" />
+          </ReferenceField>
+          <SelectField source="status" choices={enumStatus} addLabel />
+          <ShowButton />
+          <EditButton />
+        </Datagrid>
+      )}
+    </List>
+  )
+}
 
 export default ComposterList
