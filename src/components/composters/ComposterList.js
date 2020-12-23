@@ -1,5 +1,18 @@
 import React from 'react'
-import { Datagrid, EditButton, ShowButton, List, SelectField, TextField, ReferenceField, Filter, ReferenceInput, SelectInput, TextInput } from 'react-admin'
+import {
+  Datagrid,
+  EditButton,
+  ShowButton,
+  List,
+  SelectField,
+  TextField,
+  ReferenceField,
+  Filter,
+  ReferenceInput,
+  SelectInput,
+  TextInput,
+  BooleanInput,
+} from 'react-admin'
 
 import { enumBroyat, enumStatus } from '../Enums'
 
@@ -41,6 +54,7 @@ const ComposterFilter = (props) => (
       />
     </ReferenceInput>
     <SelectInput source="broyatLevel" choices={enumBroyat} helperText="" />
+    <BooleanInput source="acceptNewMembers" defaultValue={true} />
   </Filter>
 )
 
