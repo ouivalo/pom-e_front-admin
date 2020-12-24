@@ -19,7 +19,6 @@ import {
 import { Chip, useMediaQuery } from '@material-ui/core'
 
 import { enumRoles } from '../Enums'
-import { Clear, Done } from '@material-ui/icons'
 
 const NameField = ({ record }) => <span>{`${record.firstname ? record.firstname : ''} ${record.lastname ? record.lastname : ''}`}</span>
 

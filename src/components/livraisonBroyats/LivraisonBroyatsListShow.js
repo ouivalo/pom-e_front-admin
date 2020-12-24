@@ -14,7 +14,9 @@ import {
   TextInput,
   TopToolbar,
   SimpleList,
+  downloadCSV,
 } from 'react-admin'
+import jsonExport from 'jsonexport/dist'
 import { useMediaQuery } from '@material-ui/core'
 
 const LivraisonBroyatsFilter = (props) => (
@@ -22,6 +24,22 @@ const LivraisonBroyatsFilter = (props) => (
     <TextInput label="Composteurs" source="composter.name" alwaysOn />
   </Filter>
 )
+
+const exporterLivraisonBroyats = (livraisonBroyats) => {
+  const postsForExport = livraisonBroyats.map((post) => {
+    const { date, quantite, composter, livreur } = post
+    return { date, quantite, composter: composter.name, livreur: livreur.name, commune: composter.commune?.name, quartier: composter.quartier?.name }
+  })
+  jsonExport(
+    postsForExport,
+    {
+      headers: ['date', 'quantite', 'composter', 'livreur', 'commune', 'quartier'], // order fields in the export
+    },
+    (err, csv) => {
+      downloadCSV(csv, 'livraison_broyats-' + new Date().toLocaleDateString()) // download as 'posts.csv` file
+    }
+  )
+}
 
 const LivraisonBroyatsFields = [
   <DateField source="date" addLabel />,
@@ -38,7 +56,7 @@ const LivraisonBroyatsList = (props) => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'))
 
   return (
-    <List {...props} filters={<LivraisonBroyatsFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
+    <List {...props} filters={<LivraisonBroyatsFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25} exporter={exporterLivraisonBroyats}>
       {isSmall ? (
         <SimpleList
           primaryText={(record) => `${record.quantite} L`}
