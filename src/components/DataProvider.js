@@ -1,8 +1,7 @@
 import React from 'react'
-import { hydraDataProvider as baseHydraDataProvider, fetchHydra as baseFetchHydra } from '@api-platform/admin'
+import { hydraDataProvider as baseHydraDataProvider, fetchHydra as baseFetchHydra, useIntrospection } from '@api-platform/admin'
 import parseHydraDocumentation from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation'
 import { Redirect, Route } from 'react-router-dom'
-import jwtDecode from 'jwt-decode'
 
 /**
  * Convert a `File` object returned by the upload input into a base 64 string.
@@ -19,47 +18,45 @@ const convertFileToBase64 = (file) =>
   })
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
-const fetchHeaders = () => ({ Authorization: `Bearer ${localStorage.getItem('token')}` })
+const getHeaders = () =>
+  localStorage.getItem('token')
+    ? {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      }
+    : {}
 const fetchHydra = (url, options = {}) =>
   baseFetchHydra(url, {
     ...options,
-    headers: new Headers(fetchHeaders()),
+    headers: getHeaders,
   })
-const apiDocumentationParser = (entrypoint) =>
-  parseHydraDocumentation(entrypoint, { headers: new Headers(fetchHeaders()) }).then(
-    ({ api }) => ({ api }),
-    (result) => {
-      switch (result.status) {
-        case 401:
-          return Promise.resolve({
-            api: result.api,
-            customRoutes: [
-              <Route
-                path="/"
-                render={() => {
-                  const token = localStorage.getItem('token')
-                  let valideToken = false
+const RedirectToLogin = () => {
+  const introspect = useIntrospection()
 
-                  if (token) {
-                    const decodeToken = jwtDecode(token)
-                    valideToken = decodeToken.exp > Date.now() / 1000
+  if (localStorage.getItem('token')) {
+    introspect()
+    return <></>
+  }
+  return <Redirect to="/login" />
+}
 
-                    if (!valideToken) {
-                      localStorage.removeItem('token')
-                    }
-                  }
+const apiDocumentationParser = async (entrypoint) => {
+  try {
+    const { api } = await parseHydraDocumentation(entrypoint, { headers: getHeaders })
+    return { api }
+  } catch (result) {
+    if (result.status === 401) {
+      // Prevent infinite loop if the token is expired
+      localStorage.removeItem('token')
 
-                  return valideToken ? window.location.reload() : <Redirect to="/login" />
-                }}
-              />,
-            ],
-          })
-
-        default:
-          return Promise.reject(result)
+      return {
+        api: result.api,
+        customRoutes: [<Route path="/" component={RedirectToLogin} />],
       }
     }
-  )
+
+    throw result
+  }
+}
 
 const baseDataProvider = baseHydraDataProvider(entrypoint, fetchHydra, apiDocumentationParser, true)
 const dataProvider = {
