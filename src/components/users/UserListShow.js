@@ -49,6 +49,7 @@ const UserList = (props) => {
     <List {...props} filters={<UserFilter />} sort={{ field: 'id', order: 'ASC' }} perPage={25}>
       {isSmall ? (
         <SimpleList
+          linkType="show"
           primaryText={(record) => `${record.firstname ? record.firstname : ''} ${record.lastname ? record.lastname : ''}`}
           secondaryText={(record) => record.email}
         />

@@ -44,6 +44,7 @@ const ReparationList = (props) => {
     <List {...props} filters={<ReparationFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
       {isSmall ? (
         <SimpleList
+          linkType="show"
           primaryText={(record) => record.description}
           secondaryText={(record) => `${new Date(record.date).toLocaleDateString()} ${record.composter.name}`}
           tertiaryText={(record) => (record.done ? <Done /> : <Clear />)}

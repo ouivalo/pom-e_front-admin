@@ -65,7 +65,12 @@ const ComposterList = (props) => {
   return (
     <List {...props} filters={<ComposterFilter />} sort={{ field: 'serialNumber', order: 'DESC' }} perPage={25}>
       {isSmall ? (
-        <SimpleList primaryText={(record) => record.name} secondaryText={(record) => record.commune.name} tertiaryText={(record) => record.status} />
+        <SimpleList
+          linkType="show"
+          primaryText={(record) => record.name}
+          secondaryText={(record) => record.commune.name}
+          tertiaryText={(record) => record.status}
+        />
       ) : (
         <Datagrid>
           <TextField source="serialNumber" />

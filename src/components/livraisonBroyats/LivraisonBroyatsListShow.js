@@ -59,6 +59,7 @@ const LivraisonBroyatsList = (props) => {
     <List {...props} filters={<LivraisonBroyatsFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25} exporter={exporterLivraisonBroyats}>
       {isSmall ? (
         <SimpleList
+          linkType="show"
           primaryText={(record) => `${record.quantite} L`}
           secondaryText={(record) => `${new Date(record.date).toLocaleDateString()} ${record.composter.name}`}
           tertiaryText={(record) => record.livreur.name}

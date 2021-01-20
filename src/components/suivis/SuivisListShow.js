@@ -49,6 +49,7 @@ const SuivisList = (props) => {
     <List {...props} filters={<SuiviFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
       {isSmall ? (
         <SimpleList
+          linkType="show"
           primaryText={(record) => `Anim:${record.animation} Env:${record.environnement} Tech:${record.technique} Aut:${record.autonomie}`}
           secondaryText={(record) => `${new Date(record.date).toLocaleDateString()} ${record.composter.name}`}
         />
