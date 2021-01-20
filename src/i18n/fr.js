@@ -83,8 +83,8 @@ export default {
         },
         enabled: 'Activer cet utilisateur',
         isEnabled: 'Utilisateur actif',
-        hasFormationReferentSite: 'A suivis la formation "Référent de site"',
-        hasFormationGuideComposteur: 'A suivis la formation "Guide composteur"',
+        hasFormationReferentSite: 'A suivi la formation "Référent de site"',
+        hasFormationGuideComposteur: 'A suivi la formation "Guide composteur"',
         enumDroits: {
           referent: 'Référent',
           referer: 'Référent',
