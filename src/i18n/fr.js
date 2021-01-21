@@ -2,7 +2,7 @@ export default {
   resources: {
     menu: {
       composters: 'Composteurs',
-      users: 'Utilisateurs'
+      users: 'Utilisateurs',
     },
     composters: {
       search: 'Rechercher un composteur',
@@ -10,9 +10,14 @@ export default {
       fields: {
         name: 'Nom',
         mc: 'Maître composteur',
+        'mc[@id]': 'Maître composteur',
+        'equipement[@id]': 'Equipement',
+        'categorie[@id]': 'Catégorie',
         pavilionsVolume: 'Équipement',
         openingProcedures: 'Procédure d‘ouverture',
         financeur: 'Financeur propriétaire de l’équipement',
+        'financeur[@id]': 'Financeur propriétaire de l’équipement',
+        'financeurSuivi[@id]': 'Financeur du suivi',
         permanencesDescription: 'Permanences',
         acceptNewMembers: 'Accepte de nouveaux membres',
         serialNumber: 'Numéro de série',
@@ -21,22 +26,26 @@ export default {
         publicDescription: 'Description publique',
         address: 'Adresse',
         pole: 'Pôle',
+        'pole[@id]': 'Pôle',
         lat: 'Latitude',
         lng: 'Longitude',
         status: 'Statut',
+        'commune[@id]': 'Commnue',
+        'quartier[@id]': 'Quartier',
         enumStatus: {
           active: 'En activité',
           delete: 'Supprimé',
           moved: 'Déplacé',
           toBeMoved: 'À déplacer',
           dormant: 'En dormance',
-          inProject: 'En projet'
+          inProject: 'En projet',
         },
+        'approvisionnementBroyat[@id]': 'Approvisionnement broyat',
         broyatLevel: 'Niveau de broyat',
         enumBroyat: {
           empty: 'Vide',
           reserve: 'Sur la réserve',
-          full: 'Plein'
+          full: 'Plein',
         },
         nbFoyersPotentiels: 'Nombre de foyers potentiels',
         nbInscrit: 'Nombre d’inscrits',
@@ -47,11 +56,14 @@ export default {
         hasCadenas: 'Cadenas',
         hasFourche: 'Fourche',
         hasThermometre: 'Thermomètre',
-        hasPeson: 'Peson'
-      }
+        hasPeson: 'Peson',
+      },
     },
     suivis: {
-      name: 'Suivi |||| Suivis'
+      name: 'Suivi |||| Suivis',
+      fields: {
+        'composter[@id]': 'Composteur',
+      },
     },
     users: {
       search: 'Rechercher un pseudo',
@@ -67,15 +79,19 @@ export default {
         roles: 'Rôles',
         enumRoles: {
           admin: 'Administrateur',
-          user: 'Utilisateur'
+          user: 'Utilisateur',
         },
         enabled: 'Activer cet utilisateur',
         isEnabled: 'Utilisateur actif',
+        hasFormationReferentSite: 'A suivi la formation "Référent de site"',
+        hasFormationGuideComposteur: 'A suivi la formation "Guide composteur"',
         enumDroits: {
+          referent: 'Référent',
           referer: 'Référent',
-          opener: 'Ouvreur'
-        }
-      }
+          opener: 'Ouvreur',
+          user: 'Utilisateur',
+        },
+      },
     },
     contacts: {
       name: 'Contact |||| Contacts',
@@ -91,9 +107,9 @@ export default {
         enumContactType: {
           institution: 'Institution',
           school: 'Établissement scolaire',
-          syndic: 'Syndic'
-        }
-      }
+          syndic: 'Syndic',
+        },
+      },
     },
     permanences: {
       name: 'Permanence |||| Permanences',
@@ -104,67 +120,71 @@ export default {
         eventMessage: 'Description de l‘événement',
         nbUsers: 'Nombre d‘utilisateurs',
         nbBuckets: 'Nombre de bio seaux',
-        temperature: 'Température'
-      }
+        temperature: 'Température',
+      },
     },
     reparations: {
       name: 'Réparation |||| Réparations',
       fields: {
         composter: 'Composteurs',
-        done: 'Reparé'
-      }
+        done: 'Reparé',
+      },
     },
     user_composters: {
       name: 'Utilisateur du composteur |||| Utilisateurs du composteur',
       fields: {
         user: 'Utilisateur',
+        'user[@id]': 'Utilisateur',
         composter: 'Composteur',
-        capability: 'Droit'
-      }
+        'composter[@id]': 'Composteur',
+        capability: 'Droit',
+      },
     },
     equipements: {
       name: 'Équipement |||| Équipements',
       fields: {
         type: 'Type',
-        capacite: 'Capacité'
-      }
+        capacite: 'Capacité',
+      },
     },
     poles: {
-      name: 'Pole |||| Poles'
+      name: 'Pole |||| Poles',
     },
     quartiers: {
-      name: 'Quartier |||| Quartiers'
+      name: 'Quartier |||| Quartiers',
     },
     communes: {
-      name: 'Commune |||| Communes'
+      name: 'Commune |||| Communes',
     },
     categories: {
-      name: 'Catégorie |||| Catégories'
+      name: 'Catégorie |||| Catégories',
     },
     approvisionnement_broyats: {
-      name: 'Appro Broyat |||| Appro Broyat'
+      name: 'Appro Broyat |||| Appro Broyat',
     },
     financeurs: {
       name: 'Financeur |||| Financeurs',
       fields: {
         name: 'Nom',
         initials: 'Initiales',
-        id: 'Composteurs'
-      }
+        id: 'Composteurs',
+      },
     },
     livraison_broyats: {
       name: 'Livraison broyat |||| Livraisons broyat',
       fields: {
         quantite: 'Quantité ( en litre )',
-        composter: 'Composteur'
-      }
+        composter: 'Composteur',
+        'composter[@id]': 'Composteur',
+        'livreur[@id]': 'Livreur',
+      },
     },
     media_objects: {
       name: 'Image |||| Images',
       fields: {
         media_objects: 'Image',
-        perPage: 'Nombre d’images par page'
-      }
-    }
-  }
+        perPage: 'Nombre d’images par page',
+      },
+    },
+  },
 }

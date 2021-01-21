@@ -13,18 +13,21 @@ import {
   ShowButton,
   SimpleShowLayout,
   TextField,
-  translate
+  translate,
+  SimpleList,
 } from 'react-admin'
+import { useMediaQuery } from '@material-ui/core'
+import { Done, Clear } from '@material-ui/icons'
 
 const ReparationFields = [
   <BooleanField source="done" addLabel sortable={false} />,
   <DateField source="date" addLabel />,
   <TextField source="description" addLabel sortable={false} />,
-  <ReferenceField source="composter" reference="composters" link="show" sortable={false}>
+  <ReferenceField source="composter[@id]" label="Composteur" reference="composters" link="show" sortable={false}>
     <TextField source="name" />
   </ReferenceField>,
   <TextField source="refFacture" addLabel sortable={false} />,
-  <TextField source="montant" addLabel sortable={false} />
+  <TextField source="montant" addLabel sortable={false} />,
 ]
 
 const ReparationFilter = translate(({ translate, ...props }) => (
@@ -34,17 +37,30 @@ const ReparationFilter = translate(({ translate, ...props }) => (
   </Filter>
 ))
 
-const ReparationList = props => (
-  <List {...props} filters={<ReparationFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
-    <Datagrid>
-      {ReparationFields}
-      <ShowButton />
-      <EditButton />
-    </Datagrid>
-  </List>
-)
+const ReparationList = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'))
 
-const ReparationShow = props => (
+  return (
+    <List {...props} filters={<ReparationFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
+      {isSmall ? (
+        <SimpleList
+          linkType="show"
+          primaryText={(record) => record.description}
+          secondaryText={(record) => `${new Date(record.date).toLocaleDateString()} ${record.composter.name}`}
+          tertiaryText={(record) => (record.done ? <Done /> : <Clear />)}
+        />
+      ) : (
+        <Datagrid>
+          {ReparationFields}
+          <ShowButton />
+          <EditButton />
+        </Datagrid>
+      )}
+    </List>
+  )
+}
+
+const ReparationShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>{ReparationFields}</SimpleShowLayout>
   </Show>

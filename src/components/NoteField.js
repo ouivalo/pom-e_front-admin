@@ -7,24 +7,24 @@ const useStyles = {
   note: {
     color: '#fff',
     textAlign: 'center',
-    maxWidth: 70
+    maxWidth: 70,
   },
   note0: {
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   note1: {
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   note2: {
-    backgroundColor: '#FBB447'
+    backgroundColor: '#FBB447',
   },
   note3: {
-    backgroundColor: theme.palette.primary.main
-  }
+    backgroundColor: theme.palette.primary.main,
+  },
 }
 
 const NoteField = withStyles(useStyles)(({ classes, ...props }) => {
-  return <TextField className={[classes[`note${props.record[props.source]}`], classes.note]} {...props} component="div" />
+  return props.record ? <TextField className={[classes[`note${props.record[props.source]}`], classes.note]} {...props} component="div" /> : null
 })
 
 export default NoteField

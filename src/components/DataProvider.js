@@ -1,15 +1,14 @@
 import React from 'react'
-import { hydraDataProvider as baseHydraDataProvider, fetchHydra as baseFetchHydra } from '@api-platform/admin'
+import { hydraDataProvider as baseHydraDataProvider, fetchHydra as baseFetchHydra, useIntrospection } from '@api-platform/admin'
 import parseHydraDocumentation from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation'
 import { Redirect, Route } from 'react-router-dom'
-import jwtDecode from 'jwt-decode'
 
 /**
  * Convert a `File` object returned by the upload input into a base 64 string.
  * That's not the most optimized way to store images in production, but it's
  * enough to illustrate the idea of data provider decoration.
  */
-const convertFileToBase64 = file =>
+const convertFileToBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
@@ -19,49 +18,47 @@ const convertFileToBase64 = file =>
   })
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
-const fetchHeaders = () => ({ Authorization: `Bearer ${localStorage.getItem('token')}` })
+const getHeaders = () =>
+  localStorage.getItem('token')
+    ? {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      }
+    : {}
 const fetchHydra = (url, options = {}) =>
   baseFetchHydra(url, {
     ...options,
-    headers: new Headers(fetchHeaders())
+    headers: getHeaders,
   })
-const apiDocumentationParser = entrypoint =>
-  parseHydraDocumentation(entrypoint, { headers: new Headers(fetchHeaders()) }).then(
-    ({ api }) => ({ api }),
-    result => {
-      switch (result.status) {
-        case 401:
-          return Promise.resolve({
-            api: result.api,
-            customRoutes: [
-              <Route
-                path="/"
-                render={() => {
-                  const token = localStorage.getItem('token')
-                  let valideToken = false
+const RedirectToLogin = () => {
+  const introspect = useIntrospection()
 
-                  if (token) {
-                    const decodeToken = jwtDecode(token)
-                    valideToken = decodeToken.exp > Date.now() / 1000
+  if (localStorage.getItem('token')) {
+    introspect()
+    return <></>
+  }
+  return <Redirect to="/login" />
+}
 
-                    if (!valideToken) {
-                      localStorage.removeItem('token')
-                    }
-                  }
+const apiDocumentationParser = async (entrypoint) => {
+  try {
+    const { api } = await parseHydraDocumentation(entrypoint, { headers: getHeaders })
+    return { api }
+  } catch (result) {
+    if (result.status === 401) {
+      // Prevent infinite loop if the token is expired
+      localStorage.removeItem('token')
 
-                  return valideToken ? window.location.reload() : <Redirect to="/login" />
-                }}
-              />
-            ]
-          })
-
-        default:
-          return Promise.reject(result)
+      return {
+        api: result.api,
+        customRoutes: [<Route path="/" component={RedirectToLogin} />],
       }
     }
-  )
 
-const baseDataProvider = baseHydraDataProvider(entrypoint, fetchHydra, apiDocumentationParser)
+    throw result
+  }
+}
+
+const baseDataProvider = baseHydraDataProvider(entrypoint, fetchHydra, apiDocumentationParser, true)
 const dataProvider = {
   ...baseDataProvider,
   create: (resource, params) => {
@@ -70,20 +67,20 @@ const dataProvider = {
       const newPicture = params.data.media_objects.rawFile
 
       return convertFileToBase64(newPicture)
-        .then(base64Picture => ({
+        .then((base64Picture) => ({
           data: base64Picture,
-          imageName: newPicture.name
+          imageName: newPicture.name,
         }))
-        .then(transformedNewPicture => {
+        .then((transformedNewPicture) => {
           return baseDataProvider.create(resource, {
             ...params,
-            data: transformedNewPicture
+            data: transformedNewPicture,
           })
         })
     }
     // Ici c'est le default
     return baseDataProvider.create(resource, params)
-  }
+  },
 }
 
 export default dataProvider

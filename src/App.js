@@ -23,16 +23,16 @@ import { MediasCreate, MediasList } from './components/medias'
 import { ReparationList, ReparationEdit, ReparationCreate, ReparationShow } from './components/reparations'
 import { SuivisList, SuivisShow, SuivisEdit, SuivisCreate } from './components/suivis'
 import { UserCreate, UserEdit, UserList, UserShow } from './components/users'
-import { UserComposterCreate, UserComposterEdit, UserComposterList } from './components/usersComposters'
+import { UserComposterCreate, UserComposterShow, UserComposterEdit, UserComposterList } from './components/usersComposters'
 import { ProfileEdit } from './components/profile'
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT
 
 const messages = {
   fr: { ...frenchMessages, ...frenchResourcesTranslation },
-  en: { ...englishMessages }
+  en: { ...englishMessages },
 }
-const i18nProvider = polyglotI18nProvider(locale => {
+const i18nProvider = polyglotI18nProvider((locale) => {
   return messages[locale]
 }, 'fr')
 
@@ -59,7 +59,14 @@ export default () => (
     />
     <ResourceGuesser name="reparations" create={ReparationCreate} edit={ReparationEdit} show={ReparationShow} list={ReparationList} icon={Build} />
     <ResourceGuesser name="users" list={UserList} create={UserCreate} show={UserShow} edit={UserEdit} icon={Person} />
-    <ResourceGuesser name="user_composters" create={UserComposterCreate} edit={UserComposterEdit} list={UserComposterList} icon={PersonOutline} />
+    <ResourceGuesser
+      name="user_composters"
+      create={UserComposterCreate}
+      edit={UserComposterEdit}
+      show={UserComposterShow}
+      list={UserComposterList}
+      icon={PersonOutline}
+    />
     <ResourceGuesser name="contacts" create={ContactCreate} edit={ContactEdit} show={ContactShow} list={ContactList} icon={Contacts} />
     <ResourceGuesser name="media_objects" create={MediasCreate} list={MediasList} options={{ nextDivider: true }} icon={Photo} />
     <ResourceGuesser name="poles" list={SimpleNameList} icon={Room} />

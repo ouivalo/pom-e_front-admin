@@ -2,13 +2,19 @@ import React from 'react'
 import { required, BooleanInput, Toolbar, SaveButton, Create, Edit, SimpleForm, TextInput, SelectArrayInput } from 'react-admin'
 import { enumAdminRoleOnly, enumRoles } from '../Enums'
 
-const initialValues = { enabled: true }
+const initialValues = { enabled: true, hasFormationReferentSite: false, hasFormationGuideComposteur: false }
 
 const UserInputs1 = [<TextInput source="username" validate={required()} />, <TextInput source="email" validate={required()} />]
 
-const UserInputs2 = [<TextInput source="firstname" />, <TextInput source="lastname" />, <TextInput source="phone" />]
+const UserInputs2 = [
+  <TextInput source="firstname" />,
+  <TextInput source="lastname" />,
+  <TextInput source="phone" />,
+  <BooleanInput source="hasFormationReferentSite" />,
+  <BooleanInput source="hasFormationGuideComposteur" />,
+]
 
-const UserCreate = props => (
+const UserCreate = (props) => (
   <Create {...props}>
     <SimpleForm redirect="list" defaultValue={initialValues}>
       {UserInputs1}
@@ -19,13 +25,13 @@ const UserCreate = props => (
   </Create>
 )
 
-const EditUserToolbar = props => (
+const EditUserToolbar = (props) => (
   <Toolbar {...props}>
     <SaveButton />
   </Toolbar>
 )
 
-const UserEdit = props => (
+const UserEdit = (props) => (
   <Edit {...props}>
     <SimpleForm redirect="list" defaultValue={initialValues} toolbar={<EditUserToolbar />}>
       {UserInputs1}
