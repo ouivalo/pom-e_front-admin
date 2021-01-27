@@ -47,9 +47,7 @@ const LivraisonBroyatsFields = [
   <ReferenceField source="composter[@id]" reference="composters" link="show" allowEmpty sortable={false}>
     <TextField source="name" />
   </ReferenceField>,
-  <ReferenceField source="livreur[@id]" reference="approvisionnement_broyats" link={false} allowEmpty sortable={false}>
-    <TextField source="name" />
-  </ReferenceField>,
+  <TextField source="livreur.name" addLabel sortable={false} />,
 ]
 
 const LivraisonBroyatsList = (props) => {

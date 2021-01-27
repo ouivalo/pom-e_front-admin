@@ -15,7 +15,7 @@ const SuivisInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => {
     <SimpleForm {...rest} redirect={composter ? `/composters/${encodeURIComponent(composter)}/show/1` : 'show'} defaultValue={{ date: new Date(), composter }}>
       <DateInput source="date" validate={required()} />
       <TextInput source="description" validate={required()} />
-      <ReferenceInput source="composter[@id]" reference="composters" alwaysOn filterToQuery={(name) => ({ name })} validate={required()}>
+      <ReferenceInput source="composter" reference="composters" alwaysOn filterToQuery={(name) => ({ name })} validate={required()}>
         <AutocompleteInput optionValue="@id" />
       </ReferenceInput>
       <SelectInput source="animation" choices={noteChoices} />

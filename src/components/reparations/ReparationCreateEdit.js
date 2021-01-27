@@ -14,7 +14,7 @@ const ReparationFields = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => 
       <BooleanInput source="done" />
       <DateInput source="date" validate={required()} />
       <TextInput source="description" validate={required()} multiline />
-      <ReferenceInput source="composter[@id]" reference="composters" alwaysOn filterToQuery={(name) => ({ name })} validate={required()}>
+      <ReferenceInput source="composter" reference="composters" alwaysOn filterToQuery={(name) => ({ name })} validate={required()}>
         <AutocompleteInput optionValue="@id" />
       </ReferenceInput>
       <TextInput source="refFacture" />

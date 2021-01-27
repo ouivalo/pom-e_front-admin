@@ -9,11 +9,11 @@ const LivraisonBroyatsInputs = ({ hasList, hasEdit, hasShow, hasCreate, ...rest 
     <SimpleForm {...rest} redirect={composter ? `/composters/${encodeURIComponent(composter)}/show/1` : 'show'} defaultValue={{ date: new Date(), composter }}>
       <DateInput source="date" validate={required()} />
       <NumberInput source="quantite" validate={required()} />
-      <ReferenceInput source="composter[@id]" reference="composters" alwaysOn filterToQuery={(name) => ({ name })} validate={required()}>
+      <ReferenceInput source="composter" reference="composters" alwaysOn filterToQuery={(name) => ({ name })} validate={required()}>
         <AutocompleteInput optionValue="@id" />
       </ReferenceInput>
-      <ReferenceInput source="livreur[@id]" reference="approvisionnement_broyats">
-        <SelectInput optionText="name" />
+      <ReferenceInput source="livreur" reference="approvisionnement_broyats">
+        <SelectInput optionText="name" optionValue="@id" />
       </ReferenceInput>
     </SimpleForm>
   )
