@@ -14,7 +14,14 @@ const ReparationFields = ({ hasList, hasEdit, hasShow, hasCreate, ...rest }) => 
       <BooleanInput source="done" />
       <DateInput source="date" validate={required()} />
       <TextInput source="description" validate={required()} multiline />
-      <ReferenceInput source="composter" reference="composters" alwaysOn filterToQuery={(name) => ({ name })} validate={required()}>
+      <ReferenceInput
+        source="composter"
+        reference="composters"
+        alwaysOn
+        filterToQuery={(name) => ({ name })}
+        validate={required()}
+        format={(c) => (c instanceof Object ? c['@id'] : c)}
+      >
         <AutocompleteInput optionValue="@id" />
       </ReferenceInput>
       <TextInput source="refFacture" />
@@ -29,10 +36,16 @@ const ReparationCreate = (props) => (
   </Create>
 )
 
-const ReparationEdit = (props) => (
-  <Edit {...props}>
-    <ReparationFields {...props} />
-  </Edit>
-)
+const ReparationEdit = (props) => {
+  const transform = (data) => ({
+    ...data,
+    composter: data.composter instanceof Object ? data.composter['@id'] : data.composter,
+  })
+  return (
+    <Edit {...props} transform={transform}>
+      <ReparationFields {...props} />
+    </Edit>
+  )
+}
 
 export { ReparationCreate, ReparationEdit }
