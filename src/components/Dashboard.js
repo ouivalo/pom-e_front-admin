@@ -10,7 +10,7 @@ const BroyatLevelWidget = translate(({ translate, handleClick }) => {
   const { data, loading, loaded, total } = useQuery({
     type: 'getList',
     resource: 'composters',
-    payload: { pagination: { page: 1, perPage: 10 }, sort: { field: 'DateMiseEnRoute', order: 'DESC' }, filter: { broyatLevel: ['Empty', 'Reserve'] } }
+    payload: { pagination: { page: 1, perPage: 10 }, sort: { field: 'DateMiseEnRoute', order: 'DESC' }, filter: { broyatLevel: ['Empty', 'Reserve'] } },
   })
   return (
     <Grid item xs={12} md={6}>
@@ -27,7 +27,7 @@ const BroyatLevelWidget = translate(({ translate, handleClick }) => {
                       stringify({
                         page: 1,
                         perPage: 25,
-                        filter: JSON.stringify({ broyatLevel: 'Empty' })
+                        filter: JSON.stringify({ broyatLevel: 'Empty' }),
                       })
                   )
                 }
@@ -41,7 +41,7 @@ const BroyatLevelWidget = translate(({ translate, handleClick }) => {
           {loading && <Loading />}
           {loaded && data && (
             <List>
-              {data.map(composter => (
+              {data.map((composter) => (
                 <ListItem key={composter.id} button onClick={() => history.push(`/composters/${composter.id.replace(/\//g, '%2F')}/show`)}>
                   <ListItemIcon>
                     <LocalShipping style={{ color: composter.broyatLevel === 'Empty' ? 'red' : 'orange' }} />
@@ -65,7 +65,7 @@ const ReparationWidget = () => {
   const { data, loading, loaded, total } = useQuery({
     type: 'getList',
     resource: 'reparations',
-    payload: { pagination: { page: 1, perPage: 10 }, sort: { field: 'date', order: 'ASC' }, filter: { done: false } }
+    payload: { pagination: { page: 1, perPage: 10 }, sort: { field: 'date', order: 'ASC' }, filter: { done: false } },
   })
 
   return (
@@ -88,7 +88,7 @@ const ReparationWidget = () => {
                         stringify({
                           page: 1,
                           perPage: 25,
-                          filter: JSON.stringify({ done: 'false' })
+                          filter: JSON.stringify({ done: 'false' }),
                         })
                     )
                   }
@@ -98,13 +98,13 @@ const ReparationWidget = () => {
               </Tooltip>
             </>
           }
-          title={loaded ? `${total} Réparations à prévoire` : 'Réparations'}
+          title={loaded ? `${total} Réparations à prévoir` : 'Réparations'}
         />
         <CardContent>
           {loading && <Loading />}
           <List>
             {data &&
-              data.map(reparation => {
+              data.map((reparation) => {
                 const date = reparation.date ? new Date(reparation.date) : null
                 return (
                   <ListItem key={reparation.id} button onClick={() => history.push(`/reparations/${reparation.id.replace(/\//g, '%2F')}/show`)}>
@@ -127,7 +127,7 @@ const CompostersWidget = () => {
   const { data, loading, loaded, total } = useQuery({
     type: 'getList',
     resource: 'composters',
-    payload: { pagination: { page: 1, perPage: 10 }, sort: { field: 'DateMiseEnRoute', order: 'DESC' } }
+    payload: { pagination: { page: 1, perPage: 10 }, sort: { field: 'DateMiseEnRoute', order: 'DESC' } },
   })
 
   return (
@@ -154,7 +154,7 @@ const CompostersWidget = () => {
           {loading && <Loading />}
           <List>
             {data &&
-              data.map(composter => {
+              data.map((composter) => {
                 const date = new Date(composter.DateMiseEnRoute)
                 return (
                   <ListItem key={composter.id} button onClick={() => history.push(`/composters/${composter.id.replace(/\//g, '%2F')}/show`)}>
