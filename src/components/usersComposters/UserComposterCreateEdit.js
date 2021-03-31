@@ -50,6 +50,7 @@ const NewUserInput = () => {
       <TextInput source="user.firstname" label="resources.users.fields.firstname" />
       <TextInput source="user.lastname" label="resources.users.fields.lastname" />
       <TextInput source="user.phone" label="resources.users.fields.phone" />
+      <BooleanInput source="user.isSubscribeToCompostriNewsletter" label="resources.users.fields.isSubscribeToCompostriNewsletter" />
     </Box>
   )
 }
@@ -57,7 +58,7 @@ const NewUserInput = () => {
 const UserComposterCreate = (props) => {
   return (
     <Create {...props}>
-      <SimpleForm redirect="list" toolbar={<CreatUserToolBar />}>
+      <SimpleForm redirect="list" toolbar={<CreatUserToolBar />} defaultValue={{ user: { isSubscribeToCompostriNewsletter: false } }}>
         <BooleanInput source="newUser" label="Créer un nouvel utilisateur" defaultValue={true} />
         <FormDataConsumer>
           {({ formData }) =>
