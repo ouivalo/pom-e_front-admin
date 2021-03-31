@@ -1,8 +1,8 @@
 import React from 'react'
 import { required, BooleanInput, Toolbar, SaveButton, Create, Edit, SimpleForm, TextInput, SelectArrayInput } from 'react-admin'
-import { enumAdminRoleOnly, enumRoles } from '../Enums'
+import { enumRoles } from '../Enums'
 
-const initialValues = { enabled: true, hasFormationReferentSite: false, hasFormationGuideComposteur: false }
+const initialValues = { enabled: true, hasFormationReferentSite: false, hasFormationGuideComposteur: false, isSubscribeToCompostriNewsletter: false }
 
 const UserInputs1 = [<TextInput source="username" validate={required()} />, <TextInput source="email" validate={required()} />]
 
@@ -12,6 +12,7 @@ const UserInputs2 = [
   <TextInput source="phone" />,
   <BooleanInput source="hasFormationReferentSite" />,
   <BooleanInput source="hasFormationGuideComposteur" />,
+  <BooleanInput source="isSubscribeToCompostriNewsletter" />,
 ]
 
 const UserCreate = (props) => (
@@ -20,7 +21,7 @@ const UserCreate = (props) => (
       {UserInputs1}
       <TextInput source="plainPassword" type="password" validate={required()} />
       {UserInputs2}
-      <SelectArrayInput source="roles" choices={enumAdminRoleOnly} validate={required()} initialValue={['ROLE_ADMIN']} />
+      <SelectArrayInput source="roles" choices={enumRoles} validate={required()} initialValue={['ROLE_ADMIN']} />
     </SimpleForm>
   </Create>
 )

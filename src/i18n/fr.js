@@ -85,6 +85,7 @@ export default {
         isEnabled: 'Utilisateur actif',
         hasFormationReferentSite: 'A suivi la formation "Référent de site"',
         hasFormationGuideComposteur: 'A suivi la formation "Guide composteur"',
+        isSubscribeToCompostriNewsletter: 'Inscrit à la newsletter de Compostri',
         enumDroits: {
           referent: 'Référent',
           referer: 'Référent',
