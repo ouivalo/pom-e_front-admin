@@ -34,7 +34,7 @@ export default {
         'quartier[@id]': 'Quartier',
         enumStatus: {
           active: 'En activité',
-          delete: 'Supprimé',
+          delete: 'Supprimé/remplacé',
           moved: 'Déplacé',
           toBeMoved: 'À déplacer',
           dormant: 'En dormance',
