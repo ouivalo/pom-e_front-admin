@@ -14,6 +14,7 @@ import {
   TabbedShowLayout,
   TextField,
   translate,
+  Pagination,
 } from 'react-admin'
 import { Link } from 'react-router-dom'
 import { Table, TableHead, TableRow, TableCell, TableBody, Typography } from '@material-ui/core'
@@ -213,7 +214,7 @@ const ComposterShow = (props) => {
           <BooleanArrayField fields={['hasCroc', 'hasCadenas', 'hasFourche', 'hasThermometre', 'hasPeson']} title="Outillage présent" />
         </Tab>
         <Tab label="Contact">
-          <ReferenceManyField label="Utilisateurs" reference="user_composters" target="composter" source="rid">
+          <ReferenceManyField label="Utilisateurs" reference="user_composters" target="composter" source="rid" pagination={<Pagination />} perPage={5}>
             <Datagrid>
               <TextField source="user.username" />
               <TextField source="user.firstname" />
